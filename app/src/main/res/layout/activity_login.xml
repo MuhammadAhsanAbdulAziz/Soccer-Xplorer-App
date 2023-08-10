@@ -40,16 +40,20 @@
                 android:layout_marginBottom="20dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/emailLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:hint="Email"
                 app:errorEnabled="true"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/myThemeText"
                 app:hintEnabled="true"
                 app:hintTextColor="@color/white"
                 android:textColorHint="@color/white">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/edittext_border"
@@ -62,6 +66,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
@@ -74,6 +79,7 @@
                 app:endIconTint="@color/myTheme">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/edittext_border"
@@ -94,6 +100,7 @@
                 android:textColor="@color/white"
                 android:text="Remember me"
                 android:textSize="15sp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/poppins_regular"
                 android:buttonTint="@color/myTheme"/>
 

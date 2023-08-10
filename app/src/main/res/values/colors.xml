@@ -15,6 +15,7 @@
     <color name="myThemeBottomNavigationBg">#181A20</color>
     <color name="myThemeText">#4b4e52</color>
     <color name="myThemeBgLight">#35383e</color>
+    <color name="dialogBg">#1f222a</color>
     <color name="placeholder">#dddddd</color>
     <color name="customButton">#35383f</color>
     <color name="transparent">#0035383F</color>
