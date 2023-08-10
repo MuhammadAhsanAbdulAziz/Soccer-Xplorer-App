@@ -27,6 +27,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,12 +39,14 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     Button forgotBtn;
     EditText emailEditText;
     TextInputLayout emailLayout;
+    FirebaseAuth myAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        myAuth = FirebaseAuth.getInstance();
         backBtn = findViewById(R.id.backBtn);
         forgotBtn = findViewById(R.id.forgotBtn);
         emailEditText = findViewById(R.id.emailEditText);
@@ -133,7 +136,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         checking = connectionCheck();
         if(checking == true){
             AlertDialog.Builder builder = new AlertDialog.Builder(  ForgotPasswordActivity.this);
-            LayoutInflater inflater =   ForgotPasswordActivity.this.getLayoutInflater();
+            LayoutInflater inflater = ForgotPasswordActivity.this.getLayoutInflater();
             View dialogview = inflater.inflate(R.layout.dialog_progress_alert, null);
             builder.setView(dialogview);
             AlertDialog alertDialog = builder.create();
@@ -145,6 +148,61 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             TextView messageTextView;
             messageTextView = dialogview.findViewById(R.id.messageTextView);
             messageTextView.setText("Loading...!!!");
+            myAuth.sendPasswordResetEmail(emailEditText.getText().toString().trim())
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                alertDialog.dismiss();
+                                AlertDialog.Builder builderTwo = new AlertDialog.Builder(ForgotPasswordActivity.this);
+                                LayoutInflater inflaterTwo = ForgotPasswordActivity.this.getLayoutInflater();
+                                View dialogviewTwo = inflaterTwo.inflate(R.layout.dialog_success_alert, null);
+                                builderTwo.setView(dialogviewTwo);
+                                AlertDialog alertDialogTwo = builderTwo.create();
+                                alertDialogTwo.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                                alertDialogTwo.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+                                alertDialog.setCancelable(false);
+                                alertDialog.setCanceledOnTouchOutside(false);
+                                TextView messageTextViewTwo;
+                                messageTextViewTwo = dialogviewTwo.findViewById(R.id.messageTextView);
+                                messageTextViewTwo.setText("We have sent you Email to reset your password on "+emailEditText.getText().toString().trim()+"!!!");
+                                alertDialogTwo.show();
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        alertDialogTwo.dismiss();
+                                        ForgotPasswordActivity.super.onBackPressed();
+                                        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                                    }
+                                },4000);
+                            } else {
+                                AlertDialog.Builder builderTwo = new AlertDialog.Builder(ForgotPasswordActivity.this);
+                                LayoutInflater inflaterTwo = ForgotPasswordActivity.this.getLayoutInflater();
+                                View dialogviewTwo = inflaterTwo.inflate(R.layout.dialog_warning_alert, null);
+                                builderTwo.setView(dialogviewTwo);
+                                AlertDialog alertDialogTwo = builderTwo.create();
+                                alertDialogTwo.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                                alertDialogTwo.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+                                alertDialog.setCancelable(false);
+                                alertDialog.setCanceledOnTouchOutside(false);
+                                TextView messageTextViewTwo;
+                                messageTextViewTwo = dialogviewTwo.findViewById(R.id.messageTextView);
+                                messageTextViewTwo.setText("Failed to send reset email!!!");
+                                alertDialogTwo.show();
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        alertDialogTwo.dismiss();
+                                    }
+                                },2000);
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            alertDialog.dismiss();
+                        }
+                    });
         }
     }
 }
