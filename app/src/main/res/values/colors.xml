@@ -14,4 +14,5 @@
     <color name="myThemeBottomNavigationRipple">#7ABE67CD</color>
     <color name="myThemeBottomNavigationBg">#181A20</color>
     <color name="placeholder">#dddddd</color>
+    <color name="myThemeText">#4b4e52</color>
 </resources>

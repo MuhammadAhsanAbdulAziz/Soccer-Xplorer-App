@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "126536591190",
+    "project_id": "soccerxplorer",
+    "storage_bucket": "soccerxplorer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126536591190:android:282304af6cd7f0fcc198f7",
+        "android_client_info": {
+          "package_name": "com.example.soccerxplorer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126536591190-h2g15v61imuauj91r16f13uiimbqkdf0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVQdCEN32R9fIztkGHHuQ7FHiyzE7Olf0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126536591190-h2g15v61imuauj91r16f13uiimbqkdf0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
