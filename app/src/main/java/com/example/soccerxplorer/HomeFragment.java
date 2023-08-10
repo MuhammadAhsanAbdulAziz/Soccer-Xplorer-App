@@ -39,6 +39,20 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        binding.AddPlayerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_homeFragment_to_createPlayerFragment);
+            }
+        });
+
+        binding.AddFixtureBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_homeFragment_to_fixturesFragment);
+            }
+        });
+
         return binding.getRoot();
     }
 

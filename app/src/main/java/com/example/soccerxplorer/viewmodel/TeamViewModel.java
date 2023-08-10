@@ -37,8 +37,11 @@ public class TeamViewModel extends ViewModel {
         repo.DeleteTeam(teamModel,context,navController);
     }
 
-    public LiveData<List<TeamModel>> getCountry() {
+    public LiveData<List<TeamModel>> getTeam() {
         return repo.getTeam();
+    }
+    public LiveData<List<String>> getTeamName() {
+        return repo.getTeamName();
     }
     public LiveData<List<TeamModel>> SearchCountry(String name) {
         return repo.SearchTeam(name);
