@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/registerFragment"
@@ -14,7 +14,26 @@
         android:id="@+id/homeFragment"
         android:name="com.example.soccerxplorer.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_favouriteFragment"
+            app:destination="@id/favouriteFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_fixturesFragment"
+            app:destination="@id/fixturesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_createPlayerFragment"
+            app:destination="@id/createPlayerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_createTeamFragment"
+            app:destination="@id/createTeamFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_createFeedbackFragment"
+            app:destination="@id/createFeedbackFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.soccerxplorer.LoginFragment"
@@ -27,4 +46,34 @@
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="com.example.soccerxplorer.FavouriteFragment"
+        android:label="fragment_favourite"
+        tools:layout="@layout/fragment_favourite" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.example.soccerxplorer.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/fixturesFragment"
+        android:name="com.example.soccerxplorer.FixturesFragment"
+        android:label="fragment_fixtures"
+        tools:layout="@layout/fragment_fixtures" />
+    <fragment
+        android:id="@+id/createPlayerFragment"
+        android:name="com.example.soccerxplorer.CreatePlayerFragment"
+        android:label="fragment_create_player"
+        tools:layout="@layout/fragment_create_player" />
+    <fragment
+        android:id="@+id/createTeamFragment"
+        android:name="com.example.soccerxplorer.CreateTeamFragment"
+        android:label="fragment_create_team"
+        tools:layout="@layout/fragment_create_team" />
+    <fragment
+        android:id="@+id/createFeedbackFragment"
+        android:name="com.example.soccerxplorer.CreateFeedbackFragment"
+        android:label="fragment_create_feedback"
+        tools:layout="@layout/fragment_create_feedback" />
 </navigation>

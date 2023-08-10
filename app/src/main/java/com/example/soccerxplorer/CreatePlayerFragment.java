@@ -12,13 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.soccerxplorer.databinding.FragmentFavouriteBinding;
-import com.example.soccerxplorer.databinding.FragmentLoginBinding;
+import com.example.soccerxplorer.databinding.FragmentCreateFeedbackBinding;
+import com.example.soccerxplorer.databinding.FragmentCreatePlayerBinding;
 
-public class LoginFragment extends Fragment {
-
+public class CreatePlayerFragment extends Fragment {
     NavController navController;
-    FragmentLoginBinding binding;
+    FragmentCreatePlayerBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,10 +27,7 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        binding = FragmentLoginBinding.inflate(inflater, container, false);
-
-
+        binding = FragmentCreatePlayerBinding.inflate(inflater, container, false);
 
         return binding.getRoot();
     }

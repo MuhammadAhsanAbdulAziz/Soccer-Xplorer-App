@@ -13,12 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.soccerxplorer.databinding.FragmentFavouriteBinding;
-import com.example.soccerxplorer.databinding.FragmentLoginBinding;
 
-public class LoginFragment extends Fragment {
+public class FixturesFragment extends Fragment {
 
     NavController navController;
-    FragmentLoginBinding binding;
+    FragmentFavouriteBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,7 +28,7 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        binding = FragmentLoginBinding.inflate(inflater, container, false);
+        binding = FragmentFavouriteBinding.inflate(inflater, container, false);
 
 
 
