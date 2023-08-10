@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="bottom"
-    android:background="@color/bgColor"
-    tools:context=".WelcomeActivity">
+    android:background="@color/bgColor">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,7 +40,7 @@
             android:text="Don't miss a goal! Get live match notifications and match results from your favorite teams and world's most prestigious competitions!"
             android:textColor="@color/white"
             android:layout_marginBottom="20dp"/>
-        
+
         <Button
             android:id="@+id/getStartedBtn"
             android:layout_width="match_parent"
