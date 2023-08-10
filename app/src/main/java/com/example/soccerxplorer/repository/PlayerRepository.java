@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.navigation.NavController;
-
 import com.example.soccerxplorer.model.PlayerModel;
 import com.example.soccerxplorer.util.UtilManager;
 import com.google.android.gms.tasks.OnFailureListener;
