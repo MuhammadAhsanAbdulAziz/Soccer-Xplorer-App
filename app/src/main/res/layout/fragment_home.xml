@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:gravity="center"
     tools:context=".HomeFragment">
 
@@ -12,5 +13,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add Team"/>
+
+    <Button
+        android:layout_margin="20dp"
+        android:id="@+id/AddPlayerBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Player"/>
+
+    <Button
+        android:layout_margin="20dp"
+        android:id="@+id/AddFixtureBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Fixture"/>
 
 </LinearLayout>

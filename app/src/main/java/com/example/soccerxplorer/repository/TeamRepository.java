@@ -25,6 +25,7 @@ import java.util.UUID;
 
 public class TeamRepository {
     MutableLiveData<List<TeamModel>> teamlist;
+    MutableLiveData<List<String>> teamNameList;
     StorageReference storageReference;
     FirebaseStorage storage;
     DatabaseReference databaseReference = FirebaseDatabase.
@@ -53,6 +54,29 @@ public class TeamRepository {
 
         return teamlist;
     }
+
+    public LiveData<List<String>> getTeamName() {
+        teamNameList = new MutableLiveData<>();
+        ArrayList<String> data = new ArrayList<String>();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    data.add(ds.child("teamName").getValue(String.class));
+                    teamNameList.setValue(data);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return teamNameList;
+    }
+
+
 
     public void CreateTeam(TeamModel teamModel) {
         storage = FirebaseStorage.getInstance();

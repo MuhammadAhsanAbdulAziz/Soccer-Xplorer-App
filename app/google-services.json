@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "126536591190",
+    "firebase_url": "https://soccerxplorer-default-rtdb.firebaseio.com",
     "project_id": "soccerxplorer",
     "storage_bucket": "soccerxplorer.appspot.com"
   },

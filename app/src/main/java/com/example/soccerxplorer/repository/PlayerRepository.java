@@ -45,7 +45,6 @@ public class PlayerRepository {
                     playerlist.setValue(data);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
