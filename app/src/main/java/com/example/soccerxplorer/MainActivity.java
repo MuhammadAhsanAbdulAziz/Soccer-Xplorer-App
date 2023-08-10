@@ -16,6 +16,12 @@ public class MainActivity extends AppCompatActivity {
     NavController navController;
     BottomNavigationView bottomNavigationView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+public class MainActivity extends AppCompatActivity {
+    FirebaseDatabase database;
+    public static DatabaseReference myRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,5 +37,12 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
 
+        if(myRef == null) {
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+            database = FirebaseDatabase.getInstance();
+            myRef = database.getReference();
+        }
+        startActivity(new Intent(MainActivity.this,SplashScreenActivity.class));
+        finish();
     }
 }
