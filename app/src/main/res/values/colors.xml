@@ -11,4 +11,7 @@
     <color name="myTheme">#E80F88</color>
     <color name="myThemeLight">#ef61b1</color>
     <color name="myThemeDark">#BA0C6D</color>
+    <color name="myThemeBottomNavigationRipple">#7ABE67CD</color>
+    <color name="myThemeBottomNavigationBg">#181A20</color>
+    <color name="placeholder">#dddddd</color>
 </resources>
