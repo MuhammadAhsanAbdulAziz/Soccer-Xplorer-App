@@ -21,7 +21,7 @@ public class WelcomeActivity extends AppCompatActivity {
         getStartedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(WelcomeActivity.this,DashboardActivity.class));
             }
         });
         iHaveAnBtn.setOnClickListener(new View.OnClickListener() {

@@ -55,6 +55,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ForgotPasswordActivity.super.onBackPressed();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });
         forgotBtn.setOnClickListener(new View.OnClickListener() {

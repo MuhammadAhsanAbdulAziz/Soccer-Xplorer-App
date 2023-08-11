@@ -79,12 +79,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 LoginActivity.super.onBackPressed();
+                overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
             }
         });
         forgotBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this,ForgotPasswordActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
         registerBtn.setOnClickListener(new View.OnClickListener() {

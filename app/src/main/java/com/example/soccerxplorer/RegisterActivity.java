@@ -71,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 RegisterActivity.super.onBackPressed();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });
         registerBtn.setOnClickListener(new View.OnClickListener() {
@@ -378,7 +379,7 @@ public class RegisterActivity extends AppCompatActivity {
                                                         @Override
                                                         public void run() {
                                                             alertDialogTwo.dismiss();
-                                                            Intent intent = new Intent(RegisterActivity.this, DashboardActivity.class);
+                                                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                                             startActivity(intent);
                                                             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                                                             finish();
