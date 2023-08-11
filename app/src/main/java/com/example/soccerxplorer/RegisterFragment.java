@@ -76,6 +76,8 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 navController.popBackStack();
+                RegisterActivity.super.onBackPressed();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });
         binding.registerBtn.setOnClickListener(new View.OnClickListener() {
@@ -386,6 +388,10 @@ public class RegisterFragment extends Fragment {
                                                         public void run() {
                                                             alertDialogTwo.dismiss();
                                                             navController.popBackStack();
+                                                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                                            startActivity(intent);
+                                                            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+                                                            finish();
                                                         }
                                                     },2000);
                                                 }

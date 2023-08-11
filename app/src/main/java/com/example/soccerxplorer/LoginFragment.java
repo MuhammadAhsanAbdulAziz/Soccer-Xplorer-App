@@ -73,12 +73,16 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 navController.popBackStack();
+                LoginActivity.super.onBackPressed();
+                overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
             }
         });
         binding.forgotBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 navController.navigate(R.id.action_loginFragment_to_forgotPasswordFragment);
+                startActivity(new Intent(LoginActivity.this,ForgotPasswordActivity.class));
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
         binding.registerBtn.setOnClickListener(new View.OnClickListener() {
