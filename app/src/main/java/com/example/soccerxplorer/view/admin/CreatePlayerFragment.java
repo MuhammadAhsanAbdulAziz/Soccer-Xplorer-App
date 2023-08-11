@@ -1,4 +1,4 @@
-package com.example.soccerxplorer;
+package com.example.soccerxplorer.view.admin;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -19,6 +19,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
+import com.bumptech.glide.Glide;
+import com.example.soccerxplorer.R;
 import com.example.soccerxplorer.databinding.FragmentCreateFeedbackBinding;
 import com.example.soccerxplorer.databinding.FragmentCreatePlayerBinding;
 import com.example.soccerxplorer.model.PlayerModel;
@@ -77,6 +79,11 @@ public class CreatePlayerFragment extends Fragment {
             startActivityForResult(intent, 404);
         });
 
+        if(playerViewModel.getPlayerModel()!= null)
+        {
+            setData();
+        }
+
         binding.teamspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -92,7 +99,13 @@ public class CreatePlayerFragment extends Fragment {
         binding.BookAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addPlayer();
+                if(binding.BookAddBtn.getText().equals("Update"))
+                {
+                    updatePlayer();
+                }
+                else {
+                    addPlayer();
+                }
             }
         });
 
@@ -115,7 +128,7 @@ public class CreatePlayerFragment extends Fragment {
         ProgressDialog progressDialog = new ProgressDialog(requireContext());
         progressDialog.setMessage("Please wait..");
         String Name = Objects.requireNonNull(binding.titlefield.getText()).toString().trim().toLowerCase(Locale.ROOT);
-
+        String Country = binding.ccp.getSelectedCountryCode();
         if (u == null) {
             UtilManager.errorMessage(requireContext(), "Enter Team Image");
             return;
@@ -123,6 +136,10 @@ public class CreatePlayerFragment extends Fragment {
         if (Name.isEmpty()) {
             binding.titlefield.setError("Enter Title");
             binding.titlefield.requestFocus();
+            return;
+        }
+        if (Country.isEmpty()) {
+            binding.ccp.requestFocus();
             return;
         }
         if (TeamName.isEmpty()) {
@@ -137,7 +154,50 @@ public class CreatePlayerFragment extends Fragment {
                     String name = ds.child("teamName").getValue(String.class);
                     if (name.equals(TeamName)) {
                         String TeamNameId = ds.child("teamId").getValue(String.class);
-                        playerViewModel.CreatePlayer(new PlayerModel("", Name, TeamNameId, u.toString())
+                        playerViewModel.CreatePlayer(new PlayerModel("", Name,Country, TeamNameId, u.toString())
+                                , requireContext(), navController);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void updatePlayer() {
+        ProgressDialog progressDialog = new ProgressDialog(requireContext());
+        progressDialog.setMessage("Please wait..");
+        String Name = Objects.requireNonNull(binding.titlefield.getText()).toString().trim().toLowerCase(Locale.ROOT);
+        String Country = binding.ccp.getSelectedCountryNameCode();
+        if (u == null) {
+            UtilManager.errorMessage(requireContext(), "Enter Team Image");
+            return;
+        }
+        if (Name.isEmpty()) {
+            binding.titlefield.setError("Enter Title");
+            binding.titlefield.requestFocus();
+            return;
+        }
+        if (Country.isEmpty()) {
+            binding.ccp.requestFocus();
+            return;
+        }
+        if (TeamName.isEmpty()) {
+            binding.teamspinner.requestFocus();
+            return;
+        }
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    String name = ds.child("teamName").getValue(String.class);
+                    if (name.equals(TeamName)) {
+                        String TeamNameId = ds.child("teamId").getValue(String.class);
+                        playerViewModel.UpdatePlayer(new PlayerModel(playerViewModel.getPlayerModel().getPlayerId(), Name,Country, TeamNameId, u.toString())
                                 , requireContext(), navController);
                     }
                 }
@@ -165,5 +225,36 @@ public class CreatePlayerFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void setData()
+    {
+        databaseReference.child(playerViewModel.getPlayerModel().getTeamId()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String team = snapshot.child("teamName").getValue(String.class);
+                binding.teamspinner.setPrompt(team);
+                int c = 0;
+                for(int i = 0;i<TeamList.size();i++)
+                {
+                    if(TeamList.get(i).equals(team)) {
+                        c = i;
+                        break;
+                    }
+                }
+                binding.teamspinner.setSelection(c);
+                Glide.with(requireContext()).load(playerViewModel.getPlayerModel().getPlayerImage()).
+                        error(R.drawable.ic_launcher_background).dontAnimate().into(binding.imgfield);
+                binding.titlefield.setText(playerViewModel.getPlayerModel().getPlayerName());
+                binding.ccp.setCountryForNameCode(playerViewModel.getPlayerModel().getPlayerCountry());
+                u = Uri.parse(playerViewModel.getPlayerModel().getPlayerImage());
+                binding.BookAddBtn.setText("Update");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

@@ -32,26 +32,6 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
-        binding.AddTeamBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_homeFragment_to_createTeamFragment);
-            }
-        });
-
-        binding.AddPlayerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_homeFragment_to_createPlayerFragment);
-            }
-        });
-
-        binding.AddFixtureBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.action_homeFragment_to_fixturesFragment);
-            }
-        });
 
         return binding.getRoot();
     }

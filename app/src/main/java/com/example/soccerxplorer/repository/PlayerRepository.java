@@ -40,6 +40,7 @@ public class PlayerRepository {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     data.add(new PlayerModel(ds.child("playerId").getValue(String.class),
                             ds.child("playerName").getValue(String.class),
+                            ds.child("playerCountry").getValue(String.class),
                             ds.child("teamId").getValue(String.class),
                             ds.child("playerImage").getValue(String.class)));
                     playerlist.setValue(data);
@@ -61,7 +62,7 @@ public class PlayerRepository {
         final StorageReference ref = storageReference.child("Player Images/" + playerModel.getPlayerImage());
         ref.putFile(Uri.parse(playerModel.getPlayerImage())).addOnSuccessListener(taskSnapshot -> ref.getDownloadUrl().
                 addOnSuccessListener(uri -> databaseReference.child(uniqueID).
-                setValue(new PlayerModel(uniqueID,playerModel.getPlayerName(),
+                setValue(new PlayerModel(uniqueID,playerModel.getPlayerName(),playerModel.getPlayerCountry(),
                         playerModel.getTeamId(),uri.toString())))).
                 addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -82,8 +83,12 @@ public class PlayerRepository {
         final StorageReference ref = storageReference.child("Player Images/" + playerModel.getPlayerImage());
         ref.putFile(Uri.parse(playerModel.getPlayerImage())).addOnSuccessListener(taskSnapshot -> ref.getDownloadUrl().
                 addOnSuccessListener(uri -> databaseReference.child(playerModel.getPlayerId()).
-                        setValue(new PlayerModel(playerModel.getPlayerId(),
-                                playerModel.getPlayerName(),playerModel.getTeamId(),uri.toString()))
+                        setValue(new PlayerModel(
+                                playerModel.getPlayerId(),
+                                playerModel.getPlayerName(),
+                                playerModel.getPlayerCountry(),
+                                playerModel.getTeamId(),
+                                uri.toString()))
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
@@ -124,6 +129,7 @@ public class PlayerRepository {
                             if(ch == c)
                                 data.add(new PlayerModel(ds.child("playerId").getValue(String.class),
                                         ds.child("playerName").getValue(String.class),
+                                        ds.child("playerCountry").getValue(String.class),
                                         ds.child("teamId").getValue(String.class),
                                         ds.child("playerImage").getValue(String.class)));
                             playerlist.setValue(data);

@@ -7,25 +7,5 @@
     android:gravity="center"
     tools:context=".HomeFragment">
 
-    <Button
-        android:layout_margin="20dp"
-        android:id="@+id/AddTeamBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Team"/>
-
-    <Button
-        android:layout_margin="20dp"
-        android:id="@+id/AddPlayerBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Player"/>
-
-    <Button
-        android:layout_margin="20dp"
-        android:id="@+id/AddFixtureBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Fixture"/>
 
 </LinearLayout>

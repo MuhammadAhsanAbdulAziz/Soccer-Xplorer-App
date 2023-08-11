@@ -1,6 +1,6 @@
-package com.example.soccerxplorer.Models;
+package com.example.soccerxplorer.model;
 
-public class OnboardingItem {
+public class OnboardingModel {
     private int image;
     private String title;
     private String description;

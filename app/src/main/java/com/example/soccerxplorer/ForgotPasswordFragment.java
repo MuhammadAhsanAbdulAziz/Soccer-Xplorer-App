@@ -62,8 +62,6 @@ public class ForgotPasswordFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 navController.popBackStack();
-                ForgotPasswordActivity.super.onBackPressed();
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });
         binding.forgotBtn.setOnClickListener(new View.OnClickListener() {

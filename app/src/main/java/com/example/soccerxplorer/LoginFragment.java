@@ -73,16 +73,12 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 navController.popBackStack();
-                LoginActivity.super.onBackPressed();
-                overridePendingTransition(R.anim.slide_in_top, R.anim.slide_out_bottom);
             }
         });
         binding.forgotBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 navController.navigate(R.id.action_loginFragment_to_forgotPasswordFragment);
-                startActivity(new Intent(LoginActivity.this,ForgotPasswordActivity.class));
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
         binding.registerBtn.setOnClickListener(new View.OnClickListener() {
@@ -254,9 +250,15 @@ public class LoginFragment extends Fragment {
                                                     }
                                                 },3000);
                                             } else if(Status.equals("1")){
-                                                navController.navigate(R.id.action_loginFragment_to_homeFragment);
                                                 UtilManager.setDefaults("userId",task.getResult().getUser().getUid(),requireContext());
                                                 UtilManager.setDefaults("userRole",Role,requireContext());
+                                                if(Role.equals("Admin"))
+                                                {
+                                                    navController.navigate(R.id.action_loginFragment_to_adminHomeFragment);
+                                                }
+                                                else{
+                                                    navController.navigate(R.id.action_loginFragment_to_homeFragment);
+                                                }
                                             }
                                         }
                                     }

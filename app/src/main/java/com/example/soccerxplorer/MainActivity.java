@@ -21,8 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
     NavController navController;
     BottomNavigationView bottomNavigationView;
-    FirebaseDatabase database;
-    public static DatabaseReference myRef;
 
 
     @Override
@@ -35,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
         NavHostFragment navHost = (NavHostFragment)
                 getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
 
-        navController = navHost.getNavController();
+        if(navHost!=null) {
+            navController = navHost.getNavController();
+        }
         bottomNavigationView = findViewById(R.id.bottomNavigation);
 
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
@@ -48,12 +48,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-//        if(myRef == null) {
-//            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-//            database = FirebaseDatabase.getInstance();
-//            myRef = database.getReference();
-//        }
-//        startActivity(new Intent(MainActivity.this,SplashScreenActivity.class));
-//        finish();
     }
 }

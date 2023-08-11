@@ -9,17 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.soccerxplorer.Models.OnboardingItem;
+import com.example.soccerxplorer.model.OnboardingModel;
 import com.example.soccerxplorer.R;
 
 import java.util.List;
 
 public class OnboardingAdapter extends RecyclerView.Adapter<OnboardingAdapter.OnboardingViewHolder> {
 
-    private List<OnboardingItem> onboardingItems;
+    private List<OnboardingModel> onboardingModels;
 
-    public OnboardingAdapter(List<OnboardingItem> onboardingItems) {
-        this.onboardingItems = onboardingItems;
+    public OnboardingAdapter(List<OnboardingModel> onboardingModels) {
+        this.onboardingModels = onboardingModels;
     }
 
     @NonNull
@@ -30,12 +30,12 @@ public class OnboardingAdapter extends RecyclerView.Adapter<OnboardingAdapter.On
 
     @Override
     public void onBindViewHolder(@NonNull OnboardingViewHolder holder, int position) {
-        holder.setOnboardingData(onboardingItems.get(position));
+        holder.setOnboardingData(onboardingModels.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return onboardingItems.size();
+        return onboardingModels.size();
     }
 
     class OnboardingViewHolder extends RecyclerView.ViewHolder{
@@ -50,10 +50,10 @@ public class OnboardingAdapter extends RecyclerView.Adapter<OnboardingAdapter.On
             imageOnboarding = itemView.findViewById(R.id.imageOnboarding);
         }
 
-        void setOnboardingData(OnboardingItem onboardingItem){
-            textTitle.setText(onboardingItem.getTitle());
-            textDescription.setText(onboardingItem.getDescription());
-            imageOnboarding.setImageResource(onboardingItem.getImage());
+        void setOnboardingData(OnboardingModel onboardingModel){
+            textTitle.setText(onboardingModel.getTitle());
+            textDescription.setText(onboardingModel.getDescription());
+            imageOnboarding.setImageResource(onboardingModel.getImage());
         }
     }
 }

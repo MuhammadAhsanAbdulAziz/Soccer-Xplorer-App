@@ -29,44 +29,27 @@ import java.util.UUID;
 public class FixtureRepository {
     MutableLiveData<List<FixtureModel>> fixturelist;
     MutableLiveData<List<String>> teamNameList;
-    StorageReference storageReference;
-    FirebaseStorage storage;
+    MutableLiveData<List<String>> leagueNameList;
     DatabaseReference databaseReference = FirebaseDatabase.
             getInstance().getReference("Fixtures");
+    DatabaseReference databaseReference2 = FirebaseDatabase.
+            getInstance().getReference("Leagues");
 
-//    public LiveData<List<FixtureModel>> getFixture() {
-//        fixturelist = new MutableLiveData<>();
-//        ArrayList<FixtureModel> data = new ArrayList<FixtureModel>();
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for (DataSnapshot ds : snapshot.getChildren()) {
-//                    data.add(new FixtureModel(
-//                            ds.child("fixtureId").getValue(String.class),
-//                            ds.child("teamId1").getValue(String.class),
-//                            ds.child("teamId2").getValue(String.class)));
-//                    fixturelist.setValue(data);
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//
-//        return fixturelist;
-//    }
-
-    public LiveData<List<String>> getTeamName() {
-        teamNameList = new MutableLiveData<>();
-        ArrayList<String> data = new ArrayList<String>();
+    public LiveData<List<FixtureModel>> getFixture() {
+        fixturelist = new MutableLiveData<>();
+        ArrayList<FixtureModel> data = new ArrayList<FixtureModel>();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
-                    data.add(ds.child("teamName").getValue(String.class));
-                    teamNameList.setValue(data);
+                    data.add(new FixtureModel(
+                            ds.child("fixtureId").getValue(String.class),
+                            ds.child("teamId1").getValue(String.class),
+                            ds.child("teamId2").getValue(String.class),
+                            ds.child("leagueId").getValue(String.class),
+                            ds.child("fixtureDate").getValue(String.class),
+                            ds.child("fixtureTime").getValue(String.class)));
+                    fixturelist.setValue(data);
                 }
             }
 
@@ -76,7 +59,28 @@ public class FixtureRepository {
             }
         });
 
-        return teamNameList;
+        return fixturelist;
+    }
+
+    public LiveData<List<String>> getLeagueName() {
+        leagueNameList = new MutableLiveData<>();
+        ArrayList<String> data = new ArrayList<String>();
+        databaseReference2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    data.add(ds.child("leagueName").getValue(String.class));
+                    leagueNameList.setValue(data);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return leagueNameList;
     }
 
 
@@ -84,7 +88,7 @@ public class FixtureRepository {
     public void CreateFixture(FixtureModel fixtureModel,Context context, NavController navController) {
         String uniqueID = UUID.randomUUID().toString();
         databaseReference.child(uniqueID).setValue(new FixtureModel
-                (uniqueID,fixtureModel.getTeamId1(),fixtureModel.getTeamId2()
+                (uniqueID,fixtureModel.getTeamId1(),fixtureModel.getTeamId2(),fixtureModel.getLeagueId()
                         ,fixtureModel.getFixtureDate(),fixtureModel.getFixtureTime()))
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -99,22 +103,26 @@ public class FixtureRepository {
         });
     }
 
-//    public void UpdateFixture(FixtureModel fixtureModel,Context context, NavController navController) {
-//        databaseReference.child(fixtureModel.getFixtureId()).setValue(new FixtureModel
-//                        (fixtureModel.getFixtureId(),fixtureModel.getTeamId1(),
-//                                fixtureModel.getTeamId1())).
-//                addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void unused) {
-//                        UtilManager.SuccessMessage(context,navController);
-//                    }
-//                }).addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        UtilManager.errorMessage(context,"Error");
-//                    }
-//                });
-//    }
+    public void UpdateFixture(FixtureModel fixtureModel,Context context, NavController navController) {
+        databaseReference.child(fixtureModel.getFixtureId()).setValue(new FixtureModel
+                        (fixtureModel.getFixtureId(),
+                                fixtureModel.getTeamId1(),
+                                fixtureModel.getTeamId2(),
+                                fixtureModel.getLeagueId()
+                                ,fixtureModel.getFixtureDate(),
+                                fixtureModel.getFixtureTime())).
+                addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        UtilManager.SuccessMessage(context,navController);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        UtilManager.errorMessage(context,"Error");
+                    }
+                });
+    }
 
     public void DeleteFixture(FixtureModel fixtureModel,Context context, NavController navController) {
         databaseReference.child(fixtureModel.getFixtureId()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {

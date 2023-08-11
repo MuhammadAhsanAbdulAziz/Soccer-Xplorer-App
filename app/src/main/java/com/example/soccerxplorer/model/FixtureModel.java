@@ -7,12 +7,13 @@ import java.util.Objects;
 
 public class FixtureModel {
 
-    String fixtureId,teamId1,teamId2,fixtureDate,fixtureTime;
+    String fixtureId,teamId1,teamId2,leagueId,fixtureDate,fixtureTime;
 
-    public FixtureModel(String fixtureId, String teamId1, String teamId2, String fixtureDate, String fixtureTime) {
+    public FixtureModel(String fixtureId, String teamId1, String teamId2, String leagueId, String fixtureDate, String fixtureTime) {
         this.fixtureId = fixtureId;
         this.teamId1 = teamId1;
         this.teamId2 = teamId2;
+        this.leagueId = leagueId;
         this.fixtureDate = fixtureDate;
         this.fixtureTime = fixtureTime;
     }
@@ -39,6 +40,14 @@ public class FixtureModel {
 
     public void setTeamId2(String teamId2) {
         this.teamId2 = teamId2;
+    }
+
+    public String getLeagueId() {
+        return leagueId;
+    }
+
+    public void setLeagueId(String leagueId) {
+        this.leagueId = leagueId;
     }
 
     public String getFixtureDate() {

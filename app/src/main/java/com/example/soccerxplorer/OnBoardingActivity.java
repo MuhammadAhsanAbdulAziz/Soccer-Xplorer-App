@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.soccerxplorer.Adapter.OnboardingAdapter;
-import com.example.soccerxplorer.Models.OnboardingItem;
+import com.example.soccerxplorer.model.OnboardingModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,29 +72,29 @@ public class OnBoardingActivity extends AppCompatActivity {
                 if(onboardingViewPager.getCurrentItem() + 1 < onboardingAdapter.getItemCount()){
                     onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem() + 1);
                 } else {
-                    startActivity(new Intent(getApplicationContext(), WelcomeActivity.class));
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
                 }
             }
         });
     }
     private void setOnboardingAdapter(){
-        List<OnboardingItem> onboardingItems = new ArrayList<>();
+        List<OnboardingModel> onboardingModels = new ArrayList<>();
 
-        OnboardingItem itemPayOnline = new OnboardingItem();
+        OnboardingModel itemPayOnline = new OnboardingModel();
         itemPayOnline.setTitle("Welcome To Leave Management System!");
         itemPayOnline.setDescription("Manage Leave Approvals In ONE TOUCH");
         itemPayOnline.setImage(R.drawable.welcome_img);
 
-        OnboardingItem itemPayOnline2 = new OnboardingItem();
+        OnboardingModel itemPayOnline2 = new OnboardingModel();
         itemPayOnline2.setTitle("Easily To Manage");
         itemPayOnline2.setDescription("Employee Request To Approve Leave By Manager Or Admin");
         itemPayOnline2.setImage(R.drawable.welcome_img);
 
-        onboardingItems.add(itemPayOnline);
-        onboardingItems.add(itemPayOnline2);
+        onboardingModels.add(itemPayOnline);
+        onboardingModels.add(itemPayOnline2);
 
-        onboardingAdapter = new OnboardingAdapter(onboardingItems);
+        onboardingAdapter = new OnboardingAdapter(onboardingModels);
     }
     private void setLayoutOnBoardingIndicators(){
         ImageView[] indicators = new ImageView[onboardingAdapter.getItemCount()];
@@ -126,7 +126,7 @@ public class OnBoardingActivity extends AppCompatActivity {
         }
     }
     public void moveToSecondary(){
-        startActivity(new Intent(OnBoardingActivity.this, WelcomeActivity.class));
+        startActivity(new Intent(OnBoardingActivity.this, MainActivity.class));
         finish();
     }
 }

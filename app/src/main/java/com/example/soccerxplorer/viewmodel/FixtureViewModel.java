@@ -35,6 +35,10 @@ public class FixtureViewModel extends ViewModel {
 //        repo.UpdateFixture(fixtureModel,context,navController);
 //    }
 
+    public LiveData<List<String>> getLeagueName() {
+        return repo.getLeagueName();
+    }
+
     public void DeleteFixture(FixtureModel fixtureModel, Context context, NavController navController) {
         repo.DeleteFixture(fixtureModel,context,navController);
     }

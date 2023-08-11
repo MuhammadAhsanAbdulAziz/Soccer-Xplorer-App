@@ -28,7 +28,7 @@ public class WelcomeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentWelcomeBinding.inflate(inflater,container,false);
@@ -46,7 +46,13 @@ public class WelcomeFragment extends Fragment {
 
         if(UtilManager.getDefaults("userId",requireContext())!=null)
         {
-            navController.navigate(R.id.action_welcomeFragment_to_homeFragment);
+            if((UtilManager.getDefaults("userRole",requireContext()).equals("Admin")))
+            {
+                navController.navigate(R.id.action_welcomeFragment_to_adminHomeFragment);
+            }
+            else {
+                navController.navigate(R.id.action_welcomeFragment_to_homeFragment);
+            }
         }
 
         binding.iHaveAnBtn.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +65,7 @@ public class WelcomeFragment extends Fragment {
         binding.getStartedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                navController.navigate(R.id.action_welcomeFragment_to_homeFragment);
             }
         });
     }

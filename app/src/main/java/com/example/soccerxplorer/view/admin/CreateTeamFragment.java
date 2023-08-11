@@ -1,4 +1,4 @@
-package com.example.soccerxplorer;
+package com.example.soccerxplorer.view.admin;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
