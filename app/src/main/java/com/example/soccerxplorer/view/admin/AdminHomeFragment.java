@@ -41,7 +41,7 @@ public class AdminHomeFragment extends Fragment {
         binding.AddTeamBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_adminHomeFragment_to_createTeamFragment);
+                navController.navigate(R.id.action_adminHomeFragment_to_allTeamFragment);
             }
         });
 
@@ -55,14 +55,14 @@ public class AdminHomeFragment extends Fragment {
         binding.AddFixtureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_adminHomeFragment_to_createFixtureFragment);
+                navController.navigate(R.id.action_adminHomeFragment_to_allFixtureFragment);
             }
         });
 
         binding.AddLeagueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.action_adminHomeFragment_to_createLeagueFragment);
+                navController.navigate(R.id.action_adminHomeFragment_to_allLeagueFragment);
             }
         });
 

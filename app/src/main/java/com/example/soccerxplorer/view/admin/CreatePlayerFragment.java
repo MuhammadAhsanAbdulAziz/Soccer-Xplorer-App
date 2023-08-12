@@ -21,10 +21,8 @@ import android.widget.ArrayAdapter;
 
 import com.bumptech.glide.Glide;
 import com.example.soccerxplorer.R;
-import com.example.soccerxplorer.databinding.FragmentCreateFeedbackBinding;
 import com.example.soccerxplorer.databinding.FragmentCreatePlayerBinding;
 import com.example.soccerxplorer.model.PlayerModel;
-import com.example.soccerxplorer.model.TeamModel;
 import com.example.soccerxplorer.util.UtilManager;
 import com.example.soccerxplorer.viewmodel.PlayerViewModel;
 import com.example.soccerxplorer.viewmodel.TeamViewModel;
@@ -33,13 +31,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class CreatePlayerFragment extends Fragment {
     NavController navController;
@@ -49,6 +46,7 @@ public class CreatePlayerFragment extends Fragment {
     PlayerViewModel playerViewModel;
     String TeamName;
     List<String> TeamList = new ArrayList<>();
+    PlayerModel playerModel;
 
     DatabaseReference databaseReference = FirebaseDatabase.
             getInstance().getReference("Teams");
@@ -59,18 +57,19 @@ public class CreatePlayerFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentCreatePlayerBinding.inflate(inflater, container, false);
         teamViewModel = new ViewModelProvider(requireActivity()).get(TeamViewModel.class);
         playerViewModel = new ViewModelProvider(requireActivity()).get(PlayerViewModel.class);
-        getTeamName();
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        setInitialData();
 
         binding.imgfield.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -79,11 +78,7 @@ public class CreatePlayerFragment extends Fragment {
             startActivityForResult(intent, 404);
         });
 
-        if(playerViewModel.getPlayerModel()!= null)
-        {
-            setData();
-        }
-
+        getTeamName();
         binding.teamspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -123,12 +118,11 @@ public class CreatePlayerFragment extends Fragment {
         });
     }
 
-
     private void addPlayer() {
         ProgressDialog progressDialog = new ProgressDialog(requireContext());
         progressDialog.setMessage("Please wait..");
         String Name = Objects.requireNonNull(binding.titlefield.getText()).toString().trim().toLowerCase(Locale.ROOT);
-        String Country = binding.ccp.getSelectedCountryCode();
+        String Country = binding.ccp.getSelectedCountryNameCode();
         if (u == null) {
             UtilManager.errorMessage(requireContext(), "Enter Team Image");
             return;
@@ -227,34 +221,43 @@ public class CreatePlayerFragment extends Fragment {
         binding = null;
     }
 
-    private void setData()
-    {
-        databaseReference.child(playerViewModel.getPlayerModel().getTeamId()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String team = snapshot.child("teamName").getValue(String.class);
-                binding.teamspinner.setPrompt(team);
-                int c = 0;
-                for(int i = 0;i<TeamList.size();i++)
-                {
-                    if(TeamList.get(i).equals(team)) {
-                        c = i;
-                        break;
+    private void setInitialData() {
+        if(getArguments()!=null){
+            String jsonNote = getArguments().getString("player");
+            Gson g = new Gson();
+            playerModel = g.fromJson(jsonNote,PlayerModel.class);
+            if(playerModel!=null)
+            {
+                databaseReference.child(playerModel.getTeamId()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String team = snapshot.child("teamName").getValue(String.class);
+                        binding.teamspinner.setPrompt(team);
+                        int c = 0;
+                        for(int i = 0;i<TeamList.size();i++)
+                        {
+                            if(TeamList.get(i).equals(team)) {
+                                c = i;
+                                break;
+                            }
+                        }
+                        binding.teamspinner.setSelection(c);
+                        Glide.with(requireContext()).load(playerModel.getPlayerImage()).
+                                error(R.drawable.ic_launcher_background).dontAnimate().into(binding.imgfield);
+                        binding.titlefield.setText(playerModel.getPlayerName());
+                        binding.ccp.setCountryForNameCode(playerModel.getPlayerCountry());
+                        u = Uri.parse(playerModel.getPlayerImage());
+                        binding.BookAddBtn.setText("Update");
                     }
-                }
-                binding.teamspinner.setSelection(c);
-                Glide.with(requireContext()).load(playerViewModel.getPlayerModel().getPlayerImage()).
-                        error(R.drawable.ic_launcher_background).dontAnimate().into(binding.imgfield);
-                binding.titlefield.setText(playerViewModel.getPlayerModel().getPlayerName());
-                binding.ccp.setCountryForNameCode(playerViewModel.getPlayerModel().getPlayerCountry());
-                u = Uri.parse(playerViewModel.getPlayerModel().getPlayerImage());
-                binding.BookAddBtn.setText("Update");
-            }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+                    }
+                });
             }
-        });
+        }
+        else{
+            binding.BookAddBtn.setText("Add");
+        }
     }
 }

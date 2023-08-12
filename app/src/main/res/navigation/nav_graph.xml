@@ -117,20 +117,20 @@
         android:label="fragment_admin_home"
         tools:layout="@layout/fragment_admin_home" >
         <action
-            android:id="@+id/action_adminHomeFragment_to_createTeamFragment"
-            app:destination="@id/createTeamFragment" />
-        <action
             android:id="@+id/action_adminHomeFragment_to_createFeedbackFragment"
             app:destination="@id/createFeedbackFragment" />
         <action
-            android:id="@+id/action_adminHomeFragment_to_createLeagueFragment"
-            app:destination="@id/createLeagueFragment" />
-        <action
-            android:id="@+id/action_adminHomeFragment_to_createFixtureFragment"
-            app:destination="@id/createFixtureFragment" />
-        <action
             android:id="@+id/action_adminHomeFragment_to_allPlayerFragment"
             app:destination="@id/allPlayerFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_allLeagueFragment"
+            app:destination="@id/allLeagueFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_allFixtureFragment"
+            app:destination="@id/allFixtureFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_allTeamFragment"
+            app:destination="@id/allTeamFragment" />
     </fragment>
     <fragment
         android:id="@+id/allPlayerFragment"
@@ -140,5 +140,32 @@
         <action
             android:id="@+id/action_allPlayerFragment_to_createPlayerFragment"
             app:destination="@id/createPlayerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allFixtureFragment"
+        android:name="com.example.soccerxplorer.view.admin.AllFixtureFragment"
+        android:label="fragment_all_fixture"
+        tools:layout="@layout/fragment_all_fixture" >
+        <action
+            android:id="@+id/action_allFixtureFragment_to_createFixtureFragment"
+            app:destination="@id/createFixtureFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allTeamFragment"
+        android:name="com.example.soccerxplorer.view.admin.AllTeamFragment"
+        android:label="fragment_all_team"
+        tools:layout="@layout/fragment_all_team" >
+        <action
+            android:id="@+id/action_allTeamFragment_to_createTeamFragment"
+            app:destination="@id/createTeamFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allLeagueFragment"
+        android:name="com.example.soccerxplorer.view.admin.AllLeagueFragment"
+        android:label="fragment_all_league"
+        tools:layout="@layout/fragment_all_league" >
+        <action
+            android:id="@+id/action_allLeagueFragment_to_createLeagueFragment"
+            app:destination="@id/createLeagueFragment" />
     </fragment>
 </navigation>
