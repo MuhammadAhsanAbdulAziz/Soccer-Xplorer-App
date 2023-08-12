@@ -37,6 +37,16 @@ public class TeamViewModel extends ViewModel {
         repo.DeleteTeam(teamModel,context,navController);
     }
 
+    public String getTeamName(String id)
+    {
+        return repo.getTeamName(id);
+    }
+
+    public String getTeamImage(String id)
+    {
+        return repo.getTeamImage(id);
+    }
+
     public LiveData<List<TeamModel>> getTeam() {
         return repo.getTeam();
     }

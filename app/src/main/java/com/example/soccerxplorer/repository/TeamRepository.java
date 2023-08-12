@@ -30,6 +30,8 @@ public class TeamRepository {
     FirebaseStorage storage;
     DatabaseReference databaseReference = FirebaseDatabase.
             getInstance().getReference("Teams");
+    String teamName;
+    String teamImage;
 
     public LiveData<List<TeamModel>> getTeam() {
         teamlist = new MutableLiveData<>();
@@ -74,6 +76,42 @@ public class TeamRepository {
         });
 
         return teamNameList;
+    }
+
+    public String getTeamName(String id) {
+        databaseReference.child(id).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists())
+                {
+                    teamName = snapshot.child("teamName").getValue(String.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return teamName;
+    }
+
+    public String getTeamImage(String id) {
+        databaseReference.child(id).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists())
+                {
+                    teamImage = snapshot.child("teamImage").getValue(String.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return teamImage;
     }
 
 

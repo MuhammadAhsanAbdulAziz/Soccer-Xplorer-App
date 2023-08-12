@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:listitem="@layout/admin_player_item" />
+        tools:listitem="@layout/matches_listview" />
 
     <com.github.ybq.android.spinkit.SpinKitView
         android:visibility="gone"

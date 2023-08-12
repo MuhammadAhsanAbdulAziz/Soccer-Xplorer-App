@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,6 +26,7 @@ import com.example.soccerxplorer.model.PlayerModel;
 import com.example.soccerxplorer.model.TeamModel;
 import com.example.soccerxplorer.viewmodel.FixtureViewModel;
 import com.example.soccerxplorer.viewmodel.PlayerViewModel;
+import com.example.soccerxplorer.viewmodel.TeamViewModel;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -35,6 +37,7 @@ public class AllFixtureFragment extends Fragment implements FixtureInterface {
     NavController navController;
     AdminFixtureAdapter adp;
     FixtureViewModel fixtureViewModel;
+    TeamViewModel teamViewModel;
 
 
     @Override
@@ -56,7 +59,10 @@ public class AllFixtureFragment extends Fragment implements FixtureInterface {
 
         navController = Navigation.findNavController(view);
 
-        adp = new AdminFixtureAdapter(requireActivity(), this);
+        teamViewModel = new ViewModelProvider(requireActivity()).get(TeamViewModel.class);
+        fixtureViewModel = new ViewModelProvider(requireActivity()).get(FixtureViewModel.class);
+
+        adp = new AdminFixtureAdapter(requireActivity(), this,teamViewModel);
         fixtureViewModel.getFixture().observe(requireActivity(), new Observer<List<FixtureModel>>() {
             @Override
             public void onChanged(List<FixtureModel> fixtureModels) {

@@ -1,172 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/bgColor"
-    android:paddingHorizontal="20dp"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/userItem"
+    <data>
+        <variable
+            name="detail"
+            type="com.example.soccerxplorer.model.FixtureModel" />
+        <variable
+            name="fixtureInterface"
+            type="com.example.soccerxplorer.interfaces.FixtureInterface" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="25dp"
-        app:cardElevation="10dp"
-        app:cardMaxElevation="2dp"
-        android:layout_marginBottom="15dp"
-        app:cardPreventCornerOverlap="true"
-        android:visibility="visible"
-        tools:ignore="MissingConstraints">
+        android:background="@color/bgColor"
+        android:paddingHorizontal="20dp">
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
+            android:onClick="@{()->fixtureInterface.FixtureDetail(detail)}"
+            android:id="@+id/userItem"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:background="#4c0033"
-            android:padding="20dp">
-
-            <TextView
-                android:id="@+id/matchLeagueName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="World Cup 2022"
-                android:textColor="@color/white"
-                android:textSize="19sp"
-                android:textStyle="bold"
-                android:fontFamily="@font/poppins_regular"
-                android:textAlignment="center"/>
-
-            <TextView
-                android:id="@+id/country"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="England"
-                android:textColor="@color/white"
-                android:fontFamily="@font/poppins_regular"
-                android:textSize="12sp"
-                android:textAlignment="center"/>
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="10dp"
+            app:cardMaxElevation="2dp"
+            android:layout_marginBottom="15dp"
+            app:cardPreventCornerOverlap="true"
+            android:visibility="visible"
+            tools:ignore="MissingConstraints">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="#4c0033"
+                android:padding="20dp">
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/matchLeagueName"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1">
+                    android:hint="World Cup 2022"
+                    android:textColor="@color/white"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textAlignment="center" />
 
-                    <ImageView
-                        android:id="@+id/teamOneLogo"
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:src="@drawable/poland"/>
-
-                    <TextView
-                        android:id="@+id/teamOneName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Poland"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="14sp"
-                        android:textAlignment="center"
-                        android:layout_marginTop="5dp"/>
-
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="England"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:textAlignment="center" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="center">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center">
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/teamOneLogo"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:src="@drawable/poland" />
 
                         <TextView
-                            android:id="@+id/teamOneScore"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/teamOneName"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="0"
-                            android:textColor="@color/white"
-                            android:textSize="40sp"
+                            android:text="@{detail.teamId1}"
                             android:textStyle="bold"
-                            android:fontFamily="@font/poppins_regular"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=":"
-                            android:layout_marginHorizontal="3dp"
                             android:textColor="@color/white"
-                            android:textSize="40sp"
-                            android:fontFamily="@font/poppins_regular"/>
-
-                        <TextView
-                            android:id="@+id/teamTwoScore"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0"
-                            android:textColor="@color/white"
-                            android:textSize="40sp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/poppins_regular"/>
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="14sp"
+                            android:textAlignment="center"
+                            android:layout_marginTop="5dp" />
 
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/matchTime"
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/teamOneScore"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="@color/white"
+                                android:textSize="40sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/poppins_regular" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=":"
+                                android:layout_marginHorizontal="3dp"
+                                android:textColor="@color/white"
+                                android:textSize="40sp"
+                                android:fontFamily="@font/poppins_regular" />
+
+                            <TextView
+                                android:id="@+id/teamTwoScore"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textColor="@color/white"
+                                android:textSize="40sp"
+                                android:textStyle="bold"
+                                android:fontFamily="@font/poppins_regular" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/matchTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{detail.fixtureDate}"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:textAlignment="center"
+                            android:layout_marginTop="-10dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="30 Dec"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="10sp"
-                        android:textStyle="bold"
-                        android:textAlignment="center"
-                        android:layout_marginTop="-10dp"/>
+                        android:orientation="vertical"
+                        android:layout_weight="1">
 
-                </LinearLayout>
+                        <ImageView
+                            android:id="@+id/teamTwoLogo"
+                            android:layout_width="match_parent"
+                            android:layout_height="70dp"
+                            android:src="@drawable/argentina" />
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/teamTwoName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{detail.teamId2}"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="14sp"
+                            android:textAlignment="center"
+                            android:layout_marginTop="5dp" />
 
-                    <ImageView
-                        android:id="@+id/teamTwoLogo"
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:src="@drawable/argentina"/>
-
-                    <TextView
-                        android:id="@+id/teamTwoName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Argentina"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="14sp"
-                        android:textAlignment="center"
-                        android:layout_marginTop="5dp"/>
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-    </com.google.android.material.card.MaterialCardView>
-
-</LinearLayout>
+    </LinearLayout>
+</layout>
