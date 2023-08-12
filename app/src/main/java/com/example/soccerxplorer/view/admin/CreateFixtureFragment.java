@@ -140,6 +140,7 @@ public class CreateFixtureFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        setInitialData();
         binding.btnAddFixture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,6 +169,13 @@ public class CreateFixtureFragment extends Fragment {
     private void addFixture() {
         ProgressDialog progressDialog = new ProgressDialog(requireContext());
         progressDialog.setMessage("Please wait..");
+        String score1 = binding.team1score.getText().toString().trim();
+        String score2 = binding.team2score.getText().toString().trim();
+        String status = binding.status.getText().toString().trim();
+        if (!(status.equals("1") || status.equals( "0"))) {
+            binding.status.requestFocus();
+            return;
+        }
         if (TeamName1.isEmpty()) {
             binding.teamspinner1.requestFocus();
             return;
@@ -206,7 +214,7 @@ public class CreateFixtureFragment extends Fragment {
                                 LeagueName = ds.child("leagueId").getValue(String.class);
                                 String date = binding.inDate.getText().toString();
                                 String time = binding.inTime.getText().toString();
-                                fixtureViewModel.CreateFixture(new FixtureModel("",TeamName1,TeamName2,LeagueName,date,time),requireContext(),navController);
+                                fixtureViewModel.CreateFixture(new FixtureModel("",TeamName1,TeamName2,LeagueName,date,time,score1,score2,status),requireContext(),navController);
                             }
                         }
                     }
@@ -303,6 +311,9 @@ public class CreateFixtureFragment extends Fragment {
                 binding.teamspinner2.setSelection(team2);
                 binding.inDate.setText(fixtureModel.getFixtureDate());
                 binding.inTime.setText(fixtureModel.getFixtureTime());
+                binding.team1score.setText(fixtureModel.getTeamScore1());
+                binding.team2score.setText(fixtureModel.getTeamScore2());
+                binding.status.setText(fixtureModel.getFixtureStatus());
                 binding.btnAddFixture.setText("Update");
             }
         }

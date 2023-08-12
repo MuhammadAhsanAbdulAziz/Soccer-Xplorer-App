@@ -2,6 +2,7 @@ package com.example.soccerxplorer.repository;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -82,6 +83,7 @@ public class TeamRepository {
         databaseReference.child(id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 dataGet(snapshot.child("teamName").getValue().toString());
             }
             @Override

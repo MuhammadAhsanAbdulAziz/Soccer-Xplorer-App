@@ -30,10 +30,10 @@ public class UserViewModel extends ViewModel {
     public void CreateUser(UserModel userModel,Context context, NavController navController) {
         repo.CreateUser(userModel,context,navController);
     }
-//
-//    public void UpdateFeedback(FeedbackModel teamModel,Context context, NavController navController) {
-//        repo.UpdateFeedback(teamModel,context,navController);
-//    }
+
+    public void UpdateUser(UserModel userModel,Context context, NavController navController) {
+        repo.UpdateUser(userModel,context,navController);
+    }
 //
 //    public void DeleteFeedback(FeedbackModel teamModel, Context context, NavController navController) {
 //        repo.DeleteFeedback(teamModel,context,navController);

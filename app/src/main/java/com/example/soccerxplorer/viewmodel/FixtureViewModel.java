@@ -43,6 +43,13 @@ public class FixtureViewModel extends ViewModel {
         repo.DeleteFixture(fixtureModel,context,navController);
     }
 
+    public LiveData<List<FixtureModel>> getCompletedFixture(){
+        return repo.getCompletedFixture();
+    }
+    public LiveData<List<FixtureModel>> getPendingFixture(){
+        return repo.getPendingFixture();
+    }
+
     public LiveData<List<FixtureModel>> getFixture() {
         return repo.getFixture();
     }

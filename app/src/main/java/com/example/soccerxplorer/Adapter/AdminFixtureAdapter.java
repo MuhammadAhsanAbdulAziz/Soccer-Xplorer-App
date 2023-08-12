@@ -9,12 +9,9 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.soccerxplorer.databinding.AdminTeamItemBinding;
 import com.example.soccerxplorer.databinding.MatchesListviewBinding;
 import com.example.soccerxplorer.interfaces.FixtureInterface;
-import com.example.soccerxplorer.interfaces.TeamInterface;
 import com.example.soccerxplorer.model.FixtureModel;
-import com.example.soccerxplorer.model.TeamModel;
 import com.example.soccerxplorer.viewmodel.TeamViewModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -99,10 +96,10 @@ public class AdminFixtureAdapter extends ListAdapter<FixtureModel, AdminFixtureA
 
             }
         });
-//        Glide.with(context).load(teamViewModel.getTeamImage(data.getTeamId1())).
-//                dontAnimate().into(holder.binding.teamOneLogo);
-//        Glide.with(context).load(teamViewModel.getTeamImage(data.getTeamId2())).
-//                dontAnimate().into(holder.binding.teamTwoLogo);
+        Glide.with(context).load(teamViewModel.getTeamImage(data.getTeamId1())).
+                dontAnimate().into(holder.binding.teamOneLogo);
+        Glide.with(context).load(teamViewModel.getTeamImage(data.getTeamId2())).
+                dontAnimate().into(holder.binding.teamTwoLogo);
         counter++;
 
     }

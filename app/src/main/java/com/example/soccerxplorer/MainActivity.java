@@ -42,10 +42,13 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
 
-        if(UtilManager.getDefaults("userRole",this).equals("Admin"))
+        if(UtilManager.getDefaults("userRole",this)!=null)
         {
-            LinearLayout l = findViewById(R.id.layout);
-            l.setBackgroundColor(getResources().getColor(android.R.color.white));
+            if(UtilManager.getDefaults("userRole",this).equals("Admin")) {
+                LinearLayout l = findViewById(R.id.layout);
+                l.setBackgroundColor(getResources().getColor(android.R.color.white));
+            }
+
         }
 
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {

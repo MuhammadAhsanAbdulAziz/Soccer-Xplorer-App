@@ -48,7 +48,10 @@ public class FixtureRepository {
                             ds.child("teamId2").getValue(String.class),
                             ds.child("leagueId").getValue(String.class),
                             ds.child("fixtureDate").getValue(String.class),
-                            ds.child("fixtureTime").getValue(String.class)));
+                            ds.child("fixtureTime").getValue(String.class),
+                            ds.child("teamScore1").getValue(String.class),
+                            ds.child("teamScore2").getValue(String.class),
+                            ds.child("fixtureStatus").getValue(String.class)));
                     fixturelist.setValue(data);
                 }
             }
@@ -61,6 +64,71 @@ public class FixtureRepository {
 
         return fixturelist;
     }
+
+    public LiveData<List<FixtureModel>> getCompletedFixture() {
+        fixturelist = new MutableLiveData<>();
+        ArrayList<FixtureModel> data = new ArrayList<FixtureModel>();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    if(ds.child("fixtureStatus").getValue().toString().equals("1")) {
+                        data.add(new FixtureModel(
+                                ds.child("fixtureId").getValue(String.class),
+                                ds.child("teamId1").getValue(String.class),
+                                ds.child("teamId2").getValue(String.class),
+                                ds.child("leagueId").getValue(String.class),
+                                ds.child("fixtureDate").getValue(String.class),
+                                ds.child("fixtureTime").getValue(String.class),
+                                ds.child("teamScore1").getValue(String.class),
+                                ds.child("teamScore2").getValue(String.class),
+                                ds.child("fixtureStatus").getValue(String.class)));
+                        fixturelist.setValue(data);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return fixturelist;
+    }
+
+    public LiveData<List<FixtureModel>> getPendingFixture() {
+        fixturelist = new MutableLiveData<>();
+        ArrayList<FixtureModel> data = new ArrayList<FixtureModel>();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    if(ds.child("fixtureStatus").getValue().toString().equals("0")) {
+                        data.add(new FixtureModel(
+                                ds.child("fixtureId").getValue(String.class),
+                                ds.child("teamId1").getValue(String.class),
+                                ds.child("teamId2").getValue(String.class),
+                                ds.child("leagueId").getValue(String.class),
+                                ds.child("fixtureDate").getValue(String.class),
+                                ds.child("fixtureTime").getValue(String.class),
+                                ds.child("teamScore1").getValue(String.class),
+                                ds.child("teamScore2").getValue(String.class),
+                                ds.child("fixtureStatus").getValue(String.class)));
+                        fixturelist.setValue(data);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return fixturelist;
+    }
+
 
     public LiveData<List<String>> getLeagueName() {
         leagueNameList = new MutableLiveData<>();
@@ -88,8 +156,11 @@ public class FixtureRepository {
     public void CreateFixture(FixtureModel fixtureModel,Context context, NavController navController) {
         String uniqueID = UUID.randomUUID().toString();
         databaseReference.child(uniqueID).setValue(new FixtureModel
-                (uniqueID,fixtureModel.getTeamId1(),fixtureModel.getTeamId2(),fixtureModel.getLeagueId()
-                        ,fixtureModel.getFixtureDate(),fixtureModel.getFixtureTime()))
+                (uniqueID,fixtureModel.getTeamId1(),
+                        fixtureModel.getTeamId2(),fixtureModel.getLeagueId()
+                        ,fixtureModel.getFixtureDate(),fixtureModel.getFixtureTime(),
+                        fixtureModel.getTeamScore1(),fixtureModel.getTeamScore2()
+                        ,fixtureModel.getFixtureStatus()))
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
@@ -105,12 +176,10 @@ public class FixtureRepository {
 
     public void UpdateFixture(FixtureModel fixtureModel,Context context, NavController navController) {
         databaseReference.child(fixtureModel.getFixtureId()).setValue(new FixtureModel
-                        (fixtureModel.getFixtureId(),
-                                fixtureModel.getTeamId1(),
-                                fixtureModel.getTeamId2(),
-                                fixtureModel.getLeagueId()
-                                ,fixtureModel.getFixtureDate(),
-                                fixtureModel.getFixtureTime())).
+                (fixtureModel.getFixtureId(),fixtureModel.getTeamId1(),
+                        fixtureModel.getTeamId2(),fixtureModel.getLeagueId(),
+                        fixtureModel.getTeamScore1(),fixtureModel.getTeamScore2()
+                        ,fixtureModel.getFixtureDate(),fixtureModel.getFixtureTime(),fixtureModel.getFixtureStatus())).
                 addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {

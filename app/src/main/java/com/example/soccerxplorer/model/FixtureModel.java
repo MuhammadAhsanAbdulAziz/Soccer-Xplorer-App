@@ -7,15 +7,18 @@ import java.util.Objects;
 
 public class FixtureModel {
 
-    String fixtureId,teamId1,teamId2,leagueId,fixtureDate,fixtureTime;
+    String fixtureId,teamId1,teamId2,leagueId,fixtureDate,fixtureTime,teamScore1,teamScore2,fixtureStatus;
 
-    public FixtureModel(String fixtureId, String teamId1, String teamId2, String leagueId, String fixtureDate, String fixtureTime) {
+    public FixtureModel(String fixtureId, String teamId1, String teamId2, String leagueId, String fixtureDate, String fixtureTime, String teamScore1, String teamScore2, String fixtureStatus) {
         this.fixtureId = fixtureId;
         this.teamId1 = teamId1;
         this.teamId2 = teamId2;
         this.leagueId = leagueId;
         this.fixtureDate = fixtureDate;
         this.fixtureTime = fixtureTime;
+        this.teamScore1 = teamScore1;
+        this.teamScore2 = teamScore2;
+        this.fixtureStatus = fixtureStatus;
     }
 
     public String getFixtureId() {
@@ -64,6 +67,30 @@ public class FixtureModel {
 
     public void setFixtureTime(String fixtureTime) {
         this.fixtureTime = fixtureTime;
+    }
+
+    public String getTeamScore1() {
+        return teamScore1;
+    }
+
+    public void setTeamScore1(String teamScore1) {
+        this.teamScore1 = teamScore1;
+    }
+
+    public String getTeamScore2() {
+        return teamScore2;
+    }
+
+    public void setTeamScore2(String teamScore2) {
+        this.teamScore2 = teamScore2;
+    }
+
+    public String getFixtureStatus() {
+        return fixtureStatus;
+    }
+
+    public void setFixtureStatus(String fixtureStatus) {
+        this.fixtureStatus = fixtureStatus;
     }
 
     @Override

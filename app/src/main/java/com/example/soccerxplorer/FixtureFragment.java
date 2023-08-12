@@ -1,9 +1,12 @@
 package com.example.soccerxplorer;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -54,8 +57,46 @@ public class FixtureFragment extends Fragment implements FixtureInterface {
         teamViewModel = new ViewModelProvider(requireActivity()).get(TeamViewModel.class);
         fixtureViewModel = new ViewModelProvider(requireActivity()).get(FixtureViewModel.class);
 
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.popBackStack();
+            }
+        });
+
+        binding.fixturesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.fixturesBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_button_active));
+                binding.resultsBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_button_inactive));
+                binding.fixturesBtn.setTextColor(getResources().getColor(R.color.white));
+                fixtureViewModel.getPendingFixture().observe(requireActivity(), new Observer<List<FixtureModel>>() {
+                    @Override
+                    public void onChanged(List<FixtureModel> fixtureModels) {
+                        adp.submitList(fixtureModels);
+                    }
+                });
+
+            }
+        });
+
+        binding.resultsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.fixturesBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_button_inactive));
+                binding.resultsBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_button_active));
+                fixtureViewModel.getCompletedFixture().observe(requireActivity(), new Observer<List<FixtureModel>>() {
+                    @Override
+                    public void onChanged(List<FixtureModel> fixtureModels) {
+                        adp.submitList(fixtureModels);
+                    }
+                });
+            }
+        });
+
         adp = new AdminFixtureAdapter(requireActivity(), this,teamViewModel);
-        fixtureViewModel.getFixture().observe(requireActivity(), new Observer<List<FixtureModel>>() {
+
+        fixtureViewModel.getCompletedFixture().observe(requireActivity(), new Observer<List<FixtureModel>>() {
             @Override
             public void onChanged(List<FixtureModel> fixtureModels) {
                 adp.submitList(fixtureModels);
