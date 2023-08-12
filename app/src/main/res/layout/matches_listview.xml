@@ -74,8 +74,7 @@
                         <ImageView
                             android:id="@+id/teamOneLogo"
                             android:layout_width="match_parent"
-                            android:layout_height="70dp"
-                            android:src="@drawable/poland" />
+                            android:layout_height="70dp" />
 
                         <TextView
                             android:id="@+id/teamOneName"
@@ -167,8 +166,7 @@
                         <ImageView
                             android:id="@+id/teamTwoLogo"
                             android:layout_width="match_parent"
-                            android:layout_height="70dp"
-                            android:src="@drawable/argentina" />
+                            android:layout_height="70dp" />
 
                         <TextView
                             android:id="@+id/teamTwoName"

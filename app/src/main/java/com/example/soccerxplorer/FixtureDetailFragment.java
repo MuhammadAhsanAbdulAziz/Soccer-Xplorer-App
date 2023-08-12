@@ -124,6 +124,7 @@ public class FixtureDetailFragment extends Fragment implements PlayerInterface {
 
                         Glide.with(requireContext()).load(snapshot.child("teamImage").getValue(String.class)).
                                 dontAnimate().into(binding.teamOneLogo);
+                        binding.teamOne.setText(snapshot.child("teamName").getValue(String.class));
                         binding.teamOneName.setText(snapshot.child("teamName").getValue(String.class));
                         Locale l = new Locale("", snapshot.child("teamCountry").getValue(String.class));
                         if(l.getDisplayCountry().equals("UNITED KINGDOM"))
@@ -147,6 +148,7 @@ public class FixtureDetailFragment extends Fragment implements PlayerInterface {
 
                         Glide.with(requireContext()).load(snapshot.child("teamImage").getValue(String.class)).
                                 dontAnimate().into(binding.teamTwoLogo);
+                        binding.teamTwo.setText(snapshot.child("teamName").getValue(String.class));
                         binding.teamTwoName.setText(snapshot.child("teamName").getValue(String.class));
                         Locale l = new Locale("", snapshot.child("teamCountry").getValue(String.class));
                         if(l.getDisplayCountry().equals("UNITED KINGDOM"))
