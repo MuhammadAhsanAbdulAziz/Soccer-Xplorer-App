@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bgColor"
+    tools:context=".DashboardActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Soccer Xplorer"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/righteous_regular"
+            android:textSize="25sp"/>
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:tint="@color/myTheme"
+            android:src="@drawable/logo"/>
+
+    </LinearLayout>
+
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="250dp"
+     android:orientation="horizontal">
+
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="MESSI"
+         android:textSize="80sp"
+         android:textColor="@color/white"
+          />
+     <ImageView
+         android:layout_width="wrap_content"
+         android:layout_height="match_parent"
+         android:src="@drawable/messi"
+         android:gravity="right">
+
+
+     </ImageView>
+
+
+ </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="@drawable/border_radius_bottom"
+        android:elevation="20dp"
+        app:itemIconSize="28dp"
+        app:itemTextColor="@color/bottom_appbar"
+        app:itemIconTint="@color/bottom_appbar"
+        app:itemRippleColor="@color/myThemeBottomNavigationRipple"
+        app:itemTextAppearanceActive="@style/BottomNavigationViewTextAppearance"
+        app:menu="@menu/menu_item" />
+
+
+</LinearLayout>
