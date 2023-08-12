@@ -437,7 +437,7 @@
 
             </LinearLayout>
 
-            <GridView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/teamOnePlayers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -542,7 +542,7 @@
 
         </LinearLayout>
 
-            <GridView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/teamTwoPlayers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

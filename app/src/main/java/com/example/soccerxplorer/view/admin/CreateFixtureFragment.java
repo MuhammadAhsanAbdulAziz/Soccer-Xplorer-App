@@ -57,10 +57,15 @@ public class CreateFixtureFragment extends Fragment {
     private String LeagueName;
     int mYear, mMonth, mDay, mHour, mMinute;
     FixtureModel fixtureModel;
+    int team1 = 0;
+    int team2 = 0;
+    int league = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        teamViewModel = new ViewModelProvider(requireActivity()).get(TeamViewModel.class);
+        getTeamName();
     }
 
     @Override
@@ -71,7 +76,6 @@ public class CreateFixtureFragment extends Fragment {
 
         teamViewModel = new ViewModelProvider(requireActivity()).get(TeamViewModel.class);
         fixtureViewModel = new ViewModelProvider(requireActivity()).get(FixtureViewModel.class);
-        getTeamName();
         getLeagueName();
 
         binding.teamspinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -110,6 +114,8 @@ public class CreateFixtureFragment extends Fragment {
             }
         });
 
+        setInitialData();
+
         return binding.getRoot();
     }
 
@@ -140,7 +146,7 @@ public class CreateFixtureFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        setInitialData();
+
         binding.btnAddFixture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -289,26 +295,63 @@ public class CreateFixtureFragment extends Fragment {
             fixtureModel = g.fromJson(jsonNote, FixtureModel.class);
             if(fixtureModel!=null)
             {
-                String teamName1 = teamViewModel.getTeamName(fixtureModel.getTeamId1());
-                String teamName2 = teamViewModel.getTeamName(fixtureModel.getTeamId2());
-                int team1 = 0;
-                int team2 = 0;
-                for(int i = 0;i<TeamList.size();i++)
-                {
-                    if(TeamList.get(i).equals(teamName1)) {
-                        team1 = i;
-                        break;
+                databaseReference.child(fixtureModel.getTeamId1()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        TeamName1 = snapshot.child("teamName").getValue().toString();
+                        for(int i = 0;i<TeamList.size();i++)
+                        {
+                            if(TeamList.get(i).equals(TeamName1)) {
+                                team1 = i;
+                                binding.teamspinner1.setSelection(team1);
+                                break;
+                            }
+                        }
                     }
-                }
-                for(int i = 0;i<TeamList.size();i++)
-                {
-                    if(TeamList.get(i).equals(teamName2)) {
-                        team2 = i;
-                        break;
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
                     }
-                }
-                binding.teamspinner1.setSelection(team1);
-                binding.teamspinner2.setSelection(team2);
+                });
+                databaseReference.child(fixtureModel.getTeamId2()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        TeamName2 = snapshot.child("teamName").getValue().toString();
+                        for(int i = 0;i<TeamList.size();i++)
+                        {
+                            if(TeamList.get(i).equals(TeamName2)) {
+                                team2 = i;
+                                binding.teamspinner2.setSelection(team2);
+                                break;
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                databaseReference2.child(fixtureModel.getLeagueId()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        LeagueName = snapshot.child("leagueName").getValue().toString();
+                        for(int i = 0;i<LeagueList.size();i++)
+                        {
+                            if(LeagueList.get(i).equals(LeagueName)) {
+                                league = i;
+                                binding.leaguespinner.setSelection(league);
+                                break;
+                            }
+                        }
+
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
                 binding.inDate.setText(fixtureModel.getFixtureDate());
                 binding.inTime.setText(fixtureModel.getFixtureTime());
                 binding.team1score.setText(fixtureModel.getTeamScore1());

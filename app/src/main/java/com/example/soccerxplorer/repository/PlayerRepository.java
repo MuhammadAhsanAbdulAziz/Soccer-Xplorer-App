@@ -55,6 +55,32 @@ public class PlayerRepository {
         return playerlist;
     }
 
+    public LiveData<List<PlayerModel>> getPlayerbyTeam(String teamId) {
+        playerlist = new MutableLiveData<>();
+        ArrayList<PlayerModel> data = new ArrayList<PlayerModel>();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    if(ds.child("teamId").getValue(String.class).equals(teamId)) {
+                        data.add(new PlayerModel(ds.child("playerId").getValue(String.class),
+                                ds.child("playerName").getValue(String.class),
+                                ds.child("playerCountry").getValue(String.class),
+                                ds.child("teamId").getValue(String.class),
+                                ds.child("playerImage").getValue(String.class)));
+                        playerlist.setValue(data);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return playerlist;
+    }
+
     public void CreatePlayer(PlayerModel playerModel,Context context, NavController navController) {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();

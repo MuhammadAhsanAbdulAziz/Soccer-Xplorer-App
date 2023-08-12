@@ -40,6 +40,9 @@ public class PlayerViewModel extends ViewModel {
     public LiveData<List<PlayerModel>> getPlayer() {
         return repo.getPlayer();
     }
+    public LiveData<List<PlayerModel>> getPlayerbyTeam(String teamId) {
+        return repo.getPlayerbyTeam(teamId);
+    }
     public LiveData<List<PlayerModel>> SearchPlayer(String name) {
         return repo.SearchPlayer(name);
     }

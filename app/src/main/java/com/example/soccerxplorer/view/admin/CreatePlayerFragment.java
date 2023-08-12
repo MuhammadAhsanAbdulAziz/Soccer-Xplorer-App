@@ -54,13 +54,15 @@ public class CreatePlayerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        teamViewModel = new ViewModelProvider(requireActivity()).get(TeamViewModel.class);
+        getTeamName();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentCreatePlayerBinding.inflate(inflater, container, false);
-        teamViewModel = new ViewModelProvider(requireActivity()).get(TeamViewModel.class);
+
         playerViewModel = new ViewModelProvider(requireActivity()).get(PlayerViewModel.class);
         return binding.getRoot();
     }
@@ -69,8 +71,6 @@ public class CreatePlayerFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        setInitialData();
-
         binding.imgfield.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
             intent.setType("*/*");
@@ -78,7 +78,6 @@ public class CreatePlayerFragment extends Fragment {
             startActivityForResult(intent, 404);
         });
 
-        getTeamName();
         binding.teamspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -105,6 +104,8 @@ public class CreatePlayerFragment extends Fragment {
         });
 
         navController = Navigation.findNavController(view);
+
+        setInitialData();
     }
 
     private void getTeamName() {

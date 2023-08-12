@@ -24,6 +24,7 @@ import com.example.soccerxplorer.interfaces.FixtureInterface;
 import com.example.soccerxplorer.model.FixtureModel;
 import com.example.soccerxplorer.viewmodel.FixtureViewModel;
 import com.example.soccerxplorer.viewmodel.TeamViewModel;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -115,6 +116,10 @@ public class FixtureFragment extends Fragment implements FixtureInterface {
 
     @Override
     public void FixtureDetail(FixtureModel fixture) {
-
+        fixtureViewModel.setFixtureModel(fixture);
+        Bundle bundle = new Bundle();
+        Gson g = new Gson();
+        bundle.putString("fixture",g.toJson(fixture) );
+        navController.navigate(R.id.action_fixtureFragment_to_fixtureDetailFragment,bundle);
     }
 }

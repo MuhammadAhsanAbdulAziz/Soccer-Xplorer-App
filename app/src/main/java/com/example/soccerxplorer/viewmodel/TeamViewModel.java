@@ -55,6 +55,7 @@ public class TeamViewModel extends ViewModel {
     public LiveData<List<String>> getTeamName() {
         return repo.getTeamName();
     }
+
     public LiveData<List<TeamModel>> SearchCountry(String name) {
         return repo.SearchTeam(name);
     }
