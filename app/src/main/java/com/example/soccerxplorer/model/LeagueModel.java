@@ -4,12 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
 public class LeagueModel {
-    private String leagueId,leagueName,leagueCountry;
+    private String leagueId,leagueName,leagueCountry,leagueImage;
 
-    public LeagueModel(String leagueId, String leagueName, String leagueCountry) {
+    public LeagueModel(String leagueId, String leagueName, String leagueCountry, String leagueImage) {
         this.leagueId = leagueId;
         this.leagueName = leagueName;
         this.leagueCountry = leagueCountry;
+        this.leagueImage = leagueImage;
     }
 
     public String getLeagueId() {
@@ -34,6 +35,14 @@ public class LeagueModel {
 
     public void setLeagueCountry(String leagueCountry) {
         this.leagueCountry = leagueCountry;
+    }
+
+    public String getLeagueImage() {
+        return leagueImage;
+    }
+
+    public void setLeagueImage(String leagueImage) {
+        this.leagueImage = leagueImage;
     }
 
     @Override

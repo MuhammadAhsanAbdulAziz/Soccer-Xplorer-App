@@ -124,12 +124,24 @@ public class CreatePlayerFragment extends Fragment {
         progressDialog.setMessage("Please wait..");
         String Name = Objects.requireNonNull(binding.titlefield.getText()).toString().trim().toLowerCase(Locale.ROOT);
         String Country = binding.ccp.getSelectedCountryNameCode();
+        String position = binding.position.getText().toString().trim().toLowerCase(Locale.ROOT);
+        String number = binding.number.getText().toString().trim().toLowerCase(Locale.ROOT);
         if (u == null) {
             UtilManager.errorMessage(requireContext(), "Enter Team Image");
             return;
         }
         if (Name.isEmpty()) {
             binding.titlefield.setError("Enter Title");
+            binding.titlefield.requestFocus();
+            return;
+        }
+        if (position.isEmpty()) {
+            binding.position.setError("Enter Position");
+            binding.titlefield.requestFocus();
+            return;
+        }
+        if (number.isEmpty()) {
+            binding.number.setError("Enter Player Number");
             binding.titlefield.requestFocus();
             return;
         }
@@ -149,7 +161,7 @@ public class CreatePlayerFragment extends Fragment {
                     String name = ds.child("teamName").getValue(String.class);
                     if (name.equals(TeamName)) {
                         String TeamNameId = ds.child("teamId").getValue(String.class);
-                        playerViewModel.CreatePlayer(new PlayerModel("", Name,Country, TeamNameId, u.toString())
+                        playerViewModel.CreatePlayer(new PlayerModel("", Name,Country, TeamNameId, u.toString(),position,number)
                                 , requireContext(), navController);
                     }
                 }
@@ -167,8 +179,20 @@ public class CreatePlayerFragment extends Fragment {
         progressDialog.setMessage("Please wait..");
         String Name = Objects.requireNonNull(binding.titlefield.getText()).toString().trim().toLowerCase(Locale.ROOT);
         String Country = binding.ccp.getSelectedCountryNameCode();
+        String position = binding.position.getText().toString().trim().toLowerCase(Locale.ROOT);
+        String number = binding.number.getText().toString().trim().toLowerCase(Locale.ROOT);
         if (u == null) {
             UtilManager.errorMessage(requireContext(), "Enter Team Image");
+            return;
+        }
+        if (number.isEmpty()) {
+            binding.titlefield.setError("Enter Player Number");
+            binding.titlefield.requestFocus();
+            return;
+        }
+        if (position.isEmpty()) {
+            binding.position.setError("Enter Player Position");
+            binding.titlefield.requestFocus();
             return;
         }
         if (Name.isEmpty()) {
@@ -192,7 +216,8 @@ public class CreatePlayerFragment extends Fragment {
                     String name = ds.child("teamName").getValue(String.class);
                     if (name.equals(TeamName)) {
                         String TeamNameId = ds.child("teamId").getValue(String.class);
-                        playerViewModel.UpdatePlayer(new PlayerModel(playerViewModel.getPlayerModel().getPlayerId(), Name,Country, TeamNameId, u.toString())
+                        playerViewModel.UpdatePlayer(new PlayerModel(playerViewModel.getPlayerModel().getPlayerId(),
+                                        Name,Country, TeamNameId, u.toString(),position,number)
                                 , requireContext(), navController);
                     }
                 }

@@ -1,97 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/bgColor"
-    android:paddingHorizontal="20dp"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="detail"
+            type="com.example.soccerxplorer.model.PlayerModel" />
+        <variable
+            name="PlayerInterface"
+            type="com.example.soccerxplorer.interfaces.PlayerInterface" />
+    </data>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/userItem"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="25dp"
-        app:cardElevation="10dp"
-        app:cardMaxElevation="2dp"
-        android:layout_marginBottom="15dp"
-        app:cardPreventCornerOverlap="true"
-        android:visibility="visible"
-        tools:ignore="MissingConstraints">
+        android:background="@color/bgColor"
+        android:paddingHorizontal="20dp">
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
+            android:onClick="@{()->PlayerInterface.PlayerDetail(detail)}"
+            android:id="@+id/userItem"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:background="#222232">
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="10dp"
+            app:cardMaxElevation="2dp"
+            android:layout_marginBottom="15dp"
+            app:cardPreventCornerOverlap="true"
+            android:visibility="visible"
+            tools:ignore="MissingConstraints">
 
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="#222232">
 
-                <ImageView
-                    android:id="@+id/teamImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="160dp"
-                    android:src="@drawable/player_bg"
-                    android:layout_gravity="end|bottom"
-                    android:layout_marginRight="20dp"
-                    android:scaleType="fitEnd"/>
-
-                <LinearLayout
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
+                    android:layout_height="wrap_content">
 
                     <ImageView
-                        android:id="@+id/teamLogo"
-                        android:layout_width="50dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/poland"
-                        android:layout_gravity="start"
-                        android:layout_marginBottom="15dp"
-                        android:layout_marginLeft="-10dp"/>
+                        android:id="@+id/teamImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="160dp"
+                        android:src="@drawable/player_bg"
+                        android:layout_gravity="end|bottom"
+                        android:layout_marginRight="20dp"
+                        android:scaleType="fitEnd" />
 
-                    <TextView
-                        android:id="@+id/playerName"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Brandon Baptisa"
-                        android:textColor="@color/white"
-                        android:textSize="17sp"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/poppins_regular"/>
+                        android:orientation="vertical"
+                        android:padding="20dp">
 
-                    <TextView
-                        android:id="@+id/playerType"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Goalkeeper"
-                        android:layout_marginBottom="10dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/myThemeText"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="12sp"/>
+                        <ImageView
+                            android:id="@+id/teamLogo"
+                            android:layout_width="50dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="start"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="-10dp" />
 
-                    <TextView
-                        android:id="@+id/playerScore"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="19"
-                        android:textColor="#D2B5FF"
-                        android:textSize="28sp"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="-15dp"
-                        android:fontFamily="@font/poppins_regular"/>
+                        <TextView
+                            android:id="@+id/playerName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{detail.playerName}"
+                            android:textColor="@color/white"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/poppins_regular" />
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/playerType"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{detail.playerPosition}"
+                            android:layout_marginBottom="10dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/myThemeText"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="12sp" />
 
-            </FrameLayout>
+                        <TextView
+                            android:id="@+id/playerScore"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@{detail.playerNumber}"
+                            android:textColor="#D2B5FF"
+                            android:textSize="28sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="-15dp"
+                            android:fontFamily="@font/poppins_regular" />
 
-        </LinearLayout>
+                    </LinearLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+                </FrameLayout>
 
-</LinearLayout>
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</layout>

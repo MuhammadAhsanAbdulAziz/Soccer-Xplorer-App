@@ -65,7 +65,6 @@
                     android:id="@+id/matchLeagueName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="World Cup 2022"
                     android:textColor="@color/white"
                     android:textSize="19sp"
                     android:textStyle="bold"
@@ -76,7 +75,6 @@
                     android:id="@+id/country"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="England"
                     android:textColor="@color/white"
                     android:fontFamily="@font/poppins_regular"
                     android:textSize="12sp"
@@ -102,7 +100,6 @@
                             android:id="@+id/teamOneName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Arsenal"
                             android:textStyle="bold"
                             android:textColor="@color/white"
                             android:fontFamily="@font/poppins_regular"
@@ -185,7 +182,6 @@
                             android:id="@+id/teamTwoName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Brentford"
                             android:textStyle="bold"
                             android:textColor="@color/white"
                             android:fontFamily="@font/poppins_regular"
@@ -369,8 +365,7 @@
                 <ImageView
                     android:id="@+id/teamOneImage"
                     android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:src="@drawable/arsenal"/>
+                    android:layout_height="45dp"/>
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -383,7 +378,6 @@
                         android:id="@+id/teamOne"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Arsenal Football"
                         android:textColor="@color/white"
                         android:textSize="18sp"
                         android:textStyle="bold"
@@ -393,7 +387,6 @@
                         android:id="@+id/teamOneCountry"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="England"
                         android:textColor="@color/white"
                         android:fontFamily="@font/poppins_regular"
                         android:textSize="12sp"/>
@@ -428,6 +421,7 @@
                     android:textStyle="bold" />
 
                 <ImageView
+                    android:id="@+id/Team1playerdetailforward"
                     android:layout_width="20dp"
                     android:layout_height="17dp"
                     android:src="@drawable/arrow_forward"
@@ -533,6 +527,7 @@
                 android:textStyle="bold" />
 
             <ImageView
+                android:id="@+id/Team2playerdetailforward"
                 android:layout_width="20dp"
                 android:layout_height="17dp"
                 android:src="@drawable/arrow_forward"

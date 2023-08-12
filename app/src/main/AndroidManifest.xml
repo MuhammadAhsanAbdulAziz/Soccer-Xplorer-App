@@ -17,12 +17,6 @@
             android:name=".FeedbackActivity"
             android:exported="false" />
         <activity
-            android:name=".PlayerDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PlayersActivity"
-            android:exported="false" />
-        <activity
             android:name=".OnBoardingActivity"
             android:exported="false" />
         <activity

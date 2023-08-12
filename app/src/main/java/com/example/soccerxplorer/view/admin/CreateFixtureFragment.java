@@ -178,12 +178,22 @@ public class CreateFixtureFragment extends Fragment {
         String score1 = binding.team1score.getText().toString().trim();
         String score2 = binding.team2score.getText().toString().trim();
         String status = binding.status.getText().toString().trim();
+        String referee = binding.refree.getText().toString().trim();
+        String venue = binding.fixturevenue.getText().toString().trim();
         if (!(status.equals("1") || status.equals( "0"))) {
             binding.status.requestFocus();
             return;
         }
         if (TeamName1.isEmpty()) {
             binding.teamspinner1.requestFocus();
+            return;
+        }
+        if (referee.isEmpty()) {
+            binding.refree.requestFocus();
+            return;
+        }
+        if (venue.isEmpty()) {
+            binding.fixturevenue.requestFocus();
             return;
         }
         if (TeamName2.isEmpty()) {
@@ -220,7 +230,7 @@ public class CreateFixtureFragment extends Fragment {
                                 LeagueName = ds.child("leagueId").getValue(String.class);
                                 String date = binding.inDate.getText().toString();
                                 String time = binding.inTime.getText().toString();
-                                fixtureViewModel.CreateFixture(new FixtureModel("",TeamName1,TeamName2,LeagueName,date,time,score1,score2,status),requireContext(),navController);
+                                fixtureViewModel.CreateFixture(new FixtureModel("",TeamName1,TeamName2,LeagueName,date,time,score1,score2,status,referee,venue),requireContext(),navController);
                             }
                         }
                     }
@@ -357,6 +367,8 @@ public class CreateFixtureFragment extends Fragment {
                 binding.team1score.setText(fixtureModel.getTeamScore1());
                 binding.team2score.setText(fixtureModel.getTeamScore2());
                 binding.status.setText(fixtureModel.getFixtureStatus());
+                binding.fixturevenue.setText(fixtureModel.getFixtureVenu());
+                binding.refree.setText(fixtureModel.getFixtureReferee());
                 binding.btnAddFixture.setText("Update");
             }
         }

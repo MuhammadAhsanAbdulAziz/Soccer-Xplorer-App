@@ -5,10 +5,10 @@
     <data>
         <variable
             name="detail"
-            type="com.example.soccerxplorer.model.TeamModel" />
+            type="com.example.soccerxplorer.model.LeagueModel" />
         <variable
-            name="TeamInterface"
-            type="com.example.soccerxplorer.interfaces.TeamInterface" />
+            name="LeagueInterface"
+            type="com.example.soccerxplorer.interfaces.LeagueInterface" />
     </data>
 
     <LinearLayout
@@ -20,7 +20,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{()->TeamInterface.TeamDetail(detail)}"
+            android:onClick="@{()->LeagueInterface.LeagueDetail(detail)}"
             app:cardCornerRadius="10dp"
             app:cardElevation="20dp">
 
@@ -32,17 +32,16 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/topteamlogo"
+                    android:id="@+id/topleaguelogo"
                     android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/arsenal" />
+                    android:layout_height="50dp" />
 
                 <TextView
-                    android:id="@+id/topteamname"
+                    android:id="@+id/topleaguename"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/righteous_regular"
-                    android:text="Team 1" />
+                    android:text="@{detail.leagueName}" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

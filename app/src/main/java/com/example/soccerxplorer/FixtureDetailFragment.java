@@ -79,24 +79,24 @@ public class FixtureDetailFragment extends Fragment implements PlayerInterface {
         setInitialData();
         navController = Navigation.findNavController(view);
 
-        playerViewModel.getPlayerbyTeam(fixtureModel.getTeamId2()).observe(requireActivity(), new Observer<List<PlayerModel>>() {
+        binding.Team1playerdetailforward.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onChanged(List<PlayerModel> playerModels) {
-                playerViewModel.getPlayerbyTeam(fixtureModel.getTeamId1()).observe(requireActivity(), new Observer<List<PlayerModel>>() {
-                    @Override
-                    public void onChanged(List<PlayerModel> playerModels) {
-                        adp1.submitList(playerModels);
-                        GridLayoutManager gridLayoutManager = new GridLayoutManager(requireContext(),2);
-                        binding.teamOnePlayers.setLayoutManager(gridLayoutManager);
-                        binding.teamOnePlayers.setAdapter(adp1);
-                    }
-                });
-                adp2.submitList(playerModels);
-                GridLayoutManager gridLayoutManager = new GridLayoutManager(requireContext(),2);
-                binding.teamTwoPlayers.setLayoutManager(gridLayoutManager);
-                binding.teamTwoPlayers.setAdapter(adp2);
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("teamId",fixtureModel.getTeamId1());
+                navController.navigate(R.id.action_fixtureDetailFragment_to_teamPlayerFragment,bundle);
             }
         });
+
+        binding.Team2playerdetailforward.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("teamId",fixtureModel.getTeamId2());
+                navController.navigate(R.id.action_fixtureDetailFragment_to_teamPlayerFragment,bundle);
+            }
+        });
+
     }
 
     @Override
@@ -113,10 +113,30 @@ public class FixtureDetailFragment extends Fragment implements PlayerInterface {
             fixtureModel = g.fromJson(jsonNote, FixtureModel.class);
             if(fixtureModel!=null)
             {
-                binding.matchDate.setText(fixtureModel.getFixtureDate()+","
+                binding.matchDate.setText(fixtureModel.getFixtureDate()+" , "
                         +fixtureModel.getFixtureTime());
+                binding.matchCaptain.setText(fixtureModel.getFixtureReferee());
+                binding.matchLocation.setText(fixtureModel.getFixtureVenu());
                 binding.teamOneScore.setText(fixtureModel.getTeamScore1());
                 binding.teamTwoScore.setText(fixtureModel.getTeamScore2());
+                playerViewModel.getPlayerbyTeam(fixtureModel.getTeamId2()).observe(requireActivity(), new Observer<List<PlayerModel>>() {
+                    @Override
+                    public void onChanged(List<PlayerModel> playerModels) {
+                        playerViewModel.getPlayerbyTeam(fixtureModel.getTeamId1()).observe(requireActivity(), new Observer<List<PlayerModel>>() {
+                            @Override
+                            public void onChanged(List<PlayerModel> playerModels) {
+                                adp1.submitList(playerModels);
+                                GridLayoutManager gridLayoutManager = new GridLayoutManager(requireContext(),2);
+                                binding.teamOnePlayers.setLayoutManager(gridLayoutManager);
+                                binding.teamOnePlayers.setAdapter(adp1);
+                            }
+                        });
+                        adp2.submitList(playerModels);
+                        GridLayoutManager gridLayoutManager = new GridLayoutManager(requireContext(),2);
+                        binding.teamTwoPlayers.setLayoutManager(gridLayoutManager);
+                        binding.teamTwoPlayers.setAdapter(adp2);
+                    }
+                });
 
                 teamRef.child(fixtureModel.getTeamId1()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -183,8 +203,6 @@ public class FixtureDetailFragment extends Fragment implements PlayerInterface {
 
                     }
                 });
-
-
             }
 
         }

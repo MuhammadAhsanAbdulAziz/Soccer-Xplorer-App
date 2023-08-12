@@ -185,5 +185,23 @@
         android:id="@+id/fixtureDetailFragment"
         android:name="com.example.soccerxplorer.FixtureDetailFragment"
         android:label="fragment_fixture_detail"
-        tools:layout="@layout/fragment_fixture_detail" />
+        tools:layout="@layout/fragment_fixture_detail" >
+        <action
+            android:id="@+id/action_fixtureDetailFragment_to_teamPlayerFragment"
+            app:destination="@id/teamPlayerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playerDetailFragment"
+        android:name="com.example.soccerxplorer.PlayerDetailFragment"
+        android:label="fragment_player_detail"
+        tools:layout="@layout/fragment_player_detail" />
+    <fragment
+        android:id="@+id/teamPlayerFragment"
+        android:name="com.example.soccerxplorer.TeamPlayerFragment"
+        android:label="fragment_team_player"
+        tools:layout="@layout/fragment_team_player" >
+        <action
+            android:id="@+id/action_teamPlayerFragment_to_playerDetailFragment"
+            app:destination="@id/playerDetailFragment" />
+    </fragment>
 </navigation>

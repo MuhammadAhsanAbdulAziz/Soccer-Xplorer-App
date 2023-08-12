@@ -1,6 +1,7 @@
 package com.example.soccerxplorer.view.admin;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import com.example.soccerxplorer.R;
 import com.example.soccerxplorer.databinding.FragmentCreateLeagueBinding;
 import com.example.soccerxplorer.model.LeagueModel;
 import com.example.soccerxplorer.model.TeamModel;
+import com.example.soccerxplorer.util.UtilManager;
 import com.example.soccerxplorer.viewmodel.LeagueViewModel;
 import com.example.soccerxplorer.viewmodel.TeamViewModel;
 import com.google.gson.Gson;
@@ -36,6 +38,7 @@ public class CreateLeagueFragment extends Fragment {
     NavController navController;
     LeagueViewModel leagueViewModel;
     LeagueModel leagueModel;
+    Uri u;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,13 @@ public class CreateLeagueFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setInitialData();
         navController = Navigation.findNavController(view);
+
+        binding.imgfield.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("*/*");
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            startActivityForResult(intent, 404);
+        });
 
         binding.BookAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +96,7 @@ public class CreateLeagueFragment extends Fragment {
             return;
         }
 
-        leagueViewModel.CreateLeague(new LeagueModel("",Name,Country),requireContext(),navController);
+        leagueViewModel.CreateLeague(new LeagueModel("",Name,Country,u.toString()),requireContext(),navController);
     }
 
     private void UpdateLeague() {
@@ -94,6 +104,9 @@ public class CreateLeagueFragment extends Fragment {
         progressDialog.setMessage("Please wait..");
         String Name = Objects.requireNonNull(binding.titlefield.getText()).toString().trim().toLowerCase(Locale.ROOT);
         String Country = binding.ccp.getSelectedCountryName();
+        if(u==null) {
+            UtilManager.errorMessage(requireContext(),"Pick an Image please");
+        }
         if (Name.isEmpty()) {
             binding.titlefield.setError("Enter Title");
             binding.titlefield.requestFocus();
@@ -104,7 +117,7 @@ public class CreateLeagueFragment extends Fragment {
             return;
         }
 
-        leagueViewModel.UpdateLeague(new LeagueModel(leagueModel.getLeagueId(),Name,Country),requireContext(),navController);
+        leagueViewModel.UpdateLeague(new LeagueModel(leagueModel.getLeagueId(),Name,Country,u.toString()),requireContext(),navController);
     }
 
 
@@ -124,8 +137,20 @@ public class CreateLeagueFragment extends Fragment {
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 404) {
+            if (data != null) {
+                u = data.getData();
+                binding.imgfield.setImageURI(u);
+            }
+        }
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }
+
 }

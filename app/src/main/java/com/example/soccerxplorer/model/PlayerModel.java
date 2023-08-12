@@ -5,14 +5,16 @@ import androidx.recyclerview.widget.DiffUtil;
 
 public class PlayerModel {
 
-    String playerId,playerName,playerCountry,teamId,playerImage;
+    String playerId,playerName,playerCountry,teamId,playerImage,playerPosition,playerNumber;
 
-    public PlayerModel(String playerId, String playerName, String playerCountry, String teamId, String playerImage) {
+    public PlayerModel(String playerId, String playerName, String playerCountry, String teamId, String playerImage, String playerPosition, String playerNumber) {
         this.playerId = playerId;
         this.playerName = playerName;
         this.playerCountry = playerCountry;
         this.teamId = teamId;
         this.playerImage = playerImage;
+        this.playerPosition = playerPosition;
+        this.playerNumber = playerNumber;
     }
 
     public String getPlayerId() {
@@ -53,6 +55,22 @@ public class PlayerModel {
 
     public void setPlayerImage(String playerImage) {
         this.playerImage = playerImage;
+    }
+
+    public String getPlayerPosition() {
+        return playerPosition;
+    }
+
+    public void setPlayerPosition(String playerPosition) {
+        this.playerPosition = playerPosition;
+    }
+
+    public String getPlayerNumber() {
+        return playerNumber;
+    }
+
+    public void setPlayerNumber(String playerNumber) {
+        this.playerNumber = playerNumber;
     }
 
     @Override

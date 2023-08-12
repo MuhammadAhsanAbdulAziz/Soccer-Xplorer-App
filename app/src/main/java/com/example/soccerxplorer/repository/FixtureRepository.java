@@ -51,7 +51,9 @@ public class FixtureRepository {
                             ds.child("fixtureTime").getValue(String.class),
                             ds.child("teamScore1").getValue(String.class),
                             ds.child("teamScore2").getValue(String.class),
-                            ds.child("fixtureStatus").getValue(String.class)));
+                            ds.child("fixtureStatus").getValue(String.class),
+                            ds.child("fixtureReferee").getValue(String.class),
+                            ds.child("fixtureVenue").getValue(String.class)));
                     fixturelist.setValue(data);
                 }
             }
@@ -82,7 +84,9 @@ public class FixtureRepository {
                                 ds.child("fixtureTime").getValue(String.class),
                                 ds.child("teamScore1").getValue(String.class),
                                 ds.child("teamScore2").getValue(String.class),
-                                ds.child("fixtureStatus").getValue(String.class)));
+                                ds.child("fixtureStatus").getValue(String.class),
+                                ds.child("fixtureReferee").getValue(String.class),
+                                ds.child("fixtureVenue").getValue(String.class)));
                         fixturelist.setValue(data);
                     }
                 }
@@ -114,7 +118,9 @@ public class FixtureRepository {
                                 ds.child("fixtureTime").getValue(String.class),
                                 ds.child("teamScore1").getValue(String.class),
                                 ds.child("teamScore2").getValue(String.class),
-                                ds.child("fixtureStatus").getValue(String.class)));
+                                ds.child("fixtureStatus").getValue(String.class),
+                                ds.child("fixtureReferee").getValue(String.class),
+                                ds.child("fixtureVenue").getValue(String.class)));
                         fixturelist.setValue(data);
                     }
                 }
@@ -160,7 +166,9 @@ public class FixtureRepository {
                         fixtureModel.getTeamId2(),fixtureModel.getLeagueId()
                         ,fixtureModel.getFixtureDate(),fixtureModel.getFixtureTime(),
                         fixtureModel.getTeamScore1(),fixtureModel.getTeamScore2()
-                        ,fixtureModel.getFixtureStatus()))
+                        ,fixtureModel.getFixtureStatus(),
+                        fixtureModel.getFixtureReferee(),
+                        fixtureModel.getFixtureVenu()))
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
@@ -176,10 +184,13 @@ public class FixtureRepository {
 
     public void UpdateFixture(FixtureModel fixtureModel,Context context, NavController navController) {
         databaseReference.child(fixtureModel.getFixtureId()).setValue(new FixtureModel
-                (fixtureModel.getFixtureId(),fixtureModel.getTeamId1(),
-                        fixtureModel.getTeamId2(),fixtureModel.getLeagueId(),
-                        fixtureModel.getTeamScore1(),fixtureModel.getTeamScore2()
-                        ,fixtureModel.getFixtureDate(),fixtureModel.getFixtureTime(),fixtureModel.getFixtureStatus())).
+                        (fixtureModel.getFixtureId(),fixtureModel.getTeamId1(),
+                                fixtureModel.getTeamId2(),fixtureModel.getLeagueId()
+                                ,fixtureModel.getFixtureDate(),fixtureModel.getFixtureTime(),
+                                fixtureModel.getTeamScore1(),fixtureModel.getTeamScore2()
+                                ,fixtureModel.getFixtureStatus(),
+                                fixtureModel.getFixtureReferee(),
+                                fixtureModel.getFixtureVenu())).
                 addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {

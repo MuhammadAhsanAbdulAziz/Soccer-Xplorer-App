@@ -36,7 +36,8 @@ public class LeagueRepository {
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     data.add(new LeagueModel(ds.child("leagueId").getValue(String.class),
                             ds.child("leagueName").getValue(String.class),
-                            ds.child("leagueCountry").getValue(String.class)));
+                            ds.child("leagueCountry").getValue(String.class),
+                            ds.child("leagueImage").getValue(String.class)));
                     leaguelist.setValue(data);
                 }
             }
@@ -54,7 +55,7 @@ public class LeagueRepository {
         String uniqueID = UUID.randomUUID().toString();
         databaseReference.child(uniqueID).setValue(new LeagueModel
                 (uniqueID,leagueModel.getLeagueName(),
-                        leagueModel.getLeagueCountry())).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        leagueModel.getLeagueCountry(),leagueModel.getLeagueImage())).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 UtilManager.SuccessMessage(context,navController);
@@ -70,7 +71,7 @@ public class LeagueRepository {
     public void UpdateLeague(LeagueModel leagueModel,Context context, NavController navController) {
         databaseReference.child(leagueModel.getLeagueId()).setValue(new LeagueModel
                 (leagueModel.getLeagueId(),leagueModel.getLeagueName(),
-                        leagueModel.getLeagueCountry())).
+                        leagueModel.getLeagueCountry(),leagueModel.getLeagueImage())).
                 addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {

@@ -42,7 +42,9 @@ public class PlayerRepository {
                             ds.child("playerName").getValue(String.class),
                             ds.child("playerCountry").getValue(String.class),
                             ds.child("teamId").getValue(String.class),
-                            ds.child("playerImage").getValue(String.class)));
+                            ds.child("playerImage").getValue(String.class),
+                            ds.child("playerPosition").getValue(String.class),
+                            ds.child("playerNumber").getValue(String.class)));
                     playerlist.setValue(data);
                 }
             }
@@ -67,7 +69,9 @@ public class PlayerRepository {
                                 ds.child("playerName").getValue(String.class),
                                 ds.child("playerCountry").getValue(String.class),
                                 ds.child("teamId").getValue(String.class),
-                                ds.child("playerImage").getValue(String.class)));
+                                ds.child("playerImage").getValue(String.class),
+                                ds.child("playerPosition").getValue(String.class),
+                                ds.child("playerNumber").getValue(String.class)));
                         playerlist.setValue(data);
                     }
                 }
@@ -89,7 +93,7 @@ public class PlayerRepository {
         ref.putFile(Uri.parse(playerModel.getPlayerImage())).addOnSuccessListener(taskSnapshot -> ref.getDownloadUrl().
                 addOnSuccessListener(uri -> databaseReference.child(uniqueID).
                 setValue(new PlayerModel(uniqueID,playerModel.getPlayerName(),playerModel.getPlayerCountry(),
-                        playerModel.getTeamId(),uri.toString())))).
+                        playerModel.getTeamId(),uri.toString(),playerModel.getPlayerPosition(),playerModel.getPlayerNumber())))).
                 addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -109,12 +113,8 @@ public class PlayerRepository {
         final StorageReference ref = storageReference.child("Player Images/" + playerModel.getPlayerImage());
         ref.putFile(Uri.parse(playerModel.getPlayerImage())).addOnSuccessListener(taskSnapshot -> ref.getDownloadUrl().
                 addOnSuccessListener(uri -> databaseReference.child(playerModel.getPlayerId()).
-                        setValue(new PlayerModel(
-                                playerModel.getPlayerId(),
-                                playerModel.getPlayerName(),
-                                playerModel.getPlayerCountry(),
-                                playerModel.getTeamId(),
-                                uri.toString()))
+                        setValue(new PlayerModel(playerModel.getPlayerId(),playerModel.getPlayerName(),playerModel.getPlayerCountry(),
+                                playerModel.getTeamId(),uri.toString(),playerModel.getPlayerPosition(),playerModel.getPlayerNumber()))
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
@@ -157,7 +157,9 @@ public class PlayerRepository {
                                         ds.child("playerName").getValue(String.class),
                                         ds.child("playerCountry").getValue(String.class),
                                         ds.child("teamId").getValue(String.class),
-                                        ds.child("playerImage").getValue(String.class)));
+                                        ds.child("playerImage").getValue(String.class),
+                                        ds.child("playerPosition").getValue(String.class),
+                                        ds.child("playerNumber").getValue(String.class)));
                             playerlist.setValue(data);
                         }
                         break;
