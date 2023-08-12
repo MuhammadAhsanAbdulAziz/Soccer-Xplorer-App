@@ -39,13 +39,15 @@ public class TeamViewModel extends ViewModel {
 
     public String getTeamName(String id)
     {
-        return repo.getTeamName(id);
+        repo.getTeamName(id);
+        return repo.hehe();
     }
 
     public String getTeamImage(String id)
     {
         return repo.getTeamImage(id);
     }
+
 
     public LiveData<List<TeamModel>> getTeam() {
         return repo.getTeam();

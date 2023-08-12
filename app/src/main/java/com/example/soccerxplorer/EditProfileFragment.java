@@ -12,34 +12,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.soccerxplorer.databinding.FragmentCreateTeamBinding;
-import com.example.soccerxplorer.databinding.FragmentHomeBinding;
-import com.example.soccerxplorer.util.UtilManager;
+import com.example.soccerxplorer.databinding.FragmentEditProfileBinding;
 
+public class EditProfileFragment extends Fragment {
 
-public class HomeFragment extends Fragment {
-
+    FragmentEditProfileBinding binding;
     NavController navController;
-    FragmentHomeBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentEditProfileBinding.inflate(inflater,container,false);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         navController = Navigation.findNavController(view);
+
+
     }
 
     @Override

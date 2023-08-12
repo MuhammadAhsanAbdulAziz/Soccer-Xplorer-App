@@ -14,10 +14,13 @@ import android.view.ViewGroup;
 
 import com.example.soccerxplorer.R;
 import com.example.soccerxplorer.databinding.FragmentAdminHomeBinding;
+import com.example.soccerxplorer.util.UtilManager;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminHomeFragment extends Fragment {
 
     FragmentAdminHomeBinding binding;
+    FirebaseAuth firebaseAuth;
     NavController navController;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,7 @@ public class AdminHomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentAdminHomeBinding.inflate(inflater,container,false);
+        firebaseAuth = FirebaseAuth.getInstance();
         return binding.getRoot();
     }
 
@@ -63,6 +67,16 @@ public class AdminHomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_adminHomeFragment_to_allLeagueFragment);
+            }
+        });
+
+        binding.Logoutbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firebaseAuth.signOut();
+                UtilManager.setDefaults("userId",null,requireContext());
+                UtilManager.setDefaults("userRole",null,requireContext());
+                navController.popBackStack();
             }
         });
 

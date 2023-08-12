@@ -6,7 +6,7 @@
     <item android:id="@+id/favouriteFragment"
         android:title="FAVORITES"
         android:icon="@drawable/star"/>
-    <item android:id="@+id/fixturesFragment"
+    <item android:id="@+id/fixtureFragment"
         android:title="FIXTURES"
         android:icon="@drawable/home"/>
     <item android:id="@+id/settingFragment"

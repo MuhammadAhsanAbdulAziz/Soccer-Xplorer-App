@@ -12,7 +12,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 
+import com.example.soccerxplorer.util.UtilManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -39,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigation);
 
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
+
+        if(UtilManager.getDefaults("userRole",this).equals("Admin"))
+        {
+            LinearLayout l = findViewById(R.id.layout);
+            l.setBackgroundColor(getResources().getColor(android.R.color.white));
+        }
 
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override

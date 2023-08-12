@@ -78,21 +78,23 @@ public class TeamRepository {
         return teamNameList;
     }
 
-    public String getTeamName(String id) {
+    public void getTeamName(String id) {
         databaseReference.child(id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists())
-                {
-                    teamName = snapshot.child("teamName").getValue(String.class);
-                }
+                dataGet(snapshot.child("teamName").getValue().toString());
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+    }
+
+    public void dataGet(String data){
+        teamName = data;
+    }
+    public String hehe(){
         return teamName;
     }
 

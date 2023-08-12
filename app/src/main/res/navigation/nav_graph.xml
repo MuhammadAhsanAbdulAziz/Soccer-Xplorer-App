@@ -22,8 +22,8 @@
             android:id="@+id/action_homeFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_fixturesFragment"
-            app:destination="@id/fixturesFragment" />
+            android:id="@+id/action_homeFragment_to_fixtureFragment"
+            app:destination="@id/fixtureFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -56,12 +56,11 @@
         android:id="@+id/settingFragment"
         android:name="com.example.soccerxplorer.SettingFragment"
         android:label="fragment_setting"
-        tools:layout="@layout/fragment_setting" />
-    <fragment
-        android:id="@+id/fixturesFragment"
-        android:name="com.example.soccerxplorer.FixturesFragment"
-        android:label="fragment_fixtures"
-        tools:layout="@layout/fragment_fixtures" />
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/action_settingFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/createPlayerFragment"
         android:name="com.example.soccerxplorer.view.admin.CreatePlayerFragment"
@@ -168,4 +167,23 @@
             android:id="@+id/action_allLeagueFragment_to_createLeagueFragment"
             app:destination="@id/createLeagueFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.soccerxplorer.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/fixtureFragment"
+        android:name="com.example.soccerxplorer.FixtureFragment"
+        android:label="fragment_fixture"
+        tools:layout="@layout/fragment_fixture" >
+        <action
+            android:id="@+id/action_fixtureFragment_to_fixtureDetailFragment"
+            app:destination="@id/fixtureDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fixtureDetailFragment"
+        android:name="com.example.soccerxplorer.FixtureDetailFragment"
+        android:label="fragment_fixture_detail"
+        tools:layout="@layout/fragment_fixture_detail" />
 </navigation>

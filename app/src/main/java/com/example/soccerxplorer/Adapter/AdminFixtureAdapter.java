@@ -16,6 +16,13 @@ import com.example.soccerxplorer.interfaces.TeamInterface;
 import com.example.soccerxplorer.model.FixtureModel;
 import com.example.soccerxplorer.model.TeamModel;
 import com.example.soccerxplorer.viewmodel.TeamViewModel;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Locale;
 
 public class AdminFixtureAdapter extends ListAdapter<FixtureModel, AdminFixtureAdapter.ViewHolder> {
 
@@ -23,7 +30,12 @@ public class AdminFixtureAdapter extends ListAdapter<FixtureModel, AdminFixtureA
     Context context;
     static int counter = 1;
     TeamViewModel teamViewModel;
-    public AdminFixtureAdapter(Context context, FixtureInterface fixtureInterface,TeamViewModel teamViewModel) {
+    DatabaseReference teamRef = FirebaseDatabase.
+            getInstance().getReference("Teams");
+    DatabaseReference leagueRef = FirebaseDatabase.
+            getInstance().getReference("Leagues");
+    public AdminFixtureAdapter(Context context, FixtureInterface fixtureInterface,TeamViewModel teamViewModel
+    ) {
         super(FixtureModel.teamItemCallBack);
         this.context = context;
         this.fixtureInterface = fixtureInterface;
@@ -43,11 +55,50 @@ public class AdminFixtureAdapter extends ListAdapter<FixtureModel, AdminFixtureA
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         FixtureModel data = getItem(position);
         holder.binding.setFixtureInterface(fixtureInterface);
-        String TeamName1 = teamViewModel.getTeamName(data.getTeamId1());
-        String TeamName2 = teamViewModel.getTeamName(data.getTeamId2());
-        data.setTeamId1(TeamName1);
-        data.setTeamId2(TeamName2);
+//        holder.binding.teamOneName.setText(""+teamViewModel.getTeamName(data.getTeamId1()));
+//        holder.binding.teamTwoName.setText(""+teamViewModel.getTeamName(data.getTeamId2()));
         holder.binding.setDetail(data);
+        teamRef.child(data.getTeamId1()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                holder.binding.teamOneName.setText(snapshot.child("teamName").getValue().toString());
+                Glide.with(context).load(snapshot.child("teamImage").getValue().toString()).
+                dontAnimate().into(holder.binding.teamOneLogo);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        teamRef.child(data.getTeamId2()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                holder.binding.teamTwoName.setText(snapshot.child("teamName").getValue().toString());
+                Glide.with(context).load(snapshot.child("teamImage").getValue().toString()).
+                        dontAnimate().into(holder.binding.teamTwoLogo);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        leagueRef.child(data.getLeagueId()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                holder.binding.matchLeagueName.setText(snapshot.child("leagueName").getValue().toString());
+                Locale l = new Locale("", snapshot.child("leagueCountry").getValue().toString());
+                if(l.getDisplayCountry().equals("UNITED KINGDOM"))
+                {
+                    holder.binding.country.setText("ENGLAND");
+                }
+                else holder.binding.country.setText(l.getDisplayCountry());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 //        Glide.with(context).load(teamViewModel.getTeamImage(data.getTeamId1())).
 //                dontAnimate().into(holder.binding.teamOneLogo);
 //        Glide.with(context).load(teamViewModel.getTeamImage(data.getTeamId2())).

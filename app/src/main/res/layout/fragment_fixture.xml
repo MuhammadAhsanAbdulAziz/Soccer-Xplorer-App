@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/bgColor"
-    tools:context=".MatchesActivity">
+    android:background="@color/bgColor">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,10 +73,10 @@
 
     </LinearLayout>
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fixurelist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         tools:listitem="@layout/matches_listview"
         android:layout_marginTop="20dp"
         android:dividerHeight="0dp"

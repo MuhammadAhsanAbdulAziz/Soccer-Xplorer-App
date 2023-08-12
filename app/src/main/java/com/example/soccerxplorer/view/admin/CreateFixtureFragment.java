@@ -3,6 +3,7 @@ package com.example.soccerxplorer.view.admin;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,8 +22,11 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
+import com.bumptech.glide.Glide;
+import com.example.soccerxplorer.R;
 import com.example.soccerxplorer.databinding.FragmentCreateFixtureBinding;
 import com.example.soccerxplorer.model.FixtureModel;
+import com.example.soccerxplorer.model.PlayerModel;
 import com.example.soccerxplorer.viewmodel.FixtureViewModel;
 import com.example.soccerxplorer.viewmodel.TeamViewModel;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +34,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -51,6 +56,7 @@ public class CreateFixtureFragment extends Fragment {
     private String TeamName2;
     private String LeagueName;
     int mYear, mMonth, mDay, mHour, mMinute;
+    FixtureModel fixtureModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -92,7 +98,7 @@ public class CreateFixtureFragment extends Fragment {
             }
         });
 
-        binding.teamspinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.leaguespinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 LeagueName = LeagueList.get(position);
@@ -124,7 +130,7 @@ public class CreateFixtureFragment extends Fragment {
             @Override
             public void onChanged(List<String> leagueName) {
                 ArrayAdapter ad = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, leagueName);
-                binding.teamspinner3.setAdapter(ad);
+                binding.leaguespinner.setAdapter(ad);
                 LeagueList = leagueName;
             }
         });
@@ -171,7 +177,7 @@ public class CreateFixtureFragment extends Fragment {
             return;
         }
         if (LeagueName.isEmpty()) {
-            binding.teamspinner3.requestFocus();
+            binding.leaguespinner.requestFocus();
             return;
         }
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -266,5 +272,42 @@ public class CreateFixtureFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void setInitialData() {
+        if(getArguments()!=null){
+            String jsonNote = getArguments().getString("fixture");
+            Gson g = new Gson();
+            fixtureModel = g.fromJson(jsonNote, FixtureModel.class);
+            if(fixtureModel!=null)
+            {
+                String teamName1 = teamViewModel.getTeamName(fixtureModel.getTeamId1());
+                String teamName2 = teamViewModel.getTeamName(fixtureModel.getTeamId2());
+                int team1 = 0;
+                int team2 = 0;
+                for(int i = 0;i<TeamList.size();i++)
+                {
+                    if(TeamList.get(i).equals(teamName1)) {
+                        team1 = i;
+                        break;
+                    }
+                }
+                for(int i = 0;i<TeamList.size();i++)
+                {
+                    if(TeamList.get(i).equals(teamName2)) {
+                        team2 = i;
+                        break;
+                    }
+                }
+                binding.teamspinner1.setSelection(team1);
+                binding.teamspinner2.setSelection(team2);
+                binding.inDate.setText(fixtureModel.getFixtureDate());
+                binding.inTime.setText(fixtureModel.getFixtureTime());
+                binding.btnAddFixture.setText("Update");
+            }
+        }
+        else{
+            binding.btnAddFixture.setText("Add");
+        }
     }
 }
