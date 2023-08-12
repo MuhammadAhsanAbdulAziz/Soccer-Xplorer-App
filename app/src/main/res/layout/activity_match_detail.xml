@@ -411,16 +411,32 @@
                 android:background="#35383f"
                 android:layout_marginTop="15dp"/>
 
-            <TextView
+            <LinearLayout
+                android:id="@+id/teamOneAllPlayers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Players"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/poppins_regular"/>
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Players"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="17dp"
+                    android:src="@drawable/arrow_forward"
+                    app:tint="@color/white" />
+
+            </LinearLayout>
 
             <GridView
                 android:id="@+id/teamOnePlayers"
@@ -500,16 +516,32 @@
                 android:background="#35383f"
                 android:layout_marginTop="15dp"/>
 
+            <LinearLayout
+                android:id="@+id/teamTwoAllPlayers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/poppins_regular"
                 android:text="Players"
                 android:textColor="@color/white"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/poppins_regular"/>
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="17dp"
+                android:src="@drawable/arrow_forward"
+                app:tint="@color/white" />
+
+        </LinearLayout>
 
             <GridView
                 android:id="@+id/teamTwoPlayers"

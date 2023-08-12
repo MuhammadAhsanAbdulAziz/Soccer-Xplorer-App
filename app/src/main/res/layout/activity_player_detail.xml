@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bgColor"
+    tools:context=".PlayerDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="20dp">
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="40dp"
+            android:layout_height="22dp"
+            android:src="@drawable/back"
+            app:tint="@color/white"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Player Detail"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="19sp"
+            android:layout_marginLeft="10dp"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/userItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="2dp"
+        android:layout_marginBottom="15dp"
+        app:cardUseCompatPadding="true"
+        app:cardPreventCornerOverlap="true"
+        android:visibility="visible"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#222232">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/teamImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="180dp"
+                    android:src="@drawable/player_bg"
+                    android:layout_gravity="end|bottom"
+                    android:layout_marginRight="20dp"
+                    android:scaleType="fitEnd"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center|start">
+
+                        <ImageView
+                            android:id="@+id/teamLogo"
+                            android:layout_width="50dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/poland"
+                            android:layout_gravity="start"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="-10dp"/>
+
+                        <TextView
+                            android:id="@+id/teamName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Barcelona"
+                            android:layout_marginBottom="10dp"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/poppins_regular"
+                            android:textSize="12sp"/>
+
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/playerName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Brandon Baptisa"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins_regular"/>
+
+                    <TextView
+                        android:id="@+id/playerType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Goalkeeper"
+                        android:layout_marginBottom="10dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:id="@+id/playerScore"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="19"
+                        android:textColor="#D2B5FF"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="-15dp"
+                        android:fontFamily="@font/poppins_regular"/>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>

@@ -23,15 +23,18 @@
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/drawable/match_background.xml" value="0.126" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/drawable/warning.xml" value="0.126" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/drawable/wifi_off.xml" value="0.126" />
-        <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_dashboard.xml" value="0.25" />
+        <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_dashboard.xml" value="0.2" />
+        <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_edit_profile.xml" value="0.22" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_forgot_password.xml" value="0.25" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_match_detail.xml" value="0.33" />
-        <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_matches.xml" value="0.25" />
+        <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_match_detail.xml" value="0.25" />
+        <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_matches.xml" value="0.22" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_on_boarding.xml" value="0.19074074074074074" />
+        <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_player_detail.xml" value="0.33" />
+        <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_players.xml" value="0.25" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_profile.xml" value="0.25" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_register.xml" value="0.25" />
-        <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_setting.xml" value="0.33" />
+        <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_setting.xml" value="0.22" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_splash_screen.xml" value="0.33" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_welcome.xml" value="0.33" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/dialog_connection_error.xml" value="0.2" />
@@ -41,6 +44,7 @@
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/item_container_onboarding.xml" value="0.33" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/matches_listview.xml" value="0.33" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/matches_player_listview.xml" value="0.2" />
+        <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/player_listview.xml" value="0.33" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/menu/menu_item.xml" value="0.1" />
       </map>
     </option>
