@@ -62,7 +62,7 @@ public class AdminHomeFragment extends Fragment {
             public void onChanged(List<FeedbackModel> feedbackModels) {
                 adapter.submitList(feedbackModels);
                 LinearLayoutManager mLayoutManager = new LinearLayoutManager(requireContext());
-                
+
             }
         });
 

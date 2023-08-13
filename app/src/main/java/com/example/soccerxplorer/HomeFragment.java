@@ -85,6 +85,13 @@ public class HomeFragment extends Fragment implements TeamInterface, LeagueInter
         setTopPlayerTeam();
         setTopPlayer();
 
+        binding.searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_homeFragment_to_searchFragment);
+            }
+        });
+
         binding.homeforward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

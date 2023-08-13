@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_homeFragment_to_teamPlayerFragment"
             app:destination="@id/teamPlayerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -219,4 +222,13 @@
         android:name="com.example.soccerxplorer.FeedbackFragment"
         android:label="fragment_feedback"
         tools:layout="@layout/fragment_feedback" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.soccerxplorer.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_playerDetailFragment"
+            app:destination="@id/playerDetailFragment" />
+    </fragment>
 </navigation>

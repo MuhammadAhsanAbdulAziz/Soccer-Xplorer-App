@@ -141,8 +141,8 @@ public class PlayerDetailFragment extends Fragment {
                                 if(ds.child("userId").getValue(String.class)
                                         .equals(UtilManager.getDefaults("userId",requireContext())))
                                 {
-                                    binding.filltogglefav.setVisibility(View.VISIBLE);
-                                    binding.unfilltogglefav.setVisibility(View.GONE);
+                                    binding.filltogglefav.setVisibility(View.GONE);
+                                    binding.unfilltogglefav.setVisibility(View.VISIBLE);
                                 }
                             }
                         }

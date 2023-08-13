@@ -44,7 +44,7 @@ public class AdminFeedbackAdapter extends ListAdapter<FeedbackModel, AdminFeedba
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         FeedbackModel data = getItem(position);
-        holder.binding.setDetail(data);
+//        holder.binding.setDetail(data);
         userRef.child(data.getUserId()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
