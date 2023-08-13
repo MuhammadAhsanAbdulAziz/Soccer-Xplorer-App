@@ -1,6 +1,7 @@
 package com.example.soccerxplorer.viewmodel;
 
 
+import android.app.Activity;
 import android.content.Context;
 
 import androidx.lifecycle.LiveData;
@@ -27,8 +28,8 @@ public class FeedbackViewModel extends ViewModel {
         this.feedbackModel = feedbackModel;
     }
 
-    public void CreateFeedback(FeedbackModel teamModel,Context context, NavController navController) {
-        repo.CreateFeedback(feedbackModel,context,navController);
+    public void CreateFeedback(FeedbackModel feedbackModel, Context context, NavController navController, Activity activity) {
+        repo.CreateFeedback(feedbackModel,context,navController,activity);
     }
 
     public void UpdateFeedback(FeedbackModel teamModel,Context context, NavController navController) {

@@ -1,12 +1,10 @@
 package com.example.soccerxplorer;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -25,6 +23,8 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -47,10 +47,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+
 import java.util.List;
-import java.util.Random;
 import java.util.regex.Pattern;
 
 public class EditProfileFragment extends Fragment {
@@ -63,6 +61,9 @@ public class EditProfileFragment extends Fragment {
     FirebaseStorage storage;
     DatabaseReference userRef = FirebaseDatabase.
             getInstance().getReference("Users");
+
+    UploadTask uploadTask;
+    Uri imageUri;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,6 +78,59 @@ public class EditProfileFragment extends Fragment {
         userViewModel = new ViewModelProvider(requireActivity()).get(UserViewModel.class);
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
+        Animation clickAnimation = AnimationUtils.loadAnimation(requireContext(),R.anim.zoomin_out);
+        Animation clickAnimation2 = AnimationUtils.loadAnimation(requireContext(),R.anim.zoomin_out);
+        Animation clickAnimation3 = AnimationUtils.loadAnimation(requireContext(),R.anim.zoomin_out);
+        Animation clickAnimation4 = AnimationUtils.loadAnimation(requireContext(),R.anim.zoomin_out);
+        Animation clickAnimation5 = AnimationUtils.loadAnimation(requireContext(),R.anim.zoomin_out);
+        Animation clickAnimation6 = AnimationUtils.loadAnimation(requireContext(),R.anim.zoomin_out);
+        Animation clickAnimation7 = AnimationUtils.loadAnimation(requireContext(),R.anim.zoomin_out);
+
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.backBtn.startAnimation(clickAnimation);
+                navController.popBackStack();
+            }
+        });
+        binding.imageEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.imageEdit.startAnimation(clickAnimation2);
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                intent.setType("image/*");
+                startActivityForResult(intent, 420);
+            }
+        });
+        binding.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.image.startAnimation(clickAnimation3);
+            }
+        });
+
+        binding.saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.saveBtn.startAnimation(clickAnimation5);
+                userRef.child(UtilManager.getDefaults("userId",requireContext())
+                ).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            validation();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
+
         return binding.getRoot();
     }
 
@@ -84,26 +138,16 @@ public class EditProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
-
-        binding.imageEdit.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setType("*/*");
-            intent.addCategory(Intent.CATEGORY_OPENABLE);
-            startActivityForResult(intent, 404);
-        });
-
-
         if(UtilManager.getDefaults("userId",requireContext())!=null)
         {
             userViewModel.getUserbyId(UtilManager.getDefaults("userId",requireContext())).observe(requireActivity(), new Observer<List<UserModel>>() {
                 @Override
                 public void onChanged(List<UserModel> userModels) {
-                    binding.nameEditText.setText(userModels.get(0).getUserName());
+                    binding.nameEditText.setText(userModels.get(0).getUserFullName());
                     binding.usernameEditText.setText(userModels.get(0).getUserName());
-                    binding.emailEditText.setText(userModels.get(0).getUserEmail());
                     binding.contactEditText.setText(userModels.get(0).getUserContact());
                     Glide.with(requireContext()).load(userModels.get(0).getUserImage()).error(R.drawable.logo).
-                            dontAnimate().into(binding.profilesettingimg);
+                            dontAnimate().into(binding.image);
                 }
             });
         }
@@ -142,22 +186,6 @@ public class EditProfileFragment extends Fragment {
 
             }
         });
-        binding.emailEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                emailValidation();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
 
         binding.contactEditText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -178,72 +206,97 @@ public class EditProfileFragment extends Fragment {
 
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 404) {
-            if (data != null) {
-                u = data.getData();
-                Glide.with(requireContext()).load(u).
-                        dontAnimate().into(binding.profilesettingimg);
-            }
-        }
-    }
+
 
     private void validation() {
-        boolean emailErr = false, nameErr = false, usernameErr = false, contactErr = false;
-        emailErr = emailValidation();
+        boolean nameErr = false, usernameErr = false, contactErr = false;
         nameErr = nameValidation();
         contactErr = contactValidation();
         usernameErr = usernameValidation();
 
-        if((emailErr && nameErr && usernameErr && contactErr)){
-//            updateUser();
+        if((nameErr && usernameErr && contactErr)){
+            saveChanges();
         }
     }
-    private boolean connectionCheck(){
-        ConnectivityManager connectivityManager = (ConnectivityManager) requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo wifiConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        NetworkInfo dataConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        if((wifiConn != null && wifiConn.isConnected()) || (dataConn != null && dataConn.isConnected())){
-            return true;
-        } else {
-            AlertDialog.Builder builderTwo = new AlertDialog.Builder(requireContext());
-            LayoutInflater inflaterTwo = requireActivity().getLayoutInflater();
-            View dialogviewTwo = inflaterTwo.inflate(R.layout.dialog_connection_error, null);
+
+
+    private void saveChanges(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(  requireContext());
+        LayoutInflater inflater =   requireActivity().getLayoutInflater();
+        View dialogview = inflater.inflate(R.layout.dialog_progress_alert, null);
+        builder.setView(dialogview);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        alertDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        alertDialog.show();
+        TextView messageTextView;
+        messageTextView = dialogview.findViewById(R.id.messageTextView);
+        messageTextView.setText("Updating Profile!");
+        userRef.child(UtilManager.getDefaults("userId",requireContext()))
+                .child("userFullName").setValue(""+binding.nameEditText.getText().toString().trim());
+        userRef.child(UtilManager.getDefaults("userId",requireContext()))
+                .child("userName").setValue(""+binding.usernameEditText.getText().toString().trim());
+        userRef.child(UtilManager.getDefaults("userId",requireContext()))
+                .child("userContact").setValue(""+binding.contactEditText.getText().toString().trim());
+        if(imageUri == null){
+            alertDialog.dismiss();
+            AlertDialog.Builder builderTwo = new AlertDialog.Builder(  requireContext());
+            LayoutInflater inflaterTwo =   requireActivity().getLayoutInflater();
+            View dialogviewTwo = inflaterTwo.inflate(R.layout.dialog_success_alert, null);
             builderTwo.setView(dialogviewTwo);
             AlertDialog alertDialogTwo = builderTwo.create();
             alertDialogTwo.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
             alertDialogTwo.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-            alertDialogTwo.setCancelable(false);
-            alertDialogTwo.setCanceledOnTouchOutside(false);
             alertDialogTwo.show();
             TextView messageTextViewTwo;
             messageTextViewTwo = dialogviewTwo.findViewById(R.id.messageTextView);
-            messageTextViewTwo.setText("Please check your internet connection \nand try again");
+            messageTextViewTwo.setText("Profile Saved Successfully!!!");
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     alertDialogTwo.dismiss();
+                    navController.popBackStack();
                 }
-            },5000);
-            return false;
+            },3000);
+        } else {
+            storageReference.child("User Images/" +imageUri.getLastPathSegment()).putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    storageReference.child("User Images/" +imageUri.getLastPathSegment()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            userRef.child(UtilManager.getDefaults("userId",requireContext()))
+                                    .child("userImage").setValue(""+String.valueOf(uri));
+                            Glide.with(requireContext()).load(""+String.valueOf(uri)).into(binding.image);
+                            alertDialog.dismiss();
+                            AlertDialog.Builder builderTwo = new AlertDialog.Builder(  requireContext());
+                            LayoutInflater inflaterTwo =   requireActivity().getLayoutInflater();
+                            View dialogviewTwo = inflaterTwo.inflate(R.layout.dialog_success_alert, null);
+                            builderTwo.setView(dialogviewTwo);
+                            AlertDialog alertDialogTwo = builderTwo.create();
+                            alertDialogTwo.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                            alertDialogTwo.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+                            alertDialogTwo.show();
+                            TextView messageTextViewTwo;
+                            messageTextViewTwo = dialogviewTwo.findViewById(R.id.messageTextView);
+                            messageTextViewTwo.setText("Profile Saved Successfully!!!");
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    alertDialogTwo.dismiss();
+                                    navController.popBackStack();
+                                }
+                            },3000);
+                        }
+                    });
+                }
+            });
         }
     }
 
-    private boolean emailValidation(){
-        String email = binding.emailEditText.getText().toString().trim();
-        if(email.isEmpty()){
-            binding.emailLayout.setError("Email Address is Required!!!");
-            return false;
-        } else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            binding.emailLayout.setError("Enter Valid Email Address!!!");
-            return false;
-        } else {
-            binding.emailLayout.setError(null);
-            return true;
-        }
-    }
+
+
+
     private boolean usernameValidation(){
         String nameInput = binding.usernameEditText.getText().toString().trim();
         if(nameInput.isEmpty()){
@@ -292,6 +345,16 @@ public class EditProfileFragment extends Fragment {
         else {
             binding.contactLayout.setError(null);
             return true;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 420 && resultCode == RESULT_OK){
+            imageUri = data.getData();
+            binding.image.setImageURI(imageUri);
+            Glide.with(requireContext()).load(imageUri).dontAnimate().into(binding.image);
         }
     }
 

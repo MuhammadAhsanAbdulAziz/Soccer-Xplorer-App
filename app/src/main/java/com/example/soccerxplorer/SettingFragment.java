@@ -90,6 +90,13 @@ public class SettingFragment extends Fragment {
             }
         });
 
+        binding.feedbacksection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_settingFragment_to_feedbackFragment);
+            }
+        });
+
         binding.btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
