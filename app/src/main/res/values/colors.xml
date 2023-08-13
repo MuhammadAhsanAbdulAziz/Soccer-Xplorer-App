@@ -20,5 +20,7 @@
     <color name="placeholder">#dddddd</color>
     <color name="customButton">#35383f</color>
     <color name="transparent">#0035383F</color>
+    <color name="favoriteActive">#fda11e</color>
+    <color name="favoriteDeactive">#35383f</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#35383f</color>
 </resources>
