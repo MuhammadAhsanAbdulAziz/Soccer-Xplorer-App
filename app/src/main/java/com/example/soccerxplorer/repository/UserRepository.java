@@ -62,6 +62,32 @@ public class UserRepository {
         return userlist;
     }
 
+    public LiveData<List<UserModel>> getUserbyId(String id) {
+        userlist = new MutableLiveData<>();
+        ArrayList<UserModel> data = new ArrayList<UserModel>();
+        databaseReference.child(id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                data.add(new UserModel(snapshot.child("userId").getValue(String.class),
+                        snapshot.child("userFullName").getValue(String.class),
+                        snapshot.child("userName").getValue(String.class),
+                        snapshot.child("userEmail").getValue(String.class),
+                        snapshot.child("userContact").getValue(String.class),
+                        snapshot.child("userJoining").getValue(String.class),
+                        snapshot.child("userRole").getValue(String.class),
+                        snapshot.child("userStatus").getValue(String.class),
+                        snapshot.child("userImage").getValue(String.class)));
+                userlist.setValue(data);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return userlist;
+    }
+
     public void CreateUser(UserModel userModel,Context context, NavController navController) {
         databaseReference.child(userModel.getUserId()).setValue(new UserModel
                 (userModel.getUserId(),userModel.getUserFullName(),userModel.getUserName(),

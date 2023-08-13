@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/bgColor"
-    tools:context=".EditProfileActivity">
+    android:background="@color/bgColor">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,11 +47,10 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/image"
+            <ImageView
+                android:id="@+id/profilesettingimg"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:scaleType="fitCenter"
                 android:src="@drawable/logo"
@@ -144,6 +142,40 @@
                 android:fontFamily="@font/poppins_regular"
                 android:inputType="textPersonName"
                 android:maxLength="15"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:hint="Email"
+            app:errorEnabled="true"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/myThemeText"
+            app:hintEnabled="true"
+            app:hintTextColor="@color/white"
+            android:textColorHint="@color/white"
+            app:boxStrokeColor="@color/myTheme"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:helperText="Enter your valid Email Address!"
+            app:helperTextTextColor="@color/myThemeText"
+            app:counterEnabled="true"
+            app:counterMaxLength="40"
+            app:counterTextColor="@color/myThemeText"
+            android:layout_marginBottom="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/edittext_border"
+                android:fontFamily="@font/poppins_regular"
+                android:inputType="textEmailAddress"
+                android:maxLength="40"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 

@@ -225,6 +225,7 @@
                         android:textStyle="bold" />
 
                     <ImageView
+                        android:id="@+id/homeforward"
                         android:layout_width="20dp"
                         android:layout_height="17dp"
                         android:src="@drawable/arrow_forward"
@@ -232,7 +233,7 @@
 
                 </LinearLayout>
 
-                <GridView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/teamOnePlayers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

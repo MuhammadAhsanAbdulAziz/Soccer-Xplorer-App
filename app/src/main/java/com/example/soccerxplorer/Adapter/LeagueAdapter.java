@@ -38,7 +38,7 @@ public class LeagueAdapter extends ListAdapter<LeagueModel, LeagueAdapter.ViewHo
         LeagueModel data = getItem(position);
         holder.binding.setLeagueInterface(leagueInterface);
         holder.binding.setDetail(data);
-        Glide.with(context).load(data.getLeagueImage()).dontAnimate().into(holder.binding.topleaguelogo);
+        Glide.with(context).load(data.getLeagueImage()).dontAnimate().into(holder.binding.logo);
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TopLeagueBinding binding;

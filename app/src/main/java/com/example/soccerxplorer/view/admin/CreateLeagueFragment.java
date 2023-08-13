@@ -129,6 +129,8 @@ public class CreateLeagueFragment extends Fragment {
             if (leagueModel != null) {
                 binding.titlefield.setText(leagueModel.getLeagueName());
                 binding.ccp.setCountryForNameCode(leagueModel.getLeagueCountry());
+                Glide.with(requireContext()).load(leagueModel.getLeagueImage()).
+                        error(R.drawable.ic_launcher_background).dontAnimate().into(binding.imgfield);
                 binding.BookAddBtn.setText("Update");
             } else {
                 binding.BookAddBtn.setText("Add");

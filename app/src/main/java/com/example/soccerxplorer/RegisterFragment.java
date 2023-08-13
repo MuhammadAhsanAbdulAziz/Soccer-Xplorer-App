@@ -359,7 +359,7 @@ public class RegisterFragment extends Fragment {
 
                                                     userViewModel.CreateUser(new UserModel(
                                                             user.getUid(),
-                                                            binding.emailEditText.getText().toString().trim(),
+                                                            binding.nameEditText.getText().toString().trim(),
                                                             binding.usernameEditText.getText().toString().trim(),
                                                             binding.emailEditText.getText().toString().trim(),
                                                             contactToNumber,

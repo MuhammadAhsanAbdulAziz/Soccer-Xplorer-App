@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_homeFragment_to_fixtureFragment"
             app:destination="@id/fixtureFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_teamPlayerFragment"
+            app:destination="@id/teamPlayerFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"

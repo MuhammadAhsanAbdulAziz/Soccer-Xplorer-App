@@ -1,6 +1,7 @@
 package com.example.soccerxplorer.repository;
 
 import android.content.Context;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -9,6 +10,7 @@ import androidx.navigation.NavController;
 
 import com.example.soccerxplorer.model.FeedbackModel;
 import com.example.soccerxplorer.model.LeagueModel;
+import com.example.soccerxplorer.model.PlayerModel;
 import com.example.soccerxplorer.util.UtilManager;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -17,6 +19,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +29,8 @@ import java.util.UUID;
 
 public class LeagueRepository {
     MutableLiveData<List<LeagueModel>> leaguelist;
+    StorageReference storageReference;
+    FirebaseStorage storage;
     DatabaseReference databaseReference = FirebaseDatabase.
             getInstance().getReference("Leagues");
 
@@ -52,37 +59,48 @@ public class LeagueRepository {
     }
 
     public void CreateLeague(LeagueModel leagueModel,Context context, NavController navController) {
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
         String uniqueID = UUID.randomUUID().toString();
-        databaseReference.child(uniqueID).setValue(new LeagueModel
-                (uniqueID,leagueModel.getLeagueName(),
-                        leagueModel.getLeagueCountry(),leagueModel.getLeagueImage())).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                UtilManager.SuccessMessage(context,navController);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                UtilManager.errorMessage(context,"Error");
-            }
-        });
+        final StorageReference ref = storageReference.child("League Images/" + leagueModel.getLeagueImage());
+        ref.putFile(Uri.parse(leagueModel.getLeagueImage())).addOnSuccessListener(taskSnapshot -> ref.getDownloadUrl().
+                        addOnSuccessListener(uri -> databaseReference.child(uniqueID).
+                                setValue(new LeagueModel
+                                        (uniqueID,leagueModel.getLeagueName(),
+                                                leagueModel.getLeagueCountry(),leagueModel.getLeagueImage())))).
+                addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        UtilManager.SuccessMessage(context,navController);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        UtilManager.errorMessage(context,"Error");
+                    }
+                });
     }
 
     public void UpdateLeague(LeagueModel leagueModel,Context context, NavController navController) {
-        databaseReference.child(leagueModel.getLeagueId()).setValue(new LeagueModel
-                (leagueModel.getLeagueId(),leagueModel.getLeagueName(),
-                        leagueModel.getLeagueCountry(),leagueModel.getLeagueImage())).
-                addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                UtilManager.SuccessMessage(context,navController);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                UtilManager.errorMessage(context,"Error");
-            }
-        });
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+        final StorageReference ref = storageReference.child("Player Images/" + leagueModel.getLeagueId());
+        ref.putFile(Uri.parse(leagueModel.getLeagueId())).addOnSuccessListener(taskSnapshot -> ref.getDownloadUrl().
+                addOnSuccessListener(uri -> databaseReference.child(leagueModel.getLeagueId()).
+                        setValue(new LeagueModel
+                                (leagueModel.getLeagueId(),leagueModel.getLeagueName(),
+                                        leagueModel.getLeagueCountry(),leagueModel.getLeagueImage()))
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                UtilManager.SuccessMessage(context,navController);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                UtilManager.errorMessage(context,"Error");
+                            }
+                        })));
     }
 
     public void DeleteLeague(LeagueModel leagueModel,Context context, NavController navController) {

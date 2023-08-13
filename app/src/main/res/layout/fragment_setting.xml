@@ -78,7 +78,7 @@
             </LinearLayout>
 
             <ImageView
-                android:onClick=""
+                android:id="@+id/profileeditbtn"
                 android:layout_width="20dp"
                 android:layout_height="18dp"
                 android:src="@drawable/edit"

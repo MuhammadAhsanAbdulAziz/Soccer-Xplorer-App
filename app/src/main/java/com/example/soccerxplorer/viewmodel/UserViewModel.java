@@ -39,8 +39,8 @@ public class UserViewModel extends ViewModel {
 //        repo.DeleteFeedback(teamModel,context,navController);
 //    }
 //
-//    public LiveData<List<FeedbackModel>> getFeedback() {
-//        return repo.getFeedback();
-//    }
+    public LiveData<List<UserModel>> getUserbyId(String id) {
+        return repo.getUserbyId(id);
+    }
 
 }
