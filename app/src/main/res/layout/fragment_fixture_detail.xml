@@ -351,45 +351,48 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/match_background">
+            android:background="@drawable/match_background"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/teamOneImage"
                     android:layout_width="45dp"
                     android:layout_height="45dp"/>
-
+                    android:layout_height="45dp"
+                    android:src="@drawable/arsenal" />
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/teamOne"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Arsenal Football"
                         android:textColor="@color/white"
                         android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/poppins_regular"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/teamOneCountry"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
                         android:fontFamily="@font/poppins_regular"
-                        android:textSize="12sp"/>
+                        android:text="England"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
@@ -398,22 +401,22 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#35383f"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="15dp"
+                android:background="#35383f" />
 
             <LinearLayout
                 android:id="@+id/teamOneAllPlayers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
                     android:fontFamily="@font/poppins_regular"
                     android:text="Players"
                     android:textColor="@color/white"
@@ -433,10 +436,10 @@
                 android:id="@+id/teamOnePlayers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:horizontalSpacing="10dp"
                 android:nestedScrollingEnabled="true"
                 android:numColumns="2"
-                android:horizontalSpacing="10dp"
-                tools:listitem="@layout/matches_player_listview"/>
+                tools:listitem="@layout/matches_player_listview" />
 
         </LinearLayout>
 
