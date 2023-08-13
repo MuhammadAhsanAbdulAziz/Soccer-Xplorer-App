@@ -7,21 +7,21 @@ import java.util.Objects;
 
 public class FeedbackModel {
 
-    String feedbackId,UserId,description;
-    String rating;
+    String feedbackId,UserId,description,rating,feedbackdate;
 
-    public FeedbackModel(String feedbackId, String UserId, String description, String rating) {
+    public FeedbackModel(String feedbackId, String userId, String description, String rating, String feedbackdate) {
         this.feedbackId = feedbackId;
-        this.UserId = UserId;
+        UserId = userId;
         this.description = description;
         this.rating = rating;
+        this.feedbackdate = feedbackdate;
     }
 
-    public String getfeedbackId() {
+    public String getFeedbackId() {
         return feedbackId;
     }
 
-    public void setfeedbackId(String feedbackId) {
+    public void setFeedbackId(String feedbackId) {
         this.feedbackId = feedbackId;
     }
 
@@ -49,18 +49,22 @@ public class FeedbackModel {
         this.rating = rating;
     }
 
+    public String getFeedbackdate() {
+        return feedbackdate;
+    }
+
+    public void setFeedbackdate(String feedbackdate) {
+        this.feedbackdate = feedbackdate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FeedbackModel that = (FeedbackModel) o;
-        return getfeedbackId().equals(that.getfeedbackId()) && getUserId().equals(that.getUserId());
+        return getFeedbackId().equals(that.getFeedbackId()) && getUserId().equals(that.getUserId());
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getfeedbackId(), getUserId());
-    }
 
 
     public static DiffUtil.ItemCallback<FeedbackModel> catItemCallBack = new DiffUtil.ItemCallback<FeedbackModel>() {

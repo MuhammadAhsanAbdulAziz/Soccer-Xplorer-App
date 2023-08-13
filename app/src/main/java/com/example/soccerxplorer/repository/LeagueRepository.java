@@ -58,6 +58,30 @@ public class LeagueRepository {
         return leaguelist;
     }
 
+    public LiveData<List<LeagueModel>> get3League() {
+        leaguelist = new MutableLiveData<>();
+        ArrayList<LeagueModel> data = new ArrayList<LeagueModel>();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    data.add(new LeagueModel(ds.child("leagueId").getValue(String.class),
+                            ds.child("leagueName").getValue(String.class),
+                            ds.child("leagueCountry").getValue(String.class),
+                            ds.child("leagueImage").getValue(String.class)));
+                    leaguelist.setValue(data);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return leaguelist;
+    }
+
     public void CreateLeague(LeagueModel leagueModel,Context context, NavController navController) {
         storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();

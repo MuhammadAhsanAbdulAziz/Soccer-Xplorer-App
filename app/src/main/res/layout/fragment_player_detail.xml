@@ -81,7 +81,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/playerImage"
         app:cardBackgroundColor="@color/transparent"
-        android:layout_marginTop="-30dp">
+        android:layout_marginTop="-30dp"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -106,50 +107,14 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center|start">
-
-                        <ImageView
-                            android:id="@+id/teamLogo"
-                            android:layout_width="50dp"
-                            android:layout_height="40dp"
-                            android:layout_gravity="start"
-                            android:layout_marginBottom="15dp"
-                            android:layout_marginLeft="-10dp"/>
-
-                        <TextView
-                            android:id="@+id/teamName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:textColor="@color/white"
-                            android:fontFamily="@font/poppins_regular"
-                            android:textSize="12sp"/>
-
-
-                    </LinearLayout>
                     <TextView
                         android:id="@+id/playerName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:textSize="17sp"
-                        android:textStyle="bold"
-                        android:fontFamily="@font/poppins_regular"/>
-
-                    <TextView
-                        android:id="@+id/playerType"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
                         android:fontFamily="@font/poppins_regular"
                         android:text="John Doe"
                         android:textColor="@color/white"
@@ -157,14 +122,6 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/playerNumber"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="#D2B5FF"
-                        android:textSize="28sp"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="-15dp"
-                        android:fontFamily="@font/poppins_regular"/>
                         android:id="@+id/teamCountry"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -175,6 +132,20 @@
                         android:textStyle="bold" />
 
                 </LinearLayout>
+
+                <ImageView
+                android:visibility="gone"
+                android:id="@+id/filltogglefav"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/star_fill"
+                app:tint="@color/favoriteActive" />
+                <ImageView
+                    android:id="@+id/unfilltogglefav"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/star"
+                    app:tint="@color/favoriteActive" />
 
             </LinearLayout>
 
@@ -202,6 +173,7 @@
 
 
                     <TextView
+                        android:id="@+id/playerType"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -232,6 +204,7 @@
 
 
                     <TextView
+                        android:id="@+id/playerNumber"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"

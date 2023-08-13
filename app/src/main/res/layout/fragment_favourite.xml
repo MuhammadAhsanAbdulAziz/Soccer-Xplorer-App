@@ -43,7 +43,7 @@
         android:paddingHorizontal="20dp">
 
         <Button
-            android:id="@+id/fixturesBtn"
+            android:id="@+id/playersBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Players"
@@ -57,7 +57,7 @@
             android:background="@drawable/custom_button_inactive"/>
 
         <Button
-            android:id="@+id/resultsBtn"
+            android:id="@+id/teamsBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Teams"
@@ -73,14 +73,15 @@
 
     </LinearLayout>
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/favplayerlist"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        tools:listitem="@layout/player_favorite_listview"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:dividerHeight="0dp"-->
-<!--        android:divider="@null"/>-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favplayerlist"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/player_favorite_listview"
+        android:layout_marginTop="20dp"
+        android:dividerHeight="0dp"
+        android:divider="@null"/>
     <androidx.recyclerview.widget.RecyclerView
 
         android:id="@+id/favteamlist"

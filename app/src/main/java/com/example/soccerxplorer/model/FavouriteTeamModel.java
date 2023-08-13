@@ -33,10 +33,6 @@ public class FavouriteTeamModel {
         return teamId;
     }
 
-    public void setPlayerId(String teamId) {
-        this.teamId = teamId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

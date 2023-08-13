@@ -30,6 +30,5 @@
         app:itemTextColor="@color/bottom_appbar"
         app:itemIconTint="@color/bottom_appbar"
         app:itemRippleColor="@color/myThemeBottomNavigationRipple"
-        app:itemTextAppearanceActive="@style/BottomNavigationViewTextAppearance"
-        app:menu="@menu/menu_item" />
+        app:itemTextAppearanceActive="@style/BottomNavigationViewTextAppearance"/>
 </LinearLayout>

@@ -24,10 +24,12 @@ import com.example.soccerxplorer.interfaces.FavouriteTeamInterface;
 import com.example.soccerxplorer.interfaces.PlayerInterface;
 import com.example.soccerxplorer.model.FavouritePlayerModel;
 import com.example.soccerxplorer.model.FavouriteTeamModel;
+import com.example.soccerxplorer.model.FixtureModel;
 import com.example.soccerxplorer.model.PlayerModel;
 import com.example.soccerxplorer.util.UtilManager;
 import com.example.soccerxplorer.viewmodel.FavouritePlayerViewModel;
 import com.example.soccerxplorer.viewmodel.FavouriteTeamViewModel;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -40,10 +42,12 @@ public class FavouriteFragment extends Fragment implements FavouritePlayerInterf
     FavouriteTeamViewModel favouriteTeamViewModel;
     FavouritePlayerAdapter favouritePlayerAdapter;
     FavouriteTeamAdapter favouriteTeamAdapter;
+    private static FavouriteFragment instance = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        instance = this;
     }
 
     @Override
@@ -55,6 +59,7 @@ public class FavouriteFragment extends Fragment implements FavouritePlayerInterf
         favouritePlayerAdapter = new FavouritePlayerAdapter(requireContext(),this);
         favouriteTeamViewModel = new ViewModelProvider(requireActivity()).get(FavouriteTeamViewModel.class);
         favouriteTeamAdapter = new FavouriteTeamAdapter(requireContext(),this);
+        favouritePlayerAdapter.notifyDataSetChanged();
 
 
 
@@ -67,15 +72,36 @@ public class FavouriteFragment extends Fragment implements FavouritePlayerInterf
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
         String id = UtilManager.getDefaults("userId",requireContext());
-//        favouritePlayerViewModel.getFavouritePlayerbyUserId(id).observe(requireActivity(), new Observer<List<FavouritePlayerModel>>() {
-//            @Override
-//            public void onChanged(List<FavouritePlayerModel> favouritePlayerModels) {
-//                favouritePlayerAdapter.submitList(favouritePlayerModels);
-//                LinearLayoutManager mLayoutManager = new LinearLayoutManager(requireContext());
-//                binding.favplayerlist.setLayoutManager(mLayoutManager);
-//                binding.favplayerlist.setAdapter(favouritePlayerAdapter);
-//            }
-//        });
+
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.popBackStack();
+            }
+        });
+
+        binding.teamsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.teamsBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_button_active));
+                binding.playersBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_button_inactive));
+                binding.teamsBtn.setTextColor(getResources().getColor(R.color.white));
+                binding.favplayerlist.setVisibility(View.GONE);
+                binding.favteamlist.setVisibility(View.VISIBLE);
+            }
+        });
+
+        binding.playersBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.teamsBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_button_inactive));
+                binding.playersBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_button_active));
+                binding.playersBtn.setTextColor(getResources().getColor(android.R.color.white));
+                binding.favteamlist.setVisibility(View.GONE);
+                binding.favplayerlist.setVisibility(View.VISIBLE);
+            }
+        });
+
         favouriteTeamViewModel.getFavouriteTeambyUserId(id).observe(requireActivity(), new Observer<List<FavouriteTeamModel>>() {
             @Override
             public void onChanged(List<FavouriteTeamModel> favouritePlayerModels) {
@@ -83,6 +109,24 @@ public class FavouriteFragment extends Fragment implements FavouritePlayerInterf
                 LinearLayoutManager mLayoutManager = new LinearLayoutManager(requireContext());
                 binding.favteamlist.setLayoutManager(mLayoutManager);
                 binding.favteamlist.setAdapter(favouriteTeamAdapter);
+            }
+        });
+
+        getPlayerlist();
+
+    }
+
+    public void getPlayerlist()
+    {
+        String id = UtilManager.getDefaults("userId",requireContext());
+        favouritePlayerViewModel.getFavouritePlayerbyUserId(id).observe(requireActivity(), new Observer<List<FavouritePlayerModel>>() {
+            @Override
+            public void onChanged(List<FavouritePlayerModel> favouritePlayerModels) {
+                favouritePlayerAdapter.submitList(favouritePlayerModels);
+                LinearLayoutManager mLayoutManager = new LinearLayoutManager(requireContext());
+                binding.favplayerlist.setLayoutManager(mLayoutManager);
+                binding.favplayerlist.setAdapter(favouritePlayerAdapter);
+
             }
         });
     }
@@ -95,11 +139,17 @@ public class FavouriteFragment extends Fragment implements FavouritePlayerInterf
 
     @Override
     public void FavouritePlayerDetail(FavouritePlayerModel favplayer) {
-
+        Bundle bundle = new Bundle();
+        bundle.putString("playerfromfav",favplayer.getPlayerId());
+        navController.navigate(R.id.action_favouriteFragment_to_playerDetailFragment,bundle);
     }
 
     @Override
     public void FavouriteTeamDetail(FavouriteTeamModel favteam) {
 
+    }
+
+    public static FavouriteFragment getInstance() {
+        return instance;
     }
 }

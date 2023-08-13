@@ -20,6 +20,8 @@ import com.example.soccerxplorer.model.FeedbackModel;
 import com.example.soccerxplorer.util.UtilManager;
 import com.example.soccerxplorer.viewmodel.FeedbackViewModel;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.regex.Pattern;
 
 public class FeedbackFragment extends Fragment {
@@ -91,10 +93,13 @@ public class FeedbackFragment extends Fragment {
 
     private void saveChanges() {
         String id = UtilManager.getDefaults("userId",requireContext());
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MMMM/yyyy");
+        String dateTime = simpleDateFormat.format(calendar.getTime());
         feedbackViewModel.CreateFeedback(new FeedbackModel
                 ("", id,
                         binding.emailEditText.getText().toString().trim(),
-                        String.valueOf(binding.ratingBar.getRating())),requireContext(),navController,requireActivity());
+                        String.valueOf(binding.ratingBar.getRating()),dateTime),requireContext(),navController,requireActivity());
     }
 
     private boolean descriptionValidation() {

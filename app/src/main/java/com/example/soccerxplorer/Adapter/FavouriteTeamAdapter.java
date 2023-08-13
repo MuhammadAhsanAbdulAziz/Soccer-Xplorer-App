@@ -53,23 +53,18 @@ public class FavouriteTeamAdapter extends ListAdapter<FavouriteTeamModel, Favour
         holder.binding.setFavTeamInterface(favouriteTeamInterface);
         holder.binding.setDetail(data);
         String id = data.getTeamId();
-        teamRef.addValueEventListener(new ValueEventListener() {
+        teamRef.child(data.getTeamId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    String a = ds.child("teamId").getValue(String.class);
-                    if (a.equals(id)) {
-                        Glide.with(context).load(ds.child("TeamImage").getValue(String.class))
-                                .dontAnimate().into(holder.binding.teamImage);
-                        String ab = ds.child("TeamName").getValue(String.class);
-                        holder.binding.teamName.setText(ab);
-                        if(ds.child("TeamCountry").getValue(String.class)!=null) {
-                            Locale l = new Locale("", ds.child("TeamCountry").getValue(String.class));
-                            if (l.getDisplayCountry().equals("UNITED KINGDOM")) {
-                                holder.binding.teamCountry.setText("ENGLAND");
-                            } else holder.binding.teamCountry.setText(l.getDisplayCountry());
-                        }
-                    }
+                Glide.with(context).load(snapshot.child("teamImage").getValue(String.class))
+                        .dontAnimate().into(holder.binding.teamImage);
+                String ab = snapshot.child("teamName").getValue(String.class);
+                holder.binding.teamName.setText(ab);
+                if (snapshot.child("teamCountry").getValue(String.class) != null) {
+                    Locale l = new Locale("", snapshot.child("teamCountry").getValue(String.class));
+                    if (l.getDisplayCountry().equals("UNITED KINGDOM")) {
+                        holder.binding.teamCountry.setText("ENGLAND");
+                    } else holder.binding.teamCountry.setText(l.getDisplayCountry());
                 }
 
             }

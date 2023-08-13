@@ -41,20 +41,31 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigation);
 
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
-
+//
+//        if(UtilManager.getDefaults("userRole",this)!=null)
+//        {
+//            if(UtilManager.getDefaults("userRole",this).equals("Admin")) {
+//                LinearLayout l = findViewById(R.id.layout);
+//                l.setBackgroundColor(getResources().getColor(android.R.color.white));
+//            }
+//
+//        }
         if(UtilManager.getDefaults("userRole",this)!=null)
         {
             if(UtilManager.getDefaults("userRole",this).equals("Admin")) {
-                LinearLayout l = findViewById(R.id.layout);
-                l.setBackgroundColor(getResources().getColor(android.R.color.white));
+                bottomNavigationView.inflateMenu(R.menu.admin_menu_item);
             }
-
+            else if(UtilManager.getDefaults("userRole",this).equals("User")) {
+                bottomNavigationView.inflateMenu(R.menu.menu_item);
+            }
         }
-
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController navController, @NonNull NavDestination navDestination, @Nullable Bundle bundle) {
                 if(navDestination.getId() == R.id.homeFragment) {
+                    bottomNavigationView.setVisibility(View.VISIBLE);
+                }
+                else if(navDestination.getId()==R.id.adminHomeFragment){
                     bottomNavigationView.setVisibility(View.VISIBLE);
                 }
             }

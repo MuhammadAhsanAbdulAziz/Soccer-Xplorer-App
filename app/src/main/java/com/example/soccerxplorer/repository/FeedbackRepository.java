@@ -50,7 +50,8 @@ public class FeedbackRepository {
                     data.add(new FeedbackModel(ds.child("feedbackId").getValue(String.class),
                             ds.child("userId").getValue(String.class),
                             ds.child("description").getValue(String.class),
-                            ds.child("rating").getValue(String.class)));
+                            ds.child("rating").getValue(String.class),
+                            ds.child("feedback").getValue(String.class)));
                     feedbacklist.setValue(data);
                 }
             }
@@ -79,7 +80,7 @@ public class FeedbackRepository {
         String uniqueID = UUID.randomUUID().toString();
         databaseReference.child(uniqueID).setValue(new FeedbackModel
                         (uniqueID,feedbackModel.getUserId(),feedbackModel.getDescription(),
-                                feedbackModel.getRating())).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                feedbackModel.getRating(),feedbackModel.getFeedbackdate())).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 alertDialog.dismiss();
@@ -106,9 +107,9 @@ public class FeedbackRepository {
     }
 
     public void UpdateFeedback(FeedbackModel feedbackModel,Context context, NavController navController) {
-        databaseReference.child(feedbackModel.getfeedbackId()).setValue(new FeedbackModel
-                (feedbackModel.getfeedbackId(),feedbackModel.getUserId(),
-                        feedbackModel.getDescription(),feedbackModel.getRating())).
+        databaseReference.child(feedbackModel.getFeedbackId()).setValue(new FeedbackModel
+                (feedbackModel.getFeedbackId(),feedbackModel.getUserId(),
+                        feedbackModel.getDescription(),feedbackModel.getRating(),feedbackModel.getFeedbackdate())).
                 addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
@@ -123,7 +124,7 @@ public class FeedbackRepository {
     }
 
     public void DeleteFeedback(FeedbackModel feedbackModel,Context context, NavController navController) {
-        databaseReference.child(feedbackModel.getfeedbackId()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+        databaseReference.child(feedbackModel.getFeedbackId()).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 UtilManager.SuccessMessage(context,navController);

@@ -54,7 +54,11 @@
         android:id="@+id/favouriteFragment"
         android:name="com.example.soccerxplorer.FavouriteFragment"
         android:label="fragment_favourite"
-        tools:layout="@layout/fragment_favourite" />
+        tools:layout="@layout/fragment_favourite" >
+        <action
+            android:id="@+id/action_favouriteFragment_to_playerDetailFragment"
+            app:destination="@id/playerDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.example.soccerxplorer.SettingFragment"
