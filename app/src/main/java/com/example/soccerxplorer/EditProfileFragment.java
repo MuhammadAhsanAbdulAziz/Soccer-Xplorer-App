@@ -198,7 +198,7 @@ public class EditProfileFragment extends Fragment {
         usernameErr = usernameValidation();
 
         if((emailErr && nameErr && usernameErr && contactErr)){
-            updateUser();
+//            updateUser();
         }
     }
     private boolean connectionCheck(){
