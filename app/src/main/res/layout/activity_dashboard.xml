@@ -30,13 +30,13 @@
             android:fontFamily="@font/righteous_regular"
             android:textSize="25sp"/>
 
-
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:tint="@color/myTheme"
-            android:src="@drawable/logo"/>
+            android:layout_gravity="center"
+            android:src="@drawable/messi"/>
 
     </LinearLayout>
     <androidx.core.widget.NestedScrollView

@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp">
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white"
-
+        app:cardBackgroundColor="@color/myThemeText"
+        android:layout_margin="5dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="20dp">
         <LinearLayout
@@ -26,6 +25,7 @@
                 android:src="@drawable/arsenal"/>
             <TextView
                 android:layout_width="wrap_content"
+                android:textColor="@color/white"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/righteous_regular"
                 android:text="Team 1"/>
