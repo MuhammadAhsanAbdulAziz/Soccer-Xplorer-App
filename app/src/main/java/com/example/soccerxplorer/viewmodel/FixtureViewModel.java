@@ -46,8 +46,14 @@ public class FixtureViewModel extends ViewModel {
     public LiveData<List<FixtureModel>> getCompletedFixture(){
         return repo.getCompletedFixture();
     }
+    public LiveData<List<FixtureModel>> getCompletedFixturebyLeague(String leagueId){
+        return repo.getCompletedFixturebyLeague(leagueId);
+    }
     public LiveData<List<FixtureModel>> getPendingFixture(){
         return repo.getPendingFixture();
+    }
+    public LiveData<List<FixtureModel>> getPendingFixturebyLeague(String leagueId){
+        return repo.getPendingFixturebyLeague(leagueId);
     }
 
     public LiveData<List<FixtureModel>> getFixture() {

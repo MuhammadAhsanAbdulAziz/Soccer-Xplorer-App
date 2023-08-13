@@ -101,6 +101,41 @@ public class FixtureRepository {
         return fixturelist;
     }
 
+    public LiveData<List<FixtureModel>> getCompletedFixturebyLeague(String leagueId) {
+        fixturelist = new MutableLiveData<>();
+        ArrayList<FixtureModel> data = new ArrayList<FixtureModel>();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    if(ds.child("fixtureStatus").getValue().toString().equals("1")
+                            && ds.child("leagueId").getValue(String.class).equals(leagueId) ) {
+                        data.add(new FixtureModel(
+                                ds.child("fixtureId").getValue(String.class),
+                                ds.child("teamId1").getValue(String.class),
+                                ds.child("teamId2").getValue(String.class),
+                                ds.child("leagueId").getValue(String.class),
+                                ds.child("fixtureDate").getValue(String.class),
+                                ds.child("fixtureTime").getValue(String.class),
+                                ds.child("teamScore1").getValue(String.class),
+                                ds.child("teamScore2").getValue(String.class),
+                                ds.child("fixtureStatus").getValue(String.class),
+                                ds.child("fixtureReferee").getValue(String.class),
+                                ds.child("fixtureVenue").getValue(String.class)));
+                        fixturelist.setValue(data);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return fixturelist;
+    }
+
     public LiveData<List<FixtureModel>> getPendingFixture() {
         fixturelist = new MutableLiveData<>();
         ArrayList<FixtureModel> data = new ArrayList<FixtureModel>();
@@ -135,6 +170,40 @@ public class FixtureRepository {
         return fixturelist;
     }
 
+    public LiveData<List<FixtureModel>> getPendingFixturebyLeague(String leagueId) {
+        fixturelist = new MutableLiveData<>();
+        ArrayList<FixtureModel> data = new ArrayList<FixtureModel>();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    if(ds.child("fixtureStatus").getValue().toString().equals("0")
+                            && ds.child("leagueId").getValue(String.class).equals(leagueId)) {
+                        data.add(new FixtureModel(
+                                ds.child("fixtureId").getValue(String.class),
+                                ds.child("teamId1").getValue(String.class),
+                                ds.child("teamId2").getValue(String.class),
+                                ds.child("leagueId").getValue(String.class),
+                                ds.child("fixtureDate").getValue(String.class),
+                                ds.child("fixtureTime").getValue(String.class),
+                                ds.child("teamScore1").getValue(String.class),
+                                ds.child("teamScore2").getValue(String.class),
+                                ds.child("fixtureStatus").getValue(String.class),
+                                ds.child("fixtureReferee").getValue(String.class),
+                                ds.child("fixtureVenue").getValue(String.class)));
+                        fixturelist.setValue(data);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return fixturelist;
+    }
 
     public LiveData<List<String>> getLeagueName() {
         leagueNameList = new MutableLiveData<>();

@@ -95,9 +95,11 @@ public class PlayerRepository {
         playerlist = new MutableLiveData<>();
         ArrayList<PlayerModel> data = new ArrayList<PlayerModel>();
         databaseReference.addValueEventListener(new ValueEventListener() {
+            int count = 0;
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
+                    count++;
                     if(ds.child("teamId").getValue(String.class).equals(teamId)) {
                         data.add(new PlayerModel(ds.child("playerId").getValue(String.class),
                                 ds.child("playerName").getValue(String.class),
@@ -107,6 +109,7 @@ public class PlayerRepository {
                                 ds.child("playerPosition").getValue(String.class),
                                 ds.child("playerNumber").getValue(String.class)));
                         playerlist.setValue(data);
+                        if(count > 2) break;
                     }
                 }
             }

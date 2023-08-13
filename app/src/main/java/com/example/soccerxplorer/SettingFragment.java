@@ -1,5 +1,6 @@
 package com.example.soccerxplorer;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -48,6 +49,17 @@ public class SettingFragment extends Fragment {
 
         userRef = FirebaseDatabase.getInstance().getReference("Users");
 
+        binding.loginsection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getActivity() != null) {
+                    Intent intent = getActivity().getIntent();
+                    getActivity().finish();
+                    startActivity(intent);
+                }
+            }
+        });
+
         return binding.getRoot();
     }
 
@@ -81,6 +93,8 @@ public class SettingFragment extends Fragment {
             binding.profileheader.setVisibility(View.GONE);
             binding.personalsection.setVisibility(View.GONE);
             binding.logoutsection.setVisibility(View.GONE);
+            binding.loginsection.setVisibility(View.VISIBLE);
+            binding.feedbacksection.setVisibility(View.GONE);
         }
 
         binding.profileeditbtn.setOnClickListener(new View.OnClickListener() {
@@ -127,7 +141,11 @@ public class SettingFragment extends Fragment {
         auth.signOut();
         UtilManager.setDefaults("userId",null,requireContext());
         UtilManager.setDefaults("userRole",null,requireContext());
-        navController.popBackStack();
+        if (getActivity() != null) {
+            Intent intent = getActivity().getIntent();
+            getActivity().finish();
+            startActivity(intent);
+        }
         dialog.cancel();
     }
 

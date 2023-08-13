@@ -37,6 +37,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -85,6 +86,11 @@ public class HomeFragment extends Fragment implements TeamInterface, LeagueInter
         setTopPlayerTeam();
         setTopPlayer();
 
+        if(MainActivity.getInstance().bottomNavigationView.getVisibility() == View.GONE)
+        {
+            MainActivity.getInstance().setUserMenu();
+        }
+
         binding.searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,6 +125,7 @@ public class HomeFragment extends Fragment implements TeamInterface, LeagueInter
         teamRef.child("273198fc-0942-422e-97c7-7602f68a51d2").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                 Glide.with(requireContext()).load(snapshot.child("teamImage").
                         getValue(String.class)).dontAnimate().into(binding.teamOneImage);
             }
@@ -132,7 +139,7 @@ public class HomeFragment extends Fragment implements TeamInterface, LeagueInter
 
     private void setTopTeam()
     {
-        teamViewModel.getTeam().observe(requireActivity(), new Observer<List<TeamModel>>() {
+        teamViewModel.get3Team().observe(requireActivity(), new Observer<List<TeamModel>>() {
             @Override
             public void onChanged(List<TeamModel> teamModels) {
                 adp.submitList(teamModels);
@@ -145,7 +152,7 @@ public class HomeFragment extends Fragment implements TeamInterface, LeagueInter
     }
     private void setTopLeague()
     {
-        leagueViewModel.getLeague().observe(requireActivity(), new Observer<List<LeagueModel>>() {
+        leagueViewModel.get3League().observe(requireActivity(), new Observer<List<LeagueModel>>() {
             @Override
             public void onChanged(List<LeagueModel> leagueModels) {
                 leagueadp.submitList(leagueModels);
@@ -170,7 +177,11 @@ public class HomeFragment extends Fragment implements TeamInterface, LeagueInter
 
     @Override
     public void LeagueDetail(LeagueModel leagueModel) {
-
+        leagueViewModel.setLeagueModel(leagueModel);
+        Bundle bundle = new Bundle();
+        Gson g = new Gson();
+        bundle.putString("league",g.toJson(leagueModel) );
+        navController.navigate(R.id.action_homeFragment_to_leagueMatcheFragment,bundle);
     }
 
     @Override

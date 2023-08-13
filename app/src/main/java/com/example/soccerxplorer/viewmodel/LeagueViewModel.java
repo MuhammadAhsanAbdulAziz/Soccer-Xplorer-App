@@ -43,4 +43,11 @@ public class LeagueViewModel extends ViewModel {
         return repo.getLeague();
     }
 
+    public LiveData<List<LeagueModel>> get3League() {
+        return repo.get3League();
+    }
+
+    public LiveData<List<LeagueModel>> searchLeague(String name) {
+        return repo.SearchLeague(name);
+    }
 }

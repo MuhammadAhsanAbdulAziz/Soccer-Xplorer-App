@@ -255,9 +255,13 @@ public class LoginFragment extends Fragment {
                                                 if(Role.equals("Admin"))
                                                 {
                                                     navController.navigate(R.id.action_loginFragment_to_adminHomeFragment);
+                                                    UtilManager.setDefaults("s","1",requireContext());
+                                                    MainActivity.getInstance().setAdminMenu();
                                                 }
                                                 else{
                                                     navController.navigate(R.id.action_loginFragment_to_homeFragment);
+                                                    UtilManager.setDefaults("s","2",requireContext());
+                                                    MainActivity.getInstance().setUserMenu();
                                                 }
                                             }
                                         }

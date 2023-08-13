@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_leagueMatcheFragment"
+            app:destination="@id/leagueMatcheFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -73,6 +76,11 @@
         <action
             android:id="@+id/action_settingFragment_to_feedbackFragment"
             app:destination="@id/feedbackFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/createPlayerFragment"
@@ -143,6 +151,9 @@
         <action
             android:id="@+id/action_adminHomeFragment_to_allTeamFragment"
             app:destination="@id/allTeamFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/allPlayerFragment"
@@ -230,5 +241,25 @@
         <action
             android:id="@+id/action_searchFragment_to_playerDetailFragment"
             app:destination="@id/playerDetailFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_teamDetailFragment"
+            app:destination="@id/teamDetailFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_leagueMatcheFragment"
+            app:destination="@id/leagueMatcheFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/leagueMatcheFragment"
+        android:name="com.example.soccerxplorer.LeagueMatcheFragment"
+        android:label="fragment_league_matche"
+        tools:layout="@layout/fragment_league_matche" >
+        <action
+            android:id="@+id/action_leagueMatcheFragment_to_fixtureDetailFragment"
+            app:destination="@id/fixtureDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/teamDetailFragment"
+        android:name="com.example.soccerxplorer.TeamDetailFragment"
+        android:label="fragment_team_detail"
+        tools:layout="@layout/fragment_team_detail" />
 </navigation>

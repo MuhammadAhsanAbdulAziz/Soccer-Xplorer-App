@@ -35,6 +35,7 @@ public class TeamRepository {
     String teamName;
     String teamImage;
 
+
     public LiveData<List<TeamModel>> getTeam() {
         teamlist = new MutableLiveData<>();
         ArrayList<TeamModel> data = new ArrayList<TeamModel>();
@@ -47,6 +48,37 @@ public class TeamRepository {
                             ds.child("teamCountry").getValue(String.class),
                             ds.child("teamImage").getValue(String.class)));
                     teamlist.setValue(data);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return teamlist;
+    }
+
+    public LiveData<List<TeamModel>> get3Team() {
+        teamlist = new MutableLiveData<>();
+        ArrayList<TeamModel> data = new ArrayList<TeamModel>();
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            int count = 0;
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    count++;
+                    data.add(new TeamModel(ds.child("teamId").getValue(String.class),
+                            ds.child("teamName").getValue(String.class),
+                            ds.child("teamCountry").getValue(String.class),
+                            ds.child("teamImage").getValue(String.class)));
+                    teamlist.setValue(data);
+
+                    if(count>2){
+                        break;
+                    }
                 }
             }
 

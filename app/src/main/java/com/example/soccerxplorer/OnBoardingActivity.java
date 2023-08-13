@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.example.soccerxplorer.Adapter.OnboardingAdapter;
+import com.example.soccerxplorer.adapter.OnboardingAdapter;
 import com.example.soccerxplorer.model.OnboardingModel;
 
 import java.util.ArrayList;

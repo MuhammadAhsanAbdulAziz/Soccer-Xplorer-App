@@ -20,20 +20,24 @@ import android.view.ViewGroup;
 
 import com.example.soccerxplorer.adapter.FavouritePlayerAdapter;
 import com.example.soccerxplorer.adapter.FavouriteTeamAdapter;
+import com.example.soccerxplorer.adapter.LeagueAdapter;
 import com.example.soccerxplorer.adapter.PlayerAdapter;
 import com.example.soccerxplorer.adapter.PlayerSearchAdapter;
 import com.example.soccerxplorer.adapter.TeamAdapter;
 import com.example.soccerxplorer.databinding.FragmentFavouriteBinding;
 import com.example.soccerxplorer.databinding.FragmentSearchBinding;
+import com.example.soccerxplorer.interfaces.LeagueInterface;
 import com.example.soccerxplorer.interfaces.PlayerInterface;
 import com.example.soccerxplorer.interfaces.TeamInterface;
 import com.example.soccerxplorer.model.FavouritePlayerModel;
 import com.example.soccerxplorer.model.FavouriteTeamModel;
+import com.example.soccerxplorer.model.LeagueModel;
 import com.example.soccerxplorer.model.PlayerModel;
 import com.example.soccerxplorer.model.TeamModel;
 import com.example.soccerxplorer.util.UtilManager;
 import com.example.soccerxplorer.viewmodel.FavouritePlayerViewModel;
 import com.example.soccerxplorer.viewmodel.FavouriteTeamViewModel;
+import com.example.soccerxplorer.viewmodel.LeagueViewModel;
 import com.example.soccerxplorer.viewmodel.PlayerViewModel;
 import com.example.soccerxplorer.viewmodel.TeamViewModel;
 import com.google.gson.Gson;
@@ -41,15 +45,16 @@ import com.google.gson.Gson;
 import java.util.List;
 import java.util.Locale;
 
-public class SearchFragment extends Fragment implements PlayerInterface, TeamInterface {
+public class SearchFragment extends Fragment implements PlayerInterface, TeamInterface, LeagueInterface {
 
     NavController navController;
     FragmentSearchBinding binding;
     PlayerViewModel playerViewModel;
     TeamViewModel teamViewModel;
-
+    LeagueViewModel leagueViewModel;
     PlayerSearchAdapter playerAdapter;
     TeamAdapter teamAdapter;
+    LeagueAdapter leagueAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,8 +68,10 @@ public class SearchFragment extends Fragment implements PlayerInterface, TeamInt
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         playerViewModel = new ViewModelProvider(requireActivity()).get(PlayerViewModel.class);
         teamViewModel = new ViewModelProvider(requireActivity()).get(TeamViewModel.class);
+        leagueViewModel = new ViewModelProvider(requireActivity()).get(LeagueViewModel.class);
         playerAdapter = new PlayerSearchAdapter(requireContext(),this);
         teamAdapter = new TeamAdapter(requireContext(),this);
+        leagueAdapter = new LeagueAdapter(requireContext(),this);
         return binding.getRoot();
     }
 
@@ -97,6 +104,10 @@ public class SearchFragment extends Fragment implements PlayerInterface, TeamInt
                     teamViewModel.SearchTeam(c).observe(requireActivity(),
                             teamModels -> teamAdapter.submitList(teamModels));
                 }
+                else if(binding.favleaguelist.getVisibility() == View.VISIBLE) {
+                    leagueViewModel.searchLeague(c).observe(requireActivity(),
+                            leagueModels -> leagueAdapter.submitList(leagueModels));
+                }
             }
 
             @Override
@@ -119,8 +130,10 @@ public class SearchFragment extends Fragment implements PlayerInterface, TeamInt
                 });
                 binding.teamsBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_button_active));
                 binding.playersBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_button_inactive));
+                binding.leaguesBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_button_inactive));
                 binding.teamsBtn.setTextColor(getResources().getColor(R.color.white));
                 binding.favplayerlist.setVisibility(View.GONE);
+                binding.favleaguelist.setVisibility(View.GONE);
                 binding.favteamlist.setVisibility(View.VISIBLE);
             }
         });
@@ -138,27 +151,38 @@ public class SearchFragment extends Fragment implements PlayerInterface, TeamInt
                     }
                 });
                 binding.teamsBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_button_inactive));
+                binding.leaguesBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_button_inactive));
                 binding.playersBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_button_active));
                 binding.playersBtn.setTextColor(getResources().getColor(android.R.color.white));
                 binding.favteamlist.setVisibility(View.GONE);
+                binding.favleaguelist.setVisibility(View.GONE);
                 binding.favplayerlist.setVisibility(View.VISIBLE);
             }
         });
 
-        getPlayerlist();
-        getTeamlist();
-
+        binding.leaguesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                leagueViewModel.getLeague().observe(requireActivity(), new Observer<List<LeagueModel>>() {
+                    @Override
+                    public void onChanged(List<LeagueModel> leagueModels) {
+                        leagueAdapter.submitList(leagueModels);
+                        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL);
+                        binding.favleaguelist.setLayoutManager(staggeredGridLayoutManager);
+                        binding.favleaguelist.setAdapter(leagueAdapter);
+                    }
+                });
+                binding.teamsBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_button_inactive));
+                binding.playersBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_button_inactive));
+                binding.leaguesBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.custom_button_active));
+                binding.leaguesBtn.setTextColor(getResources().getColor(android.R.color.white));
+                binding.favteamlist.setVisibility(View.GONE);
+                binding.favplayerlist.setVisibility(View.GONE);
+                binding.favleaguelist.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
-    public void getPlayerlist()
-    {
-
-    }
-
-    public void getTeamlist()
-    {
-
-    }
 
     @Override
     public void onDestroyView() {
@@ -177,6 +201,19 @@ public class SearchFragment extends Fragment implements PlayerInterface, TeamInt
 
     @Override
     public void TeamDetail(TeamModel team) {
+        teamViewModel.setTeamModel(team);
+        Bundle bundle = new Bundle();
+        Gson g = new Gson();
+        bundle.putString("team",g.toJson(team) );
+        navController.navigate(R.id.action_searchFragment_to_teamDetailFragment,bundle);
+    }
 
+    @Override
+    public void LeagueDetail(LeagueModel leagueModel) {
+        leagueViewModel.setLeagueModel(leagueModel);
+        Bundle bundle = new Bundle();
+        Gson g = new Gson();
+        bundle.putString("league", g.toJson(leagueModel));
+        navController.navigate(R.id.action_searchFragment_to_leagueMatcheFragment, bundle);
     }
 }

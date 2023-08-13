@@ -58,18 +58,53 @@ public class LeagueRepository {
         return leaguelist;
     }
 
+    public LiveData<List<LeagueModel>> SearchLeague(String name) {
+        leaguelist = new MutableLiveData<>();
+        ArrayList<LeagueModel> data = new ArrayList<LeagueModel>();
+        databaseReference.orderByChild("leagueName").startAt(name).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    for(char ch : ds.child("leagueName").getValue(String.class).toCharArray())
+                    {
+                        for(char c : name.toCharArray()) {
+                            if(ch == c)
+                                data.add(new LeagueModel(ds.child("leagueId").getValue(String.class),
+                                        ds.child("leagueName").getValue(String.class),
+                                        ds.child("leagueCountry").getValue(String.class),
+                                        ds.child("leagueImage").getValue(String.class)));
+                            leaguelist.setValue(data);
+                        }
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return leaguelist;
+    }
     public LiveData<List<LeagueModel>> get3League() {
         leaguelist = new MutableLiveData<>();
         ArrayList<LeagueModel> data = new ArrayList<LeagueModel>();
         databaseReference.addValueEventListener(new ValueEventListener() {
+            int count = 0;
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
+                    count++;
                     data.add(new LeagueModel(ds.child("leagueId").getValue(String.class),
                             ds.child("leagueName").getValue(String.class),
                             ds.child("leagueCountry").getValue(String.class),
                             ds.child("leagueImage").getValue(String.class)));
                     leaguelist.setValue(data);
+                    if(count>2){
+                        break;
+                    }
                 }
             }
 

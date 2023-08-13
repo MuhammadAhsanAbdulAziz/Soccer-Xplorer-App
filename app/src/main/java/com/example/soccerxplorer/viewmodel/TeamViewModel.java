@@ -52,6 +52,10 @@ public class TeamViewModel extends ViewModel {
     public LiveData<List<TeamModel>> getTeam() {
         return repo.getTeam();
     }
+
+    public LiveData<List<TeamModel>> get3Team() {
+        return repo.get3Team();
+    }
     public LiveData<List<String>> getTeamName() {
         return repo.getTeamName();
     }
