@@ -9,35 +9,32 @@
     android:background="@color/bgColor"
     tools:context=".FeedbackActivity">
 
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:gravity="center"
-        app:layout_scrollFlags="scroll|enterAlways">
+        android:paddingHorizontal="10dp"
+        android:paddingTop="20dp">
+
         <ImageView
             android:id="@+id/backBtn"
             android:layout_width="40dp"
-            android:layout_height="wrap_content"
+            android:layout_height="22dp"
             android:src="@drawable/back"
-            app:tint="@color/myTheme"/>
+            app:tint="@color/white"/>
+
         <TextView
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Feedback"
-            android:textColor="@color/myTheme"
-            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="22sp"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:textAlignment="center"
-            android:fontFamily="@font/righteous_regular"
-            tools:ignore="RtlCompat" />
-        <Space
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"/>
+            android:textSize="19sp"
+            android:layout_marginLeft="10dp"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -66,12 +63,37 @@
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="20dp">
 
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:stepSize="0.5"
+                    android:numStars="5"
+                    android:isIndicator="false"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:theme="@style/RatingBarTwo"
+                    android:stateListAnimator="@anim/fadein" />
+
+                <TextView
+                    android:id="@+id/rateCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.0/5.0"
+                    android:textSize="15sp"
+                    android:textColor="@color/myThemeText"
+                    android:layout_marginBottom="20dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/righteous_regular"
+                    android:layout_gravity="center"/>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/emailLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:hint="Email"
+                    android:layout_marginHorizontal="10dp"
+                    android:hint="Review Here..."
                     app:errorEnabled="true"
                     app:endIconMode="clear_text"
                     app:endIconTint="@color/myThemeText"
@@ -80,10 +102,10 @@
                     android:textColorHint="@color/white"
                     app:boxStrokeColor="@color/myTheme"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    app:helperText="Enter valid Email Address!"
+                    app:helperText="Enter your review!"
                     app:helperTextTextColor="@color/myThemeText"
                     app:counterEnabled="true"
-                    app:counterMaxLength="40"
+                    app:counterMaxLength="1000"
                     app:counterTextColor="@color/myThemeText">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -92,9 +114,12 @@
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/edittext_border"
                         android:fontFamily="@font/poppins_regular"
-                        android:inputType="textEmailAddress"
-                        android:maxLength="40"
+                        android:inputType="textMultiLine"
+                        android:gravity="top|left"
+                        android:maxLength="1000"
                         android:textColor="@color/white"
+                        android:lines="4"
+                        android:maxLines="6"
                         android:textStyle="bold" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -106,8 +131,8 @@
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/custom_button"
                     android:padding="10sp"
-                    android:layout_marginHorizontal="30dp"
-                    android:layout_margin="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="10dp"
                     android:text="Submit Feedback"
                     android:textColor="@color/white"
                     android:textSize="16sp"/>
