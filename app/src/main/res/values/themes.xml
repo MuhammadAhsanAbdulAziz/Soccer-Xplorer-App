@@ -21,4 +21,8 @@
         <item name="android:windowEnterAnimation">@anim/slide_in_top</item>
         <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
     </style>
+    <style name="RatingBarTwo" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/myThemeLight</item>
+        <item name="colorControlActivated">@color/myTheme</item>
+    </style>
 </resources>
