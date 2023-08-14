@@ -21,6 +21,10 @@ public class UserModel {
         this.userImage = userImage;
     }
 
+    public UserModel(String userStatus) {
+        this.userStatus = userStatus;
+    }
+
     public String getUserId() {
         return userId;
     }

@@ -122,91 +122,97 @@ public class AdminHomeFragment extends Fragment {
                 navController.navigate(R.id.action_adminHomeFragment_to_allLeagueFragment);
             }
         });
+        binding.userBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_adminHomeFragment_to_allUserFragment);
+            }
+        });
 
     }
 
     private void setCounts() {
-        userRef.addValueEventListener(new ValueEventListener() {
-            int count = 0;
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    count++;
-                }
-                binding.usercount.setText("" + count);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        teamRef.addValueEventListener(new ValueEventListener() {
-            int count = 0;
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    count++;
-                }
-                binding.teamcount.setText("" + count);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        playerRef.addValueEventListener(new ValueEventListener() {
-            int count = 0;
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot ds:snapshot.getChildren())
-                {
-                    count++;
-                }
-                binding.playercount.setText(""+count);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        leagueRef.addValueEventListener(new ValueEventListener() {
-            int count = 0;
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot ds:snapshot.getChildren())
-                {
-                    count++;
-                }
-                binding.leaguecount.setText(""+count);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        matchRef.addValueEventListener(new ValueEventListener() {
-            int count = 0;
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot ds:snapshot.getChildren())
-                {
-                    count++;
-                }
-                binding.matchcount.setText(""+count);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        userRef.addValueEventListener(new ValueEventListener() {
+//            int count = 0;
+//
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for (DataSnapshot ds : snapshot.getChildren()) {
+//                    count++;
+//                }
+//                binding.usercount.setText("" + count);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//
+//        teamRef.addValueEventListener(new ValueEventListener() {
+//            int count = 0;
+//
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for (DataSnapshot ds : snapshot.getChildren()) {
+//                    count++;
+//                }
+//                binding.teamcount.setText("" + count);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//        playerRef.addValueEventListener(new ValueEventListener() {
+//            int count = 0;
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for(DataSnapshot ds:snapshot.getChildren())
+//                {
+//                    count++;
+//                }
+//                binding.playercount.setText(""+count);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//        leagueRef.addValueEventListener(new ValueEventListener() {
+//            int count = 0;
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for(DataSnapshot ds:snapshot.getChildren())
+//                {
+//                    count++;
+//                }
+//                binding.leaguecount.setText(""+count);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//        matchRef.addValueEventListener(new ValueEventListener() {
+//            int count = 0;
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for(DataSnapshot ds:snapshot.getChildren())
+//                {
+//                    count++;
+//                }
+//                binding.matchcount.setText(""+count);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
     }
 
     @Override

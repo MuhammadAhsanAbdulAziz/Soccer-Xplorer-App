@@ -41,6 +41,7 @@ public class PlayerDetailFragment extends Fragment {
             getInstance().getReference("Favourite Players");
 
     String playerId;
+    String userid;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,7 @@ public class PlayerDetailFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         navController = Navigation.findNavController(view);
+        userid = UtilManager.getDefaults("userId",requireContext());
         setInitialData();
 
         if(UtilManager.getDefaults("userId",requireContext())==null)
@@ -145,7 +147,7 @@ public class PlayerDetailFragment extends Fragment {
                             for(DataSnapshot ds:snapshot.getChildren())
                             {
                                 if(ds.child("userId").getValue(String.class)
-                                        .equals(UtilManager.getDefaults("userId",requireContext())))
+                                        .equals(userid))
                                 {
                                     binding.filltogglefav.setVisibility(View.GONE);
                                     binding.unfilltogglefav.setVisibility(View.VISIBLE);

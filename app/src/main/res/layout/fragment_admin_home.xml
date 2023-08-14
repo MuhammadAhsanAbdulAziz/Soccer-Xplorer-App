@@ -51,13 +51,6 @@
                     android:orientation="vertical"
                     android:paddingHorizontal="10dp">
 
-                    <TextView
-                        android:id="@+id/teamcount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="20"
-                        android:textColor="@color/white"
-                        android:textSize="20dp" />
 
 
                     <TextView
@@ -96,13 +89,6 @@
                     android:orientation="vertical"
                     android:paddingHorizontal="10dp">
 
-                    <TextView
-                        android:id="@+id/playercount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="20"
-                        android:textColor="@color/white"
-                        android:textSize="20dp" />
 
 
                     <TextView
@@ -149,13 +135,7 @@
                     android:orientation="vertical"
                     android:paddingHorizontal="10dp">
 
-                    <TextView
-                        android:id="@+id/leaguecount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="20"
-                        android:textColor="@color/white"
-                        android:textSize="20dp" />
+
 
 
                     <TextView
@@ -194,13 +174,6 @@
                     android:orientation="vertical"
                     android:paddingHorizontal="10dp">
 
-                    <TextView
-                        android:id="@+id/matchcount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="20"
-                        android:textColor="@color/white"
-                        android:textSize="20dp" />
 
 
                     <TextView
@@ -233,6 +206,7 @@
             android:gravity="center">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/userBtn"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_margin="10dp"
@@ -247,13 +221,6 @@
                     android:orientation="vertical"
                     android:paddingHorizontal="10dp">
 
-                    <TextView
-                        android:id="@+id/usercount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="20"
-                        android:textColor="@color/white"
-                        android:textSize="20dp" />
 
 
                     <TextView

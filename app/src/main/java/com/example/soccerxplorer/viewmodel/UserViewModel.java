@@ -7,10 +7,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.navigation.NavController;
 
-import com.example.soccerxplorer.model.FeedbackModel;
 import com.example.soccerxplorer.model.UserModel;
-import com.example.soccerxplorer.repository.FeedbackRepository;
-import com.example.soccerxplorer.repository.UserRepository;
+import com.example.soccerxplorer.view.admin.UserRepository;
 
 import java.util.List;
 
@@ -41,6 +39,10 @@ public class UserViewModel extends ViewModel {
 //
     public LiveData<List<UserModel>> getUserbyId(String id) {
         return repo.getUserbyId(id);
+    }
+
+    public LiveData<List<UserModel>> getUser() {
+        return repo.getUser();
     }
 
 }

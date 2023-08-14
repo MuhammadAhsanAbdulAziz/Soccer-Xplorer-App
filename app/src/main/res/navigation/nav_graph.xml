@@ -154,6 +154,9 @@
         <action
             android:id="@+id/action_adminHomeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_allUserFragment"
+            app:destination="@id/allUserFragment" />
     </fragment>
     <fragment
         android:id="@+id/allPlayerFragment"
@@ -262,4 +265,18 @@
         android:name="com.example.soccerxplorer.TeamDetailFragment"
         android:label="fragment_team_detail"
         tools:layout="@layout/fragment_team_detail" />
+    <fragment
+        android:id="@+id/allUserFragment"
+        android:name="com.example.soccerxplorer.view.admin.AllUserFragment"
+        android:label="fragment_all_user"
+        tools:layout="@layout/fragment_all_user" >
+        <action
+            android:id="@+id/action_allUserFragment_to_createUserFragment"
+            app:destination="@id/createUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createUserFragment"
+        android:name="com.example.soccerxplorer.view.admin.CreateUserFragment"
+        android:label="fragment_create_user"
+        tools:layout="@layout/fragment_create_user" />
 </navigation>

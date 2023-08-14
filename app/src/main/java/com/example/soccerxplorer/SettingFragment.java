@@ -141,6 +141,7 @@ public class SettingFragment extends Fragment {
         auth.signOut();
         UtilManager.setDefaults("userId",null,requireContext());
         UtilManager.setDefaults("userRole",null,requireContext());
+        UtilManager.setDefaults("s",null,requireContext());
         if (getActivity() != null) {
             Intent intent = getActivity().getIntent();
             getActivity().finish();

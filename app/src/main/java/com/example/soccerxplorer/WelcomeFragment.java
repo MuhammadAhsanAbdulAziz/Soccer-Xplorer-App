@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import com.example.soccerxplorer.databinding.FragmentWelcomeBinding;
 import com.example.soccerxplorer.util.UtilManager;
 
+import java.util.Objects;
+
 public class WelcomeFragment extends Fragment {
 
     NavController navController;
@@ -43,6 +45,11 @@ public class WelcomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         navController = Navigation.findNavController(view);
+
+        if(Objects.equals(UtilManager.getDefaults("s", requireContext()), "1"))
+        {
+            MainActivity.getInstance().setAdminMenu();
+        }
 
         if(UtilManager.getDefaults("userId",requireContext())!=null)
         {

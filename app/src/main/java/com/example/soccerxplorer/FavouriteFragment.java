@@ -106,13 +106,19 @@ public class FavouriteFragment extends Fragment implements FavouritePlayerInterf
             @Override
             public void onChanged(List<FavouriteTeamModel> favouritePlayerModels) {
                 favouriteTeamAdapter.submitList(favouritePlayerModels);
-                LinearLayoutManager mLayoutManager = new LinearLayoutManager(requireContext());
-                binding.favteamlist.setLayoutManager(mLayoutManager);
-                binding.favteamlist.setAdapter(favouriteTeamAdapter);
+
             }
         });
 
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(requireContext());
+        binding.favteamlist.setLayoutManager(mLayoutManager);
+        binding.favteamlist.setAdapter(favouriteTeamAdapter);
+
         getPlayerlist();
+
+        LinearLayoutManager mLayoutManager2 = new LinearLayoutManager(requireContext());
+        binding.favplayerlist.setLayoutManager(mLayoutManager2);
+        binding.favplayerlist.setAdapter(favouritePlayerAdapter);
 
     }
 
@@ -123,9 +129,7 @@ public class FavouriteFragment extends Fragment implements FavouritePlayerInterf
             @Override
             public void onChanged(List<FavouritePlayerModel> favouritePlayerModels) {
                 favouritePlayerAdapter.submitList(favouritePlayerModels);
-                LinearLayoutManager mLayoutManager = new LinearLayoutManager(requireContext());
-                binding.favplayerlist.setLayoutManager(mLayoutManager);
-                binding.favplayerlist.setAdapter(favouritePlayerAdapter);
+
 
             }
         });

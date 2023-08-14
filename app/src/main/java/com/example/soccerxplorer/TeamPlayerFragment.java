@@ -59,6 +59,13 @@ public class TeamPlayerFragment extends Fragment implements PlayerInterface {
         setTeamPlayers();
         navController = Navigation.findNavController(view);
 
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.popBackStack();
+            }
+        });
+
     }
 
     @Override

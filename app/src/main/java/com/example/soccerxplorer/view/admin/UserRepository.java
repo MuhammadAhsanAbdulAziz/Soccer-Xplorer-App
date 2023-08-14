@@ -1,4 +1,4 @@
-package com.example.soccerxplorer.repository;
+package com.example.soccerxplorer.view.admin;
 
 import android.content.Context;
 import android.net.Uri;
