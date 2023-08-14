@@ -39,7 +39,7 @@ public class FeedbackFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-//        binding = FragmentFeedb ackBinding.inflate(inflater,container,false);
+        binding = FragmentFeedbackBinding.inflate(inflater,container,false);
         feedbackViewModel = new ViewModelProvider(requireActivity()).get(FeedbackViewModel.class);
         return binding.getRoot();
     }

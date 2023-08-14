@@ -90,6 +90,9 @@
         <action
             android:id="@+id/action_settingFragment_to_profileFragment2"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_gameInfoFragment"
+            app:destination="@id/gameInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/createPlayerFragment"
@@ -302,4 +305,9 @@
             android:id="@+id/action_profileFragment_to_forgotPasswordFragment"
             app:destination="@id/forgotPasswordFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/gameInfoFragment"
+        android:name="com.example.soccerxplorer.GameInfoFragment"
+        android:label="fragment_game_info"
+        tools:layout="@layout/fragment_game_info" />
 </navigation>

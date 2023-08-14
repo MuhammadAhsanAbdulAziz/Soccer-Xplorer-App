@@ -117,11 +117,18 @@ public class SettingFragment extends Fragment {
                 navController.navigate(R.id.action_settingFragment_to_feedbackFragment);
             }
         });
-        
+
         binding.personalsection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_settingFragment_to_profileFragment2);
+            }
+        });
+
+        binding.gameinfosection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_settingFragment_to_gameInfoFragment);
             }
         });
 

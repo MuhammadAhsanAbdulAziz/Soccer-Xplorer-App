@@ -110,22 +110,8 @@ public class FavouriteFragment extends Fragment implements FavouritePlayerInterf
             }
         });
 
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(requireContext());
-        binding.favteamlist.setLayoutManager(mLayoutManager);
-        binding.favteamlist.setAdapter(favouriteTeamAdapter);
-
-        getPlayerlist();
-
-        LinearLayoutManager mLayoutManager2 = new LinearLayoutManager(requireContext());
-        binding.favplayerlist.setLayoutManager(mLayoutManager2);
-        binding.favplayerlist.setAdapter(favouritePlayerAdapter);
-
-    }
-
-    public void getPlayerlist()
-    {
-        String id = UtilManager.getDefaults("userId",requireContext());
-        favouritePlayerViewModel.getFavouritePlayerbyUserId(id).observe(requireActivity(), new Observer<List<FavouritePlayerModel>>() {
+        String userid = UtilManager.getDefaults("userId",requireContext());
+        favouritePlayerViewModel.getFavouritePlayerbyUserId(userid).observe(requireActivity(), new Observer<List<FavouritePlayerModel>>() {
             @Override
             public void onChanged(List<FavouritePlayerModel> favouritePlayerModels) {
                 favouritePlayerAdapter.submitList(favouritePlayerModels);
@@ -133,7 +119,18 @@ public class FavouriteFragment extends Fragment implements FavouritePlayerInterf
 
             }
         });
+
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(requireContext());
+        binding.favteamlist.setLayoutManager(mLayoutManager);
+        binding.favteamlist.setAdapter(favouriteTeamAdapter);
+
+
+        LinearLayoutManager mLayoutManager2 = new LinearLayoutManager(requireContext());
+        binding.favplayerlist.setLayoutManager(mLayoutManager2);
+        binding.favplayerlist.setAdapter(favouritePlayerAdapter);
+
     }
+
 
     @Override
     public void onDestroyView() {

@@ -71,12 +71,12 @@ public class PlayerDetailFragment extends Fragment {
 
         navController = Navigation.findNavController(view);
         userid = UtilManager.getDefaults("userId",requireContext());
-        setInitialData();
+
 
         if(UtilManager.getDefaults("userId",requireContext())==null)
         {
-            binding.filltogglefav.setVisibility(View.GONE);
-            binding.unfilltogglefav.setVisibility(View.GONE);
+            binding.filltogglefav.setVisibility(View.INVISIBLE);
+            binding.unfilltogglefav.setVisibility(View.INVISIBLE);
         }
 
         binding.unfilltogglefav.setOnClickListener(new View.OnClickListener() {
@@ -130,6 +130,8 @@ public class PlayerDetailFragment extends Fragment {
                 });
             }
         });
+
+        setInitialData();
     }
 
     private void setInitialData() {
@@ -149,8 +151,8 @@ public class PlayerDetailFragment extends Fragment {
                                 if(ds.child("userId").getValue(String.class)
                                         .equals(userid))
                                 {
-                                    binding.filltogglefav.setVisibility(View.GONE);
-                                    binding.unfilltogglefav.setVisibility(View.VISIBLE);
+                                    binding.filltogglefav.setVisibility(View.VISIBLE);
+                                    binding.unfilltogglefav.setVisibility(View.GONE);
                                 }
                             }
                         }
@@ -181,7 +183,7 @@ public class PlayerDetailFragment extends Fragment {
                 }
             } else if (jsonNote2 != null) {
                 binding.filltogglefav.setVisibility(View.VISIBLE);
-                binding.unfilltogglefav.setVisibility(View.GONE);
+                binding.unfilltogglefav.setVisibility(View.INVISIBLE);
                 playerRef.child(jsonNote2).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
