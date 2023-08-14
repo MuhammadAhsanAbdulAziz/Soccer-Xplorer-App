@@ -82,17 +82,23 @@ public class OnBoardingActivity extends AppCompatActivity {
         List<OnboardingModel> onboardingModels = new ArrayList<>();
 
         OnboardingModel itemPayOnline = new OnboardingModel();
-        itemPayOnline.setTitle("Welcome To Leave Management System!");
-        itemPayOnline.setDescription("Manage Leave Approvals In ONE TOUCH");
-        itemPayOnline.setImage(R.drawable.welcome_img);
+        itemPayOnline.setTitle("Stream Football Match");
+        itemPayOnline.setDescription("Watch professional league football matches");
+        itemPayOnline.setImage(R.drawable.screen_one);
 
         OnboardingModel itemPayOnline2 = new OnboardingModel();
-        itemPayOnline2.setTitle("Easily To Manage");
-        itemPayOnline2.setDescription("Employee Request To Approve Leave By Manager Or Admin");
-        itemPayOnline2.setImage(R.drawable.welcome_img);
+        itemPayOnline2.setTitle("Realtime Statistics");
+        itemPayOnline2.setDescription("Real-time football live scores and matches statistics");
+        itemPayOnline2.setImage(R.drawable.screen_two);
+
+        OnboardingModel itemPayOnline3 = new OnboardingModel();
+        itemPayOnline3.setTitle("League Standings");
+        itemPayOnline3.setDescription("Club statistics and league standings around the world");
+        itemPayOnline3.setImage(R.drawable.screen_three);
 
         onboardingModels.add(itemPayOnline);
         onboardingModels.add(itemPayOnline2);
+        onboardingModels.add(itemPayOnline3);
 
         onboardingAdapter = new OnboardingAdapter(onboardingModels);
     }
