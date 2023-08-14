@@ -41,6 +41,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/whatsappsection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -78,6 +79,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/facebooksection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -114,6 +116,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/twittersection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -150,6 +153,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/instagramsection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -186,6 +190,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/websitesection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"

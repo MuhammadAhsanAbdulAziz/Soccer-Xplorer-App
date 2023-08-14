@@ -97,6 +97,13 @@ public class SettingFragment extends Fragment {
             binding.feedbacksection.setVisibility(View.GONE);
         }
 
+        binding.contactsection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_settingFragment_to_contactUsFragment);
+            }
+        });
+
         binding.profileeditbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +115,13 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_settingFragment_to_feedbackFragment);
+            }
+        });
+        
+        binding.personalsection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_settingFragment_to_profileFragment2);
             }
         });
 

@@ -62,7 +62,6 @@ public class EditProfileFragment extends Fragment {
     DatabaseReference userRef = FirebaseDatabase.
             getInstance().getReference("Users");
 
-    UploadTask uploadTask;
     Uri imageUri;
 
     @Override

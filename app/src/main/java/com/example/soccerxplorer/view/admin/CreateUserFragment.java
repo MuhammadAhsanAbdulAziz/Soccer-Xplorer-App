@@ -246,7 +246,7 @@ public class CreateUserFragment extends Fragment {
                 binding.contactEditText.setText(userModel.getUserContact());
                 binding.EmailEditText.setText(userModel.getUserEmail());
                 binding.statusEditText.setText(userModel.getUserStatus());
-                Glide.with(requireContext()).load(userModel.getUserImage()).dontAnimate().into(binding.image);
+                Glide.with(requireContext()).load(userModel.getUserImage()).error(R.drawable.logo).dontAnimate().into(binding.image);
             }
         }
     }
