@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.soccerxplorer.databinding.FeedbackListviewBinding;
 import com.example.soccerxplorer.databinding.MatchesListviewBinding;
 import com.example.soccerxplorer.interfaces.FixtureInterface;
 import com.example.soccerxplorer.model.FeedbackModel;
@@ -37,18 +38,19 @@ public class AdminFeedbackAdapter extends ListAdapter<FeedbackModel, AdminFeedba
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layout = LayoutInflater.from(parent.getContext());
-        MatchesListviewBinding binding = MatchesListviewBinding.inflate(layout,parent,false);
+        FeedbackListviewBinding binding = FeedbackListviewBinding.inflate(layout,parent,false);
         return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         FeedbackModel data = getItem(position);
-//        holder.binding.setDetail(data);
+        holder.binding.setDetail(data);
+        holder.binding.ratingBar.setRating(Float.parseFloat(data.getRating()));
         userRef.child(data.getUserId()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                holder.binding.feedbackname.setText(snapshot.child("userFullName").getValue(String.class));
             }
 
             @Override
@@ -59,8 +61,8 @@ public class AdminFeedbackAdapter extends ListAdapter<FeedbackModel, AdminFeedba
 
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        MatchesListviewBinding binding;
-        public ViewHolder(MatchesListviewBinding binding) {
+        FeedbackListviewBinding binding;
+        public ViewHolder(FeedbackListviewBinding binding) {
             super(binding.getRoot());
 
             this.binding = binding;

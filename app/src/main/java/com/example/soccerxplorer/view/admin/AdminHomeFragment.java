@@ -75,7 +75,6 @@ public class AdminHomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         navController = Navigation.findNavController(view);
-        setCounts();
         if (MainActivity.getInstance().bottomNavigationView.getVisibility() == View.GONE) {
             MainActivity.getInstance().setUserMenu();
         }
@@ -129,90 +128,24 @@ public class AdminHomeFragment extends Fragment {
             }
         });
 
+        feedbackViewModel.getFeedback().observe(requireActivity(), new Observer<List<FeedbackModel>>() {
+            @Override
+            public void onChanged(List<FeedbackModel> feedbackModels) {
+                adapter.submitList(feedbackModels);
+            }
+        });
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        binding.feedbacklist.setLayoutManager(linearLayoutManager);
+        binding.feedbacklist.setAdapter(adapter);
+
     }
 
-    private void setCounts() {
-//        userRef.addValueEventListener(new ValueEventListener() {
-//            int count = 0;
-//
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for (DataSnapshot ds : snapshot.getChildren()) {
-//                    count++;
-//                }
-//                binding.usercount.setText("" + count);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//
-//        teamRef.addValueEventListener(new ValueEventListener() {
-//            int count = 0;
-//
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for (DataSnapshot ds : snapshot.getChildren()) {
-//                    count++;
-//                }
-//                binding.teamcount.setText("" + count);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//        playerRef.addValueEventListener(new ValueEventListener() {
-//            int count = 0;
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for(DataSnapshot ds:snapshot.getChildren())
-//                {
-//                    count++;
-//                }
-//                binding.playercount.setText(""+count);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//        leagueRef.addValueEventListener(new ValueEventListener() {
-//            int count = 0;
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for(DataSnapshot ds:snapshot.getChildren())
-//                {
-//                    count++;
-//                }
-//                binding.leaguecount.setText(""+count);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//        matchRef.addValueEventListener(new ValueEventListener() {
-//            int count = 0;
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for(DataSnapshot ds:snapshot.getChildren())
-//                {
-//                    count++;
-//                }
-//                binding.matchcount.setText(""+count);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+
+    private void getFeedback()
+    {
+
     }
 
     @Override

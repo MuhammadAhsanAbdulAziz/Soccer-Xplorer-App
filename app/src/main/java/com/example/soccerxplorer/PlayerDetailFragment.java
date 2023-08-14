@@ -138,7 +138,7 @@ public class PlayerDetailFragment extends Fragment {
         if (getArguments() != null) {
             String jsonNote = getArguments().getString("player");
             String jsonNote2 = getArguments().getString("playerfromfav");
-            if (jsonNote2 == null) {
+            if (jsonNote2 == null && jsonNote!=null) {
                 Gson g = new Gson();
                 playerModel = g.fromJson(jsonNote, PlayerModel.class);
                 if (playerModel != null) {
@@ -181,7 +181,7 @@ public class PlayerDetailFragment extends Fragment {
                         }
                     });
                 }
-            } else if (jsonNote2 != null) {
+            } else if (jsonNote2 != null && jsonNote == null) {
                 binding.filltogglefav.setVisibility(View.VISIBLE);
                 binding.unfilltogglefav.setVisibility(View.INVISIBLE);
                 playerRef.child(jsonNote2).addValueEventListener(new ValueEventListener() {
