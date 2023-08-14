@@ -57,13 +57,49 @@ public class PlayerRepository {
         return playerlist;
     }
 
+    public LiveData<List<PlayerModel>> SearchPlayer(String name) {
+        playerlist = new MutableLiveData<>();
+        ArrayList<PlayerModel> data = new ArrayList<PlayerModel>();
+        databaseReference.orderByChild("playerName").startAt(name).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    for(char ch : ds.child("playerName").getValue(String.class).toCharArray())
+                    {
+                        for(char c : name.toCharArray()) {
+                            if(ch == c)
+                                data.add(new PlayerModel(ds.child("playerId").getValue(String.class),
+                                        ds.child("playerName").getValue(String.class),
+                                        ds.child("playerCountry").getValue(String.class),
+                                        ds.child("teamId").getValue(String.class),
+                                        ds.child("playerImage").getValue(String.class),
+                                        ds.child("playerPosition").getValue(String.class),
+                                        ds.child("playerNumber").getValue(String.class)));
+                            playerlist.setValue(data);
+                        }
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return playerlist;
+    }
+
     public LiveData<List<PlayerModel>> getPlayerbyTeam(String teamId) {
         playerlist = new MutableLiveData<>();
         ArrayList<PlayerModel> data = new ArrayList<PlayerModel>();
         databaseReference.addValueEventListener(new ValueEventListener() {
+            int count = 0;
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()) {
+                    count++;
                     if(ds.child("teamId").getValue(String.class).equals(teamId)) {
                         data.add(new PlayerModel(ds.child("playerId").getValue(String.class),
                                 ds.child("playerName").getValue(String.class),
@@ -73,6 +109,7 @@ public class PlayerRepository {
                                 ds.child("playerPosition").getValue(String.class),
                                 ds.child("playerNumber").getValue(String.class)));
                         playerlist.setValue(data);
+                        if(count > 2) break;
                     }
                 }
             }
@@ -142,38 +179,5 @@ public class PlayerRepository {
         });
     }
 
-    public LiveData<List<PlayerModel>> SearchPlayer(String name) {
-        playerlist = new MutableLiveData<>();
-        ArrayList<PlayerModel> data = new ArrayList<PlayerModel>();
-        databaseReference.orderByChild("playerName").startAt(name).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    for(char ch : ds.child("title").getValue(String.class).toCharArray())
-                    {
-                        for(char c : name.toCharArray()) {
-                            if(ch == c)
-                                data.add(new PlayerModel(ds.child("playerId").getValue(String.class),
-                                        ds.child("playerName").getValue(String.class),
-                                        ds.child("playerCountry").getValue(String.class),
-                                        ds.child("teamId").getValue(String.class),
-                                        ds.child("playerImage").getValue(String.class),
-                                        ds.child("playerPosition").getValue(String.class),
-                                        ds.child("playerNumber").getValue(String.class)));
-                            playerlist.setValue(data);
-                        }
-                        break;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        return playerlist;
-    }
 
 }

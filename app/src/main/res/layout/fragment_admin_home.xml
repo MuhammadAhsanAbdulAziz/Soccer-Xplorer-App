@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bgColor"
     tools:context=".MainActivity">
+
 
 
     <LinearLayout
@@ -13,7 +15,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:orientation="vertical">
-
+        <Button
+            android:id="@+id/searchBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:textAllCaps="false"
+            android:layout_margin="20dp"
+            android:elevation="10dp"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:background="@drawable/custom_button_inactive"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,6 +52,7 @@
                     android:paddingHorizontal="10dp">
 
                     <TextView
+                        android:id="@+id/teamcount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="20"
@@ -82,6 +97,7 @@
                     android:paddingHorizontal="10dp">
 
                     <TextView
+                        android:id="@+id/playercount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="20"
@@ -134,6 +150,7 @@
                     android:paddingHorizontal="10dp">
 
                     <TextView
+                        android:id="@+id/leaguecount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="20"
@@ -178,6 +195,7 @@
                     android:paddingHorizontal="10dp">
 
                     <TextView
+                        android:id="@+id/matchcount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="20"
@@ -214,7 +232,6 @@
             android:layout_weight="1"
             android:gravity="center">
 
-
             <androidx.cardview.widget.CardView
                 android:layout_width="120dp"
                 android:layout_height="120dp"
@@ -231,6 +248,7 @@
                     android:paddingHorizontal="10dp">
 
                     <TextView
+                        android:id="@+id/usercount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="20"
@@ -256,6 +274,8 @@
 
 
             </androidx.cardview.widget.CardView>
+
+
 
 
         </LinearLayout>

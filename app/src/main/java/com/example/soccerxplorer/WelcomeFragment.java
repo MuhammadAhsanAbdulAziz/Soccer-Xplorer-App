@@ -66,6 +66,7 @@ public class WelcomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.action_welcomeFragment_to_homeFragment);
+                MainActivity.getInstance().setUserMenu();
             }
         });
     }

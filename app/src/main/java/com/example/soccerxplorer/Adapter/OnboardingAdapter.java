@@ -1,4 +1,4 @@
-package com.example.soccerxplorer.Adapter;
+package com.example.soccerxplorer.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;

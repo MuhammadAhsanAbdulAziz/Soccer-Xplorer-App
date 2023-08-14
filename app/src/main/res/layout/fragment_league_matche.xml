@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bgColor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingHorizontal="10dp"
+        android:paddingTop="20dp">
+
+        <ImageView
+            android:id="@+id/backBtn"
+            android:layout_width="40dp"
+            android:layout_height="22dp"
+            android:src="@drawable/back"
+            app:tint="@color/white"/>
+
+        <TextView
+            android:id="@+id/leagueName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LIVE Matches"
+            android:layout_weight="1"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="19sp"
+            android:layout_marginLeft="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="20dp">
+
+        <Button
+            android:id="@+id/fixturesBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fixtures"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:elevation="10dp"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/myTheme"
+            android:textStyle="bold"
+            android:background="@drawable/custom_button_inactive"/>
+
+        <Button
+            android:id="@+id/resultsBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Results"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:layout_marginLeft="10dp"
+            android:elevation="10dp"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:background="@drawable/custom_button_active"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fixurelist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/matches_listview"
+        android:layout_marginTop="20dp"
+        android:dividerHeight="0dp"
+        android:divider="@null"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:visibility="gone"
+        android:id="@+id/fixurelist2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/matches_listview"
+        android:layout_marginTop="20dp"
+        android:dividerHeight="0dp"
+        android:divider="@null"/>
+
+</LinearLayout>

@@ -16,6 +16,8 @@ import com.example.soccerxplorer.interfaces.TeamInterface;
 import com.example.soccerxplorer.model.LeagueModel;
 import com.example.soccerxplorer.model.TeamModel;
 
+import java.util.Locale;
+
 public class AdminLeagueAdapter extends ListAdapter<LeagueModel, AdminLeagueAdapter.ViewHolder> {
 
     LeagueInterface leagueInterface;
@@ -41,7 +43,12 @@ public class AdminLeagueAdapter extends ListAdapter<LeagueModel, AdminLeagueAdap
         LeagueModel data = getItem(position);
         holder.binding.setLeagueInterface(leagueInterface);
         holder.binding.setDetail(data);
-        holder.binding.counter.setText(""+counter);
+        Locale l = new Locale("", data.getLeagueCountry());
+        if (l.getDisplayCountry().equals("UNITED KINGDOM")) {
+            holder.binding.country.setText("ENGLAND");
+        } else holder.binding.country.setText(l.getDisplayCountry());
+        Glide.with(context).load(data.getLeagueImage())
+                .dontAnimate().into(holder.binding.playerImage);
         counter++;
 
     }

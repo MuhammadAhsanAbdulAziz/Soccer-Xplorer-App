@@ -22,13 +22,16 @@ import com.google.firebase.database.FirebaseDatabase;
 public class MainActivity extends AppCompatActivity {
 
     NavController navController;
-    BottomNavigationView bottomNavigationView;
+    public BottomNavigationView bottomNavigationView;
+
+    private static MainActivity instance = null;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        instance = this;
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavigation);
 
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
+
 //
 //        if(UtilManager.getDefaults("userRole",this)!=null)
 //        {
@@ -50,25 +54,19 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //
 //        }
-        if(UtilManager.getDefaults("userRole",this)!=null)
-        {
-            if(UtilManager.getDefaults("userRole",this).equals("Admin")) {
-                bottomNavigationView.inflateMenu(R.menu.admin_menu_item);
-            }
-            else if(UtilManager.getDefaults("userRole",this).equals("User")) {
-                bottomNavigationView.inflateMenu(R.menu.menu_item);
-            }
-        }
-        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
-            @Override
-            public void onDestinationChanged(@NonNull NavController navController, @NonNull NavDestination navDestination, @Nullable Bundle bundle) {
-                if(navDestination.getId() == R.id.homeFragment) {
-                    bottomNavigationView.setVisibility(View.VISIBLE);
-                }
-                else if(navDestination.getId()==R.id.adminHomeFragment){
-                    bottomNavigationView.setVisibility(View.VISIBLE);
-                }
-            }
-        });
+    }
+    public void setUserMenu()
+    {
+        bottomNavigationView.setVisibility(View.VISIBLE);
+        bottomNavigationView.inflateMenu(R.menu.menu_item);
+    }
+    public void setAdminMenu()
+    {
+        bottomNavigationView.setVisibility(View.VISIBLE);
+        bottomNavigationView.inflateMenu(R.menu.admin_menu_item);
+    }
+
+    public static MainActivity getInstance() {
+        return instance;
     }
 }

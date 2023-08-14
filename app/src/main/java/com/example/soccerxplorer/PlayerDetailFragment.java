@@ -71,6 +71,12 @@ public class PlayerDetailFragment extends Fragment {
         navController = Navigation.findNavController(view);
         setInitialData();
 
+        if(UtilManager.getDefaults("userId",requireContext())==null)
+        {
+            binding.filltogglefav.setVisibility(View.GONE);
+            binding.unfilltogglefav.setVisibility(View.GONE);
+        }
+
         binding.unfilltogglefav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,8 +147,8 @@ public class PlayerDetailFragment extends Fragment {
                                 if(ds.child("userId").getValue(String.class)
                                         .equals(UtilManager.getDefaults("userId",requireContext())))
                                 {
-                                    binding.filltogglefav.setVisibility(View.VISIBLE);
-                                    binding.unfilltogglefav.setVisibility(View.GONE);
+                                    binding.filltogglefav.setVisibility(View.GONE);
+                                    binding.unfilltogglefav.setVisibility(View.VISIBLE);
                                 }
                             }
                         }
