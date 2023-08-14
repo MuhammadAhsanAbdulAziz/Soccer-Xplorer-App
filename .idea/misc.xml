@@ -32,6 +32,7 @@
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_dashboard.xml" value="0.22" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_edit_profile.xml" value="0.22" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_feedback.xml" value="0.25" />
+        <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_feedback_view.xml" value="0.2" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_forgot_password.xml" value="0.25" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_game_info.xml" value="0.2774566473988439" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/activity_login.xml" value="0.25" />
@@ -49,6 +50,7 @@
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/dialog_progress_alert.xml" value="0.2" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/dialog_success_alert.xml" value="0.2" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/dialog_warning_alert.xml" value="0.2" />
+        <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/feedback_listview.xml" value="0.2" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/fragment_contact_us.xml" value="0.22" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/fragment_create_feedback.xml" value="0.2" />
         <entry key="..\:/Users/AR Assignments/Documents/GitHub/Soccer-Xplorer-App/app/src/main/res/layout/fragment_create_fixture.xml" value="0.33" />
