@@ -27,6 +27,7 @@ import com.example.soccerxplorer.R;
 import com.example.soccerxplorer.databinding.FragmentCreateFixtureBinding;
 import com.example.soccerxplorer.model.FixtureModel;
 import com.example.soccerxplorer.model.PlayerModel;
+import com.example.soccerxplorer.util.FcmNotificationsSender;
 import com.example.soccerxplorer.viewmodel.FixtureViewModel;
 import com.example.soccerxplorer.viewmodel.TeamViewModel;
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +35,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -231,6 +233,10 @@ public class CreateFixtureFragment extends Fragment {
                                 String date = binding.inDate.getText().toString();
                                 String time = binding.inTime.getText().toString();
                                 fixtureViewModel.CreateFixture(new FixtureModel("",TeamName1,TeamName2,LeagueName,date,time,score1,score2,status,referee,venue),requireContext(),navController);
+                                FirebaseMessaging.getInstance().subscribeToTopic("all");
+                                FcmNotificationsSender notificationsSender =
+                                        new FcmNotificationsSender("/topics/all","Notification","You have been poked",requireContext(),requireActivity());
+                                notificationsSender.SendNotifications();
                             }
                         }
                     }

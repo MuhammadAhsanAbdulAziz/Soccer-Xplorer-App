@@ -24,7 +24,7 @@ public class UtilManager {
 
     public static void SuccessMessage(Context context, NavController navController) {
         new SweetAlertDialog(context, SweetAlertDialog.SUCCESS_TYPE).setTitleText("IMPORTANT").
-                setContentText("Book Updated Successfully").setConfirmText("Okay").setConfirmClickListener(sweetAlertDialog -> {
+                setContentText("Item Updated Successfully").setConfirmText("Okay").setConfirmClickListener(sweetAlertDialog -> {
                     navController.popBackStack();
                     sweetAlertDialog.cancel();
                     sweetAlertDialog.dismiss();

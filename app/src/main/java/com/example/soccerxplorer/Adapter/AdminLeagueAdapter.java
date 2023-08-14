@@ -43,12 +43,12 @@ public class AdminLeagueAdapter extends ListAdapter<LeagueModel, AdminLeagueAdap
         LeagueModel data = getItem(position);
         holder.binding.setLeagueInterface(leagueInterface);
         holder.binding.setDetail(data);
+        Glide.with(context).load(data.getLeagueImage())
+                .dontAnimate().into(holder.binding.playerImage);
         Locale l = new Locale("", data.getLeagueCountry());
         if (l.getDisplayCountry().equals("UNITED KINGDOM")) {
             holder.binding.country.setText("ENGLAND");
         } else holder.binding.country.setText(l.getDisplayCountry());
-        Glide.with(context).load(data.getLeagueImage())
-                .dontAnimate().into(holder.binding.playerImage);
         counter++;
 
     }

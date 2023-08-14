@@ -46,8 +46,6 @@ public class LeagueAdapter extends ListAdapter<LeagueModel, LeagueAdapter.ViewHo
             super(binding.getRoot());
 
             this.binding = binding;
-
-
         }
     }
 }

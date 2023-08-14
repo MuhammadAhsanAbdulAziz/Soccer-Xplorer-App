@@ -54,6 +54,8 @@ public class HomeFragment extends Fragment implements TeamInterface, LeagueInter
     LeagueViewModel leagueViewModel;
     DatabaseReference teamRef = FirebaseDatabase.
             getInstance().getReference("Teams");
+    DatabaseReference userRef = FirebaseDatabase.
+            getInstance().getReference("Users");
 
 
 
@@ -90,6 +92,19 @@ public class HomeFragment extends Fragment implements TeamInterface, LeagueInter
         {
             MainActivity.getInstance().setUserMenu();
         }
+
+        userRef.child(UtilManager.getDefaults("userId",requireContext())).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Glide.with(requireContext()).load(snapshot.child("userImage").
+                        getValue(String.class)).error(R.drawable.logo).dontAnimate().into(binding.profile);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         binding.searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,7 +187,11 @@ public class HomeFragment extends Fragment implements TeamInterface, LeagueInter
 
     @Override
     public void TeamDetail(TeamModel team) {
-
+        teamViewModel.setTeamModel(team);
+        Bundle bundle = new Bundle();
+        Gson g = new Gson();
+        bundle.putString("team",g.toJson(team) );
+        navController.navigate(R.id.action_homeFragment_to_teamDetailFragment,bundle);
     }
 
     @Override

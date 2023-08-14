@@ -43,7 +43,7 @@
 
         <!-- Player's Name -->
         <TextView
-            android:id="@+id/teamTwoName"
+            android:id="@+id/teamName1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -60,7 +60,7 @@
 
         <!-- Player's Image -->
         <ImageView
-            android:id="@+id/playerImage"
+            android:id="@+id/TeamImage"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_centerHorizontal="true"

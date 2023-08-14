@@ -126,7 +126,7 @@ public class LeagueRepository {
                         addOnSuccessListener(uri -> databaseReference.child(uniqueID).
                                 setValue(new LeagueModel
                                         (uniqueID,leagueModel.getLeagueName(),
-                                                leagueModel.getLeagueCountry(),leagueModel.getLeagueImage())))).
+                                                leagueModel.getLeagueCountry(),uri.toString())))).
                 addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {

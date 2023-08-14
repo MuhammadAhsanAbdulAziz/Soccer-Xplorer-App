@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_homeFragment_to_leagueMatcheFragment"
             app:destination="@id/leagueMatcheFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_teamDetailFragment"
+            app:destination="@id/teamDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -257,11 +260,11 @@
             android:id="@+id/action_searchFragment_to_playerDetailFragment"
             app:destination="@id/playerDetailFragment" />
         <action
-            android:id="@+id/action_searchFragment_to_teamDetailFragment"
-            app:destination="@id/teamDetailFragment" />
-        <action
             android:id="@+id/action_searchFragment_to_leagueMatcheFragment"
             app:destination="@id/leagueMatcheFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_teamDetailFragment"
+            app:destination="@id/teamDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/leagueMatcheFragment"

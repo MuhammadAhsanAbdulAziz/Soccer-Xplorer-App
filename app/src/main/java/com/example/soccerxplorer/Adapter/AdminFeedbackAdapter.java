@@ -47,6 +47,7 @@ public class AdminFeedbackAdapter extends ListAdapter<FeedbackModel, AdminFeedba
         FeedbackModel data = getItem(position);
         holder.binding.setDetail(data);
         holder.binding.ratingBar.setRating(Float.parseFloat(data.getRating()));
+        holder.binding.date.setText(data.getFeedbackdate());
         userRef.child(data.getUserId()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

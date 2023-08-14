@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.example.soccerxplorer.MainActivity;
 import com.example.soccerxplorer.R;
 import com.example.soccerxplorer.adapter.AdminFeedbackAdapter;
@@ -83,6 +84,19 @@ public class AdminHomeFragment extends Fragment {
             public void onChanged(List<FeedbackModel> feedbackModels) {
                 adapter.submitList(feedbackModels);
                 LinearLayoutManager mLayoutManager = new LinearLayoutManager(requireContext());
+
+            }
+        });
+
+        userRef.child(UtilManager.getDefaults("userId",requireContext())).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Glide.with(requireContext()).load(snapshot.child("userImage").
+                        getValue(String.class)).error(R.drawable.logo).dontAnimate().into(binding.profile);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
