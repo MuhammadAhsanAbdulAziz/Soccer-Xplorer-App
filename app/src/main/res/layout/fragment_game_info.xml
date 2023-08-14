@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bgColor"
+    tools:context=".GameInfoFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingHorizontal="10dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="40dp"
+                android:layout_height="22dp"
+                android:src="@drawable/back"
+                app:tint="@color/white"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Game Info"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="19sp"
+                android:layout_marginLeft="10dp"/>
+
+        </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/bgColor"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="30dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ground"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/myThemeText"
+                android:layout_marginTop="10dp"
+                android:textSize="25dp"
+                android:fontFamily="@font/bebasneue_regular"
+                android:text="FLIEDS IN SCOCCER"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="61dp"
+                    tools:layout_editor_absoluteY="155dp" />
+                <ImageView
+
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="61dp" />
+                <ImageView
+
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="93dp"
+                    tools:layout_editor_absoluteY="90dp" />
+                <ImageView
+
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="71dp"
+                    tools:layout_editor_absoluteY="36dp" />
+                <ImageView
+
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="166dp"
+                    tools:layout_editor_absoluteY="102dp" />
+                <ImageView
+
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="166dp"
+                    tools:layout_editor_absoluteY="36dp" />
+                <ImageView
+
+                    android:id="@+id/imageView"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="201dp"
+                    tools:layout_editor_absoluteY="36dp" />
+                <ImageView
+
+                    android:id="@+id/imageView2"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="315dp"
+                    tools:layout_editor_absoluteY="36dp" />
+                <ImageView
+
+                    android:id="@+id/imageView10"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="325dp"
+                    tools:layout_editor_absoluteY="155dp" />
+                <ImageView
+
+                    android:id="@+id/imageView11"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="335dp"
+                    tools:layout_editor_absoluteY="179dp" />
+                <ImageView
+
+                    android:id="@+id/imageView12"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="345dp"
+                    tools:layout_editor_absoluteY="107dp" />
+                <ImageView
+
+                    android:id="@+id/imageView9"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="290dp"
+                    tools:layout_editor_absoluteY="100dp" />
+                <ImageView
+
+                    android:id="@+id/imageView3"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="258dp"
+                    tools:layout_editor_absoluteY="61dp" />
+                <ImageView
+
+                    android:id="@+id/imageView4"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="248dp"
+                    tools:layout_editor_absoluteY="132dp" />
+                <ImageView
+
+                    android:id="@+id/imageView5"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="218dp"
+                    tools:layout_editor_absoluteY="112dp" />
+                <ImageView
+
+                    android:id="@+id/imageView6"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="228dp"
+                    tools:layout_editor_absoluteY="199dp" />
+                <ImageView
+
+                    android:id="@+id/imageView7"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="258dp"
+                    tools:layout_editor_absoluteY="179dp" />
+                <ImageView
+
+                    android:id="@+id/imageView8"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="201dp"
+                    tools:layout_editor_absoluteY="179dp" />
+                <ImageView
+
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="146dp"
+                    tools:layout_editor_absoluteY="155dp" />
+                <ImageView
+
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="43dp"
+                    tools:layout_editor_absoluteY="107dp" />
+                <ImageView
+
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="104dp"
+                    tools:layout_editor_absoluteY="189dp" />
+                <ImageView
+
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="113dp"
+                    tools:layout_editor_absoluteY="36dp" />
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:background="@drawable/only_round_radius"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="124dp"
+                    tools:layout_editor_absoluteY="110dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:cardBackgroundColor="@color/transparent"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:background="@drawable/match_background"
+                android:paddingVertical="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="EQUIPMENTS IN SCOCCER"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center|start">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textbg"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="1."/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textbg"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_marginLeft="30dp"
+                        android:text="Ball"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textbg"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="2."/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textbg"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_marginLeft="30dp"
+                        android:text="Jerseys/Shirts"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textbg"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="3."/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textbg"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_marginLeft="30dp"
+                        android:text="Shorts"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textbg"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="4."/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textbg"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_marginLeft="30dp"
+                        android:text="Socks"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textbg"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="5."/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textbg"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_marginLeft="30dp"
+                        android:text="Shin Guards"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textbg"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="6."/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textbg"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_marginLeft="30dp"
+                        android:text="Footwear (Cleats/Boots)"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textbg"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="7."/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textbg"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_marginLeft="30dp"
+                        android:text="Goalkeeper Gloves"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textbg"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:text="8."/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textbg"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_marginLeft="30dp"
+                        android:text="Goalkeeper Jersey"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:cardBackgroundColor="@color/transparent"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:background="@drawable/match_background"
+                android:paddingVertical="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="30dp"
+                    android:fontFamily="@font/bebasneue_regular"
+                    android:text="RULES IN SCOCCER"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Objective:"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textbg"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginLeft="30dp"
+                    android:text="The primary objective of football is to score goals by getting the ball into the opponent's goal."/>
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Teams:"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textbg"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginLeft="30dp"
+                    android:text="Each team consists of 11 players on the field at a time, including one goalkeeper."/>
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Duration:"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textbg"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginLeft="30dp"
+                    android:text="A standard football match is divided into two halves, each lasting 45 minutes, for a total of 90 minutes of playing time."/>
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Offside:"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textbg"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginLeft="30dp"
+                    android:text="A player is considered offside if they are closer to the opponent's goal line than both the ball and the second-to-last defender (usually the last outfield player) at the moment the ball is played to them."/>
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Fouls and Free Kicks:"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textbg"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginLeft="30dp"
+                    android:text="Fouls are committed when a player uses excessive force, trips, pushes, or otherwise impedes an opponent. If a foul occurs, the opposing team is awarded a free kick from the spot of the foul."/>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="18dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Penalty Kicks:s:"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textbg"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginLeft="30dp"
+                    android:text="A penalty kick is awarded if a foul is committed by a defending player inside their own penalty area. It's a one-on-one situation between the kicker and the goalkeeper from the penalty spot."/>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+</ScrollView>
