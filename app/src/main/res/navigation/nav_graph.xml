@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.soccerxplorer.RegisterFragment"
+        android:name="com.example.soccerxplorer.view.user.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register"/>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.soccerxplorer.HomeFragment"
+        android:name="com.example.soccerxplorer.view.user.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.soccerxplorer.LoginFragment"
+        android:name="com.example.soccerxplorer.view.user.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -61,7 +61,7 @@
     </fragment>
     <fragment
         android:id="@+id/favouriteFragment"
-        android:name="com.example.soccerxplorer.FavouriteFragment"
+        android:name="com.example.soccerxplorer.view.user.FavouriteFragment"
         android:label="fragment_favourite"
         tools:layout="@layout/fragment_favourite" >
         <action
@@ -70,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.example.soccerxplorer.SettingFragment"
+        android:name="com.example.soccerxplorer.view.user.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" >
         <action
@@ -114,12 +114,12 @@
         tools:layout="@layout/fragment_create_feedback" />
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.example.soccerxplorer.ForgotPasswordFragment"
+        android:name="com.example.soccerxplorer.view.user.ForgotPasswordFragment"
         android:label="fragment_forgot_password"
         tools:layout="@layout/fragment_forgot_password" />
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.example.soccerxplorer.WelcomeFragment"
+        android:name="com.example.soccerxplorer.view.user.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
@@ -211,12 +211,12 @@
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
-        android:name="com.example.soccerxplorer.EditProfileFragment"
+        android:name="com.example.soccerxplorer.view.user.EditProfileFragment"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" />
     <fragment
         android:id="@+id/fixtureFragment"
-        android:name="com.example.soccerxplorer.FixtureFragment"
+        android:name="com.example.soccerxplorer.view.user.FixtureFragment"
         android:label="fragment_fixture"
         tools:layout="@layout/fragment_fixture" >
         <action
@@ -225,7 +225,7 @@
     </fragment>
     <fragment
         android:id="@+id/fixtureDetailFragment"
-        android:name="com.example.soccerxplorer.FixtureDetailFragment"
+        android:name="com.example.soccerxplorer.view.user.FixtureDetailFragment"
         android:label="fragment_fixture_detail"
         tools:layout="@layout/fragment_fixture_detail" >
         <action
@@ -234,12 +234,12 @@
     </fragment>
     <fragment
         android:id="@+id/playerDetailFragment"
-        android:name="com.example.soccerxplorer.PlayerDetailFragment"
+        android:name="com.example.soccerxplorer.view.user.PlayerDetailFragment"
         android:label="fragment_player_detail"
         tools:layout="@layout/fragment_player_detail" />
     <fragment
         android:id="@+id/teamPlayerFragment"
-        android:name="com.example.soccerxplorer.TeamPlayerFragment"
+        android:name="com.example.soccerxplorer.view.user.TeamPlayerFragment"
         android:label="fragment_team_player"
         tools:layout="@layout/fragment_team_player" >
         <action
@@ -248,12 +248,12 @@
     </fragment>
     <fragment
         android:id="@+id/feedbackFragment"
-        android:name="com.example.soccerxplorer.FeedbackFragment"
+        android:name="com.example.soccerxplorer.view.user.FeedbackFragment"
         android:label="fragment_feedback"
         tools:layout="@layout/fragment_feedback" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.soccerxplorer.SearchFragment"
+        android:name="com.example.soccerxplorer.view.user.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
@@ -268,7 +268,7 @@
     </fragment>
     <fragment
         android:id="@+id/leagueMatcheFragment"
-        android:name="com.example.soccerxplorer.LeagueMatcheFragment"
+        android:name="com.example.soccerxplorer.view.user.LeagueMatcheFragment"
         android:label="fragment_league_matche"
         tools:layout="@layout/fragment_league_matche" >
         <action
@@ -277,7 +277,7 @@
     </fragment>
     <fragment
         android:id="@+id/teamDetailFragment"
-        android:name="com.example.soccerxplorer.TeamDetailFragment"
+        android:name="com.example.soccerxplorer.view.user.TeamDetailFragment"
         android:label="fragment_team_detail"
         tools:layout="@layout/fragment_team_detail" />
     <fragment
@@ -296,12 +296,12 @@
         tools:layout="@layout/fragment_create_user" />
     <fragment
         android:id="@+id/contactUsFragment"
-        android:name="com.example.soccerxplorer.ContactUsFragment"
+        android:name="com.example.soccerxplorer.view.user.ContactUsFragment"
         android:label="fragment_contact_us"
         tools:layout="@layout/fragment_contact_us" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.soccerxplorer.ProfileFragment"
+        android:name="com.example.soccerxplorer.view.user.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -310,7 +310,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameInfoFragment"
-        android:name="com.example.soccerxplorer.GameInfoFragment"
+        android:name="com.example.soccerxplorer.view.user.GameInfoFragment"
         android:label="fragment_game_info"
         tools:layout="@layout/fragment_game_info" />
 </navigation>

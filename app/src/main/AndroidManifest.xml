@@ -14,7 +14,7 @@
         android:theme="@style/Theme.SoccerXplorer"
         tools:targetApi="31">
         <activity
-            android:name=".OnBoardingActivity"
+            android:name=".view.user.OnBoardingActivity"
             android:exported="false" />
         <activity
             android:name=".SplashScreenActivity"

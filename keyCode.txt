@@ -1,0 +1,8 @@
+Alias: key0
+Password: 12345678
+First and Last Name: Soccer Xplorer
+Organizational Unit: Soccer Xplorer
+Organization: MSG-Droid Race
+City or Locality: Karachi
+State or Province: Sindh
+Country Code: 92

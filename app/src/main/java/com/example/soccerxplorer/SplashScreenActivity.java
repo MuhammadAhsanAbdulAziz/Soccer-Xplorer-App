@@ -12,7 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.window.SplashScreen;
+
+import com.example.soccerxplorer.view.user.OnBoardingActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
     ImageView logo;
